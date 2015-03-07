@@ -18,6 +18,7 @@ class GameScene: SKScene {
         case UNHAPPY
         case SAD
         case VERY_SAD
+        case DYING
         case DEAD
     }
     

@@ -19,6 +19,10 @@
 		96802B201AAB4B5800B9AAF3 /* pMoreHappy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 96802B1C1AAB4B5800B9AAF3 /* pMoreHappy.atlas */; };
 		96802B211AAB4B5800B9AAF3 /* pVeryHappy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 96802B1D1AAB4B5800B9AAF3 /* pVeryHappy.atlas */; };
 		96802B221AAB4B5800B9AAF3 /* pVerySad.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 96802B1E1AAB4B5800B9AAF3 /* pVerySad.atlas */; };
+		96802B241AAB756F00B9AAF3 /* pNeutral.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 96802B231AAB756F00B9AAF3 /* pNeutral.atlas */; };
+		96802B261AAB7DBA00B9AAF3 /* pUnhappy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 96802B251AAB7DBA00B9AAF3 /* pUnhappy.atlas */; };
+		96802B281AAB801900B9AAF3 /* pSad.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 96802B271AAB801900B9AAF3 /* pSad.atlas */; };
+		96802B2A1AAB8C0B00B9AAF3 /* pDying.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 96802B291AAB8C0B00B9AAF3 /* pDying.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,10 @@
 		96802B1C1AAB4B5800B9AAF3 /* pMoreHappy.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = pMoreHappy.atlas; sourceTree = "<group>"; };
 		96802B1D1AAB4B5800B9AAF3 /* pVeryHappy.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = pVeryHappy.atlas; sourceTree = "<group>"; };
 		96802B1E1AAB4B5800B9AAF3 /* pVerySad.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = pVerySad.atlas; sourceTree = "<group>"; };
+		96802B231AAB756F00B9AAF3 /* pNeutral.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = pNeutral.atlas; sourceTree = "<group>"; };
+		96802B251AAB7DBA00B9AAF3 /* pUnhappy.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = pUnhappy.atlas; sourceTree = "<group>"; };
+		96802B271AAB801900B9AAF3 /* pSad.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = pSad.atlas; sourceTree = "<group>"; };
+		96802B291AAB8C0B00B9AAF3 /* pDying.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = pDying.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +146,10 @@
 		96802B1A1AAB4B5800B9AAF3 /* PHatchling */ = {
 			isa = PBXGroup;
 			children = (
+				96802B291AAB8C0B00B9AAF3 /* pDying.atlas */,
+				96802B271AAB801900B9AAF3 /* pSad.atlas */,
+				96802B251AAB7DBA00B9AAF3 /* pUnhappy.atlas */,
+				96802B231AAB756F00B9AAF3 /* pNeutral.atlas */,
 				96802B1B1AAB4B5800B9AAF3 /* pHappy.atlas */,
 				96802B1C1AAB4B5800B9AAF3 /* pMoreHappy.atlas */,
 				96802B1D1AAB4B5800B9AAF3 /* pVeryHappy.atlas */,
@@ -226,10 +238,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96802B2A1AAB8C0B00B9AAF3 /* pDying.atlas in Resources */,
 				96802B201AAB4B5800B9AAF3 /* pMoreHappy.atlas in Resources */,
 				96802AD01AA8D1C000B9AAF3 /* LaunchScreen.xib in Resources */,
+				96802B261AAB7DBA00B9AAF3 /* pUnhappy.atlas in Resources */,
 				96802B1F1AAB4B5800B9AAF3 /* pHappy.atlas in Resources */,
 				96802B211AAB4B5800B9AAF3 /* pVeryHappy.atlas in Resources */,
+				96802B281AAB801900B9AAF3 /* pSad.atlas in Resources */,
+				96802B241AAB756F00B9AAF3 /* pNeutral.atlas in Resources */,
 				96802ACD1AA8D1C000B9AAF3 /* Images.xcassets in Resources */,
 				96802ACB1AA8D1C000B9AAF3 /* Main.storyboard in Resources */,
 				96802B221AAB4B5800B9AAF3 /* pVerySad.atlas in Resources */,
@@ -447,6 +463,7 @@
 				96802AE11AA8D1C000B9AAF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		96802AE21AA8D1C000B9AAF3 /* Build configuration list for PBXNativeTarget "CrealingsTests" */ = {
 			isa = XCConfigurationList;
@@ -455,6 +472,7 @@
 				96802AE41AA8D1C000B9AAF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
