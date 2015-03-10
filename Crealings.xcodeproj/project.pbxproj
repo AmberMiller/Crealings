@@ -7,6 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9644A91A1AAD771D00FBD86C /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9644A9191AAD771D00FBD86C /* StatusBar.swift */; };
+		9644A9581AAD9F2500FBD86C /* bar_energy.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A9431AAD9F2500FBD86C /* bar_energy.png */; };
+		9644A9591AAD9F2500FBD86C /* bar_energy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A9441AAD9F2500FBD86C /* bar_energy@2x.png */; };
+		9644A95A1AAD9F2500FBD86C /* bar_energy@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A9451AAD9F2500FBD86C /* bar_energy@3x.png */; };
+		9644A95B1AAD9F2500FBD86C /* bar_fun.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A9461AAD9F2500FBD86C /* bar_fun.png */; };
+		9644A95C1AAD9F2500FBD86C /* bar_fun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A9471AAD9F2500FBD86C /* bar_fun@2x.png */; };
+		9644A95D1AAD9F2500FBD86C /* bar_fun@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A9481AAD9F2500FBD86C /* bar_fun@3x.png */; };
+		9644A95E1AAD9F2500FBD86C /* bar_happiness.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A9491AAD9F2500FBD86C /* bar_happiness.png */; };
+		9644A95F1AAD9F2500FBD86C /* bar_happiness@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A94A1AAD9F2500FBD86C /* bar_happiness@2x.png */; };
+		9644A9601AAD9F2500FBD86C /* bar_happiness@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A94B1AAD9F2500FBD86C /* bar_happiness@3x.png */; };
+		9644A9611AAD9F2500FBD86C /* bar_hunger.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A94C1AAD9F2500FBD86C /* bar_hunger.png */; };
+		9644A9621AAD9F2500FBD86C /* bar_hunger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A94D1AAD9F2500FBD86C /* bar_hunger@2x.png */; };
+		9644A9631AAD9F2500FBD86C /* bar_hunger@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A94E1AAD9F2500FBD86C /* bar_hunger@3x.png */; };
+		9644A9641AAD9F2500FBD86C /* bar_hygiene.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A94F1AAD9F2500FBD86C /* bar_hygiene.png */; };
+		9644A9651AAD9F2500FBD86C /* bar_hygiene@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A9501AAD9F2500FBD86C /* bar_hygiene@2x.png */; };
+		9644A9661AAD9F2500FBD86C /* bar_hygiene@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A9511AAD9F2500FBD86C /* bar_hygiene@3x.png */; };
+		9644A9671AAD9F2500FBD86C /* bar_thirst.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A9521AAD9F2500FBD86C /* bar_thirst.png */; };
+		9644A9681AAD9F2500FBD86C /* bar_thirst@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A9531AAD9F2500FBD86C /* bar_thirst@2x.png */; };
+		9644A9691AAD9F2500FBD86C /* bar_thirst@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A9541AAD9F2500FBD86C /* bar_thirst@3x.png */; };
+		9644A96E1AADB4E200FBD86C /* Gradient.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9644A96D1AADB4E200FBD86C /* Gradient.atlas */; };
 		96802AC21AA8D1C000B9AAF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96802AC11AA8D1C000B9AAF3 /* AppDelegate.swift */; };
 		96802AC61AA8D1C000B9AAF3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96802AC51AA8D1C000B9AAF3 /* GameScene.swift */; };
 		96802AC81AA8D1C000B9AAF3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96802AC71AA8D1C000B9AAF3 /* GameViewController.swift */; };
@@ -23,6 +43,8 @@
 		96802B261AAB7DBA00B9AAF3 /* pUnhappy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 96802B251AAB7DBA00B9AAF3 /* pUnhappy.atlas */; };
 		96802B281AAB801900B9AAF3 /* pSad.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 96802B271AAB801900B9AAF3 /* pSad.atlas */; };
 		96802B2A1AAB8C0B00B9AAF3 /* pDying.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 96802B291AAB8C0B00B9AAF3 /* pDying.atlas */; };
+		96F35FD01AAE7BE700105F55 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F35FCF1AAE7BE700105F55 /* Status.swift */; };
+		96F35FD41AAE956100105F55 /* LoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F35FD31AAE956100105F55 /* LoadViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +58,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9644A9191AAD771D00FBD86C /* StatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
+		9644A9431AAD9F2500FBD86C /* bar_energy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar_energy.png; sourceTree = "<group>"; };
+		9644A9441AAD9F2500FBD86C /* bar_energy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_energy@2x.png"; sourceTree = "<group>"; };
+		9644A9451AAD9F2500FBD86C /* bar_energy@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_energy@3x.png"; sourceTree = "<group>"; };
+		9644A9461AAD9F2500FBD86C /* bar_fun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar_fun.png; sourceTree = "<group>"; };
+		9644A9471AAD9F2500FBD86C /* bar_fun@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_fun@2x.png"; sourceTree = "<group>"; };
+		9644A9481AAD9F2500FBD86C /* bar_fun@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_fun@3x.png"; sourceTree = "<group>"; };
+		9644A9491AAD9F2500FBD86C /* bar_happiness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar_happiness.png; sourceTree = "<group>"; };
+		9644A94A1AAD9F2500FBD86C /* bar_happiness@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_happiness@2x.png"; sourceTree = "<group>"; };
+		9644A94B1AAD9F2500FBD86C /* bar_happiness@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_happiness@3x.png"; sourceTree = "<group>"; };
+		9644A94C1AAD9F2500FBD86C /* bar_hunger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar_hunger.png; sourceTree = "<group>"; };
+		9644A94D1AAD9F2500FBD86C /* bar_hunger@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_hunger@2x.png"; sourceTree = "<group>"; };
+		9644A94E1AAD9F2500FBD86C /* bar_hunger@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_hunger@3x.png"; sourceTree = "<group>"; };
+		9644A94F1AAD9F2500FBD86C /* bar_hygiene.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar_hygiene.png; sourceTree = "<group>"; };
+		9644A9501AAD9F2500FBD86C /* bar_hygiene@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_hygiene@2x.png"; sourceTree = "<group>"; };
+		9644A9511AAD9F2500FBD86C /* bar_hygiene@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_hygiene@3x.png"; sourceTree = "<group>"; };
+		9644A9521AAD9F2500FBD86C /* bar_thirst.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar_thirst.png; sourceTree = "<group>"; };
+		9644A9531AAD9F2500FBD86C /* bar_thirst@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_thirst@2x.png"; sourceTree = "<group>"; };
+		9644A9541AAD9F2500FBD86C /* bar_thirst@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_thirst@3x.png"; sourceTree = "<group>"; };
+		9644A96D1AADB4E200FBD86C /* Gradient.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Gradient.atlas; sourceTree = "<group>"; };
 		96802ABC1AA8D1C000B9AAF3 /* Crealings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crealings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96802AC01AA8D1C000B9AAF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96802AC11AA8D1C000B9AAF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +98,8 @@
 		96802B251AAB7DBA00B9AAF3 /* pUnhappy.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = pUnhappy.atlas; sourceTree = "<group>"; };
 		96802B271AAB801900B9AAF3 /* pSad.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = pSad.atlas; sourceTree = "<group>"; };
 		96802B291AAB8C0B00B9AAF3 /* pDying.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = pDying.atlas; sourceTree = "<group>"; };
+		96F35FCF1AAE7BE700105F55 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		96F35FD31AAE956100105F55 /* LoadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +120,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9644A9421AAD9F2500FBD86C /* StatusBars */ = {
+			isa = PBXGroup;
+			children = (
+				9644A96D1AADB4E200FBD86C /* Gradient.atlas */,
+				9644A9431AAD9F2500FBD86C /* bar_energy.png */,
+				9644A9441AAD9F2500FBD86C /* bar_energy@2x.png */,
+				9644A9451AAD9F2500FBD86C /* bar_energy@3x.png */,
+				9644A9461AAD9F2500FBD86C /* bar_fun.png */,
+				9644A9471AAD9F2500FBD86C /* bar_fun@2x.png */,
+				9644A9481AAD9F2500FBD86C /* bar_fun@3x.png */,
+				9644A9491AAD9F2500FBD86C /* bar_happiness.png */,
+				9644A94A1AAD9F2500FBD86C /* bar_happiness@2x.png */,
+				9644A94B1AAD9F2500FBD86C /* bar_happiness@3x.png */,
+				9644A94C1AAD9F2500FBD86C /* bar_hunger.png */,
+				9644A94D1AAD9F2500FBD86C /* bar_hunger@2x.png */,
+				9644A94E1AAD9F2500FBD86C /* bar_hunger@3x.png */,
+				9644A94F1AAD9F2500FBD86C /* bar_hygiene.png */,
+				9644A9501AAD9F2500FBD86C /* bar_hygiene@2x.png */,
+				9644A9511AAD9F2500FBD86C /* bar_hygiene@3x.png */,
+				9644A9521AAD9F2500FBD86C /* bar_thirst.png */,
+				9644A9531AAD9F2500FBD86C /* bar_thirst@2x.png */,
+				9644A9541AAD9F2500FBD86C /* bar_thirst@3x.png */,
+			);
+			path = StatusBars;
+			sourceTree = "<group>";
+		};
 		96802AB31AA8D1C000B9AAF3 = {
 			isa = PBXGroup;
 			children = (
@@ -99,9 +169,8 @@
 			children = (
 				96802AE71AA8D9DB00B9AAF3 /* Assets */,
 				96802AC11AA8D1C000B9AAF3 /* AppDelegate.swift */,
-				96802AC51AA8D1C000B9AAF3 /* GameScene.swift */,
-				96802AC71AA8D1C000B9AAF3 /* GameViewController.swift */,
-				96802AE51AA8D27800B9AAF3 /* Crealing.swift */,
+				96F35FD21AAE94CE00105F55 /* View Controllers */,
+				96F35FD11AAE94AE00105F55 /* Game */,
 				96802AC91AA8D1C000B9AAF3 /* Main.storyboard */,
 				96802ACC1AA8D1C000B9AAF3 /* Images.xcassets */,
 				96802ACE1AA8D1C000B9AAF3 /* LaunchScreen.xib */,
@@ -138,6 +207,7 @@
 		96802AE71AA8D9DB00B9AAF3 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				9644A9421AAD9F2500FBD86C /* StatusBars */,
 				96802B1A1AAB4B5800B9AAF3 /* PHatchling */,
 			);
 			path = Assets;
@@ -156,6 +226,26 @@
 				96802B1E1AAB4B5800B9AAF3 /* pVerySad.atlas */,
 			);
 			path = PHatchling;
+			sourceTree = "<group>";
+		};
+		96F35FD11AAE94AE00105F55 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				96802AC51AA8D1C000B9AAF3 /* GameScene.swift */,
+				96802AE51AA8D27800B9AAF3 /* Crealing.swift */,
+				96F35FCF1AAE7BE700105F55 /* Status.swift */,
+				9644A9191AAD771D00FBD86C /* StatusBar.swift */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
+		96F35FD21AAE94CE00105F55 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				96802AC71AA8D1C000B9AAF3 /* GameViewController.swift */,
+				96F35FD31AAE956100105F55 /* LoadViewController.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,16 +329,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				96802B2A1AAB8C0B00B9AAF3 /* pDying.atlas in Resources */,
+				9644A95B1AAD9F2500FBD86C /* bar_fun.png in Resources */,
 				96802B201AAB4B5800B9AAF3 /* pMoreHappy.atlas in Resources */,
 				96802AD01AA8D1C000B9AAF3 /* LaunchScreen.xib in Resources */,
+				9644A9651AAD9F2500FBD86C /* bar_hygiene@2x.png in Resources */,
+				9644A95A1AAD9F2500FBD86C /* bar_energy@3x.png in Resources */,
 				96802B261AAB7DBA00B9AAF3 /* pUnhappy.atlas in Resources */,
+				9644A9631AAD9F2500FBD86C /* bar_hunger@3x.png in Resources */,
 				96802B1F1AAB4B5800B9AAF3 /* pHappy.atlas in Resources */,
+				9644A95F1AAD9F2500FBD86C /* bar_happiness@2x.png in Resources */,
 				96802B211AAB4B5800B9AAF3 /* pVeryHappy.atlas in Resources */,
+				9644A9691AAD9F2500FBD86C /* bar_thirst@3x.png in Resources */,
+				9644A95C1AAD9F2500FBD86C /* bar_fun@2x.png in Resources */,
 				96802B281AAB801900B9AAF3 /* pSad.atlas in Resources */,
+				9644A9581AAD9F2500FBD86C /* bar_energy.png in Resources */,
 				96802B241AAB756F00B9AAF3 /* pNeutral.atlas in Resources */,
+				9644A9601AAD9F2500FBD86C /* bar_happiness@3x.png in Resources */,
+				9644A9591AAD9F2500FBD86C /* bar_energy@2x.png in Resources */,
+				9644A9621AAD9F2500FBD86C /* bar_hunger@2x.png in Resources */,
+				9644A9611AAD9F2500FBD86C /* bar_hunger.png in Resources */,
+				9644A9671AAD9F2500FBD86C /* bar_thirst.png in Resources */,
+				9644A95D1AAD9F2500FBD86C /* bar_fun@3x.png in Resources */,
 				96802ACD1AA8D1C000B9AAF3 /* Images.xcassets in Resources */,
+				9644A9661AAD9F2500FBD86C /* bar_hygiene@3x.png in Resources */,
 				96802ACB1AA8D1C000B9AAF3 /* Main.storyboard in Resources */,
+				9644A96E1AADB4E200FBD86C /* Gradient.atlas in Resources */,
+				9644A9681AAD9F2500FBD86C /* bar_thirst@2x.png in Resources */,
 				96802B221AAB4B5800B9AAF3 /* pVerySad.atlas in Resources */,
+				9644A95E1AAD9F2500FBD86C /* bar_happiness.png in Resources */,
+				9644A9641AAD9F2500FBD86C /* bar_hygiene.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +375,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9644A91A1AAD771D00FBD86C /* StatusBar.swift in Sources */,
 				96802AC61AA8D1C000B9AAF3 /* GameScene.swift in Sources */,
+				96F35FD41AAE956100105F55 /* LoadViewController.swift in Sources */,
+				96F35FD01AAE7BE700105F55 /* Status.swift in Sources */,
 				96802AC81AA8D1C000B9AAF3 /* GameViewController.swift in Sources */,
 				96802AE61AA8D27800B9AAF3 /* Crealing.swift in Sources */,
 				96802AC21AA8D1C000B9AAF3 /* AppDelegate.swift in Sources */,

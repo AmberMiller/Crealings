@@ -32,6 +32,15 @@ class GameScene: SKScene {
     }
 
     
+    var happinessBar: StatusBar? = nil;
+    var energyBar: StatusBar? = nil;
+    var hungerBar: StatusBar? = nil;
+    var thirstBar: StatusBar? = nil;
+    var funBar: StatusBar? = nil;
+    var hygieneBar: StatusBar? = nil;
+    
+    var status: Status = Status.sharedInstance;
+
     var crealing: Crealing? = nil;
     
     override func didMoveToView(view: SKView) {
@@ -39,20 +48,104 @@ class GameScene: SKScene {
         setUpScene()
     }
     
+    func refresh () {
+        happinessBar?.setStatus(status.setHappiness(-10));
+        energyBar?.setStatus(status.setEnergy(-10));
+        hungerBar?.setStatus(status.setHunger(-10));
+        thirstBar?.setStatus(status.setThirst(-10));
+        funBar?.setStatus(status.setFun(-10));
+        hygieneBar?.setStatus(status.setHygiene(-10));
+        if (crealing != nil) {
+            crealing!.setMood(crealing!.getMood());
+        }
+    }
+    
+    /***********************************************************
+        Touches
+    ************************************************************/
+    
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         /* Called when a touch begins */
-        crealing?.tapPet();
+        for touch: AnyObject in touches {
+            let location = touch.locationInNode(self);
+            let node = nodeAtPoint(location);
+            
+            if (node.name != nil) {
+                switch node.name! {
+                case "crealing":
+                    crealing?.tapPet();
+                case "happiness":
+                    happinessBar?.tapStatusBar("happiness");
+                case "energy":
+                    energyBar?.tapStatusBar("energy");
+                case "hunger":
+                    hungerBar?.tapStatusBar("hunger");
+                case "thirst":
+                    thirstBar?.tapStatusBar("thirst");
+                case "fun":
+                    funBar?.tapStatusBar("fun");
+                case "hygiene":
+                    hygieneBar?.tapStatusBar("hygiene");
+                default:
+                    break;
+                }
+                
+                if (crealing != nil) {
+                    crealing!.setMood(crealing!.getMood());
+                }
+            }
+        }
     }
+    
+    /***********************************************************
+        Update
+    ************************************************************/
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }
     
+    /***********************************************************
+        Setup
+    ************************************************************/
+    
     func setUpScene () {
         crealing = Crealing();
         if ((crealing != nil) && (crealing!.setup(self, mon: "pHatchling"))) {
-            crealing!.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2)
             self.addChild(crealing!);
         }
+        
+        happinessBar = StatusBar();
+        if ((happinessBar != nil) && (happinessBar!.setup(self, current: "happiness"))) {
+            self.addChild(happinessBar!);
+        }
+        
+        energyBar = StatusBar();
+        if ((energyBar != nil) && (energyBar!.setup(self, current: "energy"))) {
+            self.addChild(energyBar!);
+        }
+        
+        hungerBar = StatusBar();
+        if ((hungerBar != nil) && (hungerBar!.setup(self, current: "hunger"))) {
+            self.addChild(hungerBar!);
+        }
+        
+        thirstBar = StatusBar();
+        if ((thirstBar != nil) && (thirstBar!.setup(self, current: "thirst"))) {
+            self.addChild(thirstBar!);
+        }
+        
+        funBar = StatusBar();
+        if ((funBar != nil) && (funBar!.setup(self, current: "fun"))) {
+            self.addChild(funBar!);
+        }
+        
+        hygieneBar = StatusBar();
+        if ((hygieneBar != nil) && (hygieneBar!.setup(self, current: "hygiene"))) {
+            self.addChild(hygieneBar!);
+        }
+        
+        let timer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: ("refresh"), userInfo: nil, repeats: true);
+
     }
 }

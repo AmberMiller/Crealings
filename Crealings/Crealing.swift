@@ -24,12 +24,7 @@ final class Crealing : SKNode {
     var maxHealth: Int = 0;
     var currentHealth: Int = 0;
     
-    var happiness: Int = 100;
-    var hunger: Int = 0;
-    var thirst: Int = 0;
-    var fun: Int = 0;
-    var energy: Int = 0;
-    var hygiene: Int = 0;
+    let status: Status = Status.sharedInstance;
     
     var idle: Bool = true;
     var isAlive: Bool = true;
@@ -53,6 +48,8 @@ final class Crealing : SKNode {
         }
         setMood(getMood())
 
+        crealingSprite?.position = CGPointMake(view.size.width / 2, view.size.height / 3.5);
+        crealingSprite?.name = "crealing";
         self.addChild(crealingSprite!);
 
         isAlive = true;
@@ -66,7 +63,7 @@ final class Crealing : SKNode {
     //Set mood based on current stats
     func getMood () -> GameScene.Mood {
         var mood: GameScene.Mood;
-        let moodTotal = (happiness + hunger + thirst + fun + energy + hygiene) / 6;
+        let moodTotal = status.getMoodTotal();
         println("Mood Total: \(moodTotal)")
         switch moodTotal {
             case 90...100:
@@ -156,151 +153,153 @@ final class Crealing : SKNode {
         runBlinkAnim()
     }
     
+    /***********************************************************
+        Animations
+    ************************************************************/
+    
     //Run animation with wait time and loop forever
     func runBlinkAnim () {
         var loop: SKAction;
         var loopAnimTextures: [SKTexture] = [];
         
-        //If sad or very sad, loop first two images before running blinkAnim
-        if (getMood() == GameScene.Mood.VERY_HAPPY || getMood() == GameScene.Mood.SAD || getMood() == GameScene.Mood.VERY_SAD) {
-            var moodName: String = "";
-            if (getMood() == GameScene.Mood.VERY_HAPPY) {
+        //If very happy, sad or very sad, loop first two images before running blinkAnim
+        switch getMood() {
+            case GameScene.Mood.VERY_HAPPY:
                 loopAnimTextures = [animAtlas!.textureNamed("vhappy1"), animAtlas!.textureNamed("vhappy2")];
-            }
-            if (getMood() == GameScene.Mood.SAD) {
-                loopAnimTextures = [animAtlas!.textureNamed("sad1"), animAtlas!.textureNamed("sad2")];
-            }
-            if (getMood() == GameScene.Mood.VERY_SAD) {
-                loopAnimTextures = [animAtlas!.textureNamed("cry1"), animAtlas!.textureNamed("cry2")];
-            }
-            let loopAnim = SKAction.animateWithTextures(loopAnimTextures, timePerFrame: 0.1);
-
-            loop = SKAction.sequence([
-                    loopAnim,
-                    loopAnim,
-                    loopAnim,
-                    loopAnim,
-                    loopAnim,
-                    loopAnim,
-                    loopAnim,
-                    loopAnim,
-                    blinkAnim
+                let loopAnim = SKAction.animateWithTextures(loopAnimTextures, timePerFrame: 0.1);
                 
-            ]);
-        } else {
-            let wait = SKAction.waitForDuration(5)
-            let actions = [blinkAnim, wait]
-            loop = SKAction.sequence([
-                blinkAnim,
-                SKAction.waitForDuration(5),
-            ])
+                loop = SKAction.sequence([
+                    loopAnim, loopAnim, loopAnim, loopAnim,
+                    loopAnim, loopAnim, loopAnim, loopAnim,
+                    blinkAnim
+                ]);
+        case GameScene.Mood.SAD:
+                loopAnimTextures = [animAtlas!.textureNamed("sad1"), animAtlas!.textureNamed("sad2")];
+                let loopAnim = SKAction.animateWithTextures(loopAnimTextures, timePerFrame: 0.1);
+                
+                loop = SKAction.sequence([
+                    loopAnim, loopAnim, loopAnim, loopAnim,
+                    loopAnim, loopAnim, loopAnim, loopAnim,
+                    blinkAnim
+                    ]);
+        case GameScene.Mood.VERY_SAD:
+                loopAnimTextures = [animAtlas!.textureNamed("cry1"), animAtlas!.textureNamed("cry2")];
+                let loopAnim = SKAction.animateWithTextures(loopAnimTextures, timePerFrame: 0.1);
+                
+                loop = SKAction.sequence([
+                    loopAnim, loopAnim, loopAnim, loopAnim,
+                    loopAnim, loopAnim, loopAnim, loopAnim,
+                    blinkAnim
+                    ]);
+            default:
+                let wait = SKAction.waitForDuration(5)
+                let actions = [blinkAnim, wait]
+                loop = SKAction.sequence([ blinkAnim, SKAction.waitForDuration(5)])
         }
-
         crealingSprite?.runAction(SKAction.repeatActionForever(loop), withKey: "blinkAction")
-
     }
     
     /***********************************************************
     Touching the Pet
     ************************************************************/
     func tapPet () {
-        
+        println("Tapped Pet");
     }
     
-    /***********************************************************
-        Feeding the Pet
-    ************************************************************/
-    func feedPet (food: GameScene.ItemType) -> Bool {
-        switch food {
-            case .FOOD_APPLE:
-                happiness += 5;
-                hunger += 10;
-                
-                if (happiness > 100) {
-                    happiness = 100;
-                }
-                
-                if (hunger > 100) {
-                    hunger = 100;
-                }
-                return true;
-            case .FOOD_CHOCOLATE:
-                happiness += 15;
-                hunger += 25;
-                
-                if (happiness > 100) {
-                    happiness = 100;
-                }
-                
-                if (hunger > 100) {
-                    hunger = 100;
-                }
-                return true;
-            default:
-                return false;
-        }
-    }
-    
-    /***********************************************************
-        Giving the Pet a Drink
-    ************************************************************/
-    func hydratePet (drink: GameScene.ItemType) -> Bool {
-        switch drink {
-            case .DRINK_WATER:
-                thirst += 5;
-                
-                if (thirst > 100) {
-                    thirst = 100;
-                }
-                return true;
-            case .DRINK_JUICE:
-                happiness += 10;
-                thirst += 10;
-                
-                if (happiness > 100) {
-                    happiness = 100;
-                }
-                
-                if (thirst > 100) {
-                    thirst = 100;
-                }
-                return true;
-            default:
-                return false;
-        }
-    }
-    
-    /***********************************************************
-        Playing With the Pet
-    ************************************************************/
-    func playWith (toy: GameScene.ItemType) -> Bool {
-        switch toy {
-        case .TOY_BALL:
-            happiness += 10
-            fun += 15;
-
-            if (happiness > 100) {
-                happiness = 100;
-            }
-            
-            if (fun > 100) {
-                fun = 100;
-            }
-            return true;
-        case .TOY_BOOK:
-            happiness += 10;
-            fun += 15;
-            
-            if (happiness > 100) {
-                happiness = 100;
-            }
-            
-            if (fun > 100) {
-                fun = 100;
-            }
-            return true;
-        default:
-            return false;
-        }
-    }
+//    /***********************************************************
+//        Feeding the Pet
+//    ************************************************************/
+//    func feedPet (food: GameScene.ItemType) -> Bool {
+//        switch food {
+//            case .FOOD_APPLE:
+//                happiness += 5;
+//                hunger += 10;
+//                
+//                if (happiness > 100) {
+//                    happiness = 100;
+//                }
+//                
+//                if (hunger > 100) {
+//                    hunger = 100;
+//                }
+//                return true;
+//            case .FOOD_CHOCOLATE:
+//                happiness += 15;
+//                hunger += 25;
+//                
+//                if (happiness > 100) {
+//                    happiness = 100;
+//                }
+//                
+//                if (hunger > 100) {
+//                    hunger = 100;
+//                }
+//                return true;
+//            default:
+//                return false;
+//        }
+//    }
+//    
+//    /***********************************************************
+//        Giving the Pet a Drink
+//    ************************************************************/
+//    func hydratePet (drink: GameScene.ItemType) -> Bool {
+//        switch drink {
+//            case .DRINK_WATER:
+//                thirst += 5;
+//                
+//                if (thirst > 100) {
+//                    thirst = 100;
+//                }
+//                return true;
+//            case .DRINK_JUICE:
+//                happiness += 10;
+//                thirst += 10;
+//                
+//                if (happiness > 100) {
+//                    happiness = 100;
+//                }
+//                
+//                if (thirst > 100) {
+//                    thirst = 100;
+//                }
+//                return true;
+//            default:
+//                return false;
+//        }
+//    }
+//    
+//    /***********************************************************
+//        Playing With the Pet
+//    ************************************************************/
+//    func playWith (toy: GameScene.ItemType) -> Bool {
+//        switch toy {
+//        case .TOY_BALL:
+//            happiness += 10
+//            fun += 15;
+//
+//            if (happiness > 100) {
+//                happiness = 100;
+//            }
+//            
+//            if (fun > 100) {
+//                fun = 100;
+//            }
+//            return true;
+//        case .TOY_BOOK:
+//            happiness += 10;
+//            fun += 15;
+//            
+//            if (happiness > 100) {
+//                happiness = 100;
+//            }
+//            
+//            if (fun > 100) {
+//                fun = 100;
+//            }
+//            return true;
+//        default:
+//            return false;
+//        }
+//    }
 }
