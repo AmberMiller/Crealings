@@ -1,5 +1,5 @@
 //
-//  LoadViewController.swift
+//  NewGameViewController.swift
 //  Crealings
 //
 //  Created by Amber Miller on 3/9/15.
@@ -7,3 +7,10 @@
 //
 
 import Foundation
+import UIKit
+
+class NewGameViewController: UIViewController {
+    
+    
+    
+}

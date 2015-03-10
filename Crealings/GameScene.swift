@@ -8,6 +8,10 @@
 
 import SpriteKit
 
+protocol GameSceneDelegate {
+    func GameSceneSetup();
+}
+
 class GameScene: SKScene {
     
     enum Mood: UInt32 {
@@ -30,7 +34,10 @@ class GameScene: SKScene {
         case TOY_BALL
         case TOY_BOOK
     }
+    
+    var gameDelegate: GameSceneDelegate?;
 
+    var currentMon: String? = nil;
     
     var happinessBar: StatusBar? = nil;
     var energyBar: StatusBar? = nil;
@@ -42,10 +49,10 @@ class GameScene: SKScene {
     var status: Status = Status.sharedInstance;
 
     var crealing: Crealing? = nil;
-    
+        
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-        setUpScene()
+        gameDelegate?.GameSceneSetup();
     }
     
     func refresh () {
@@ -110,11 +117,7 @@ class GameScene: SKScene {
     ************************************************************/
     
     func setUpScene () {
-        crealing = Crealing();
-        if ((crealing != nil) && (crealing!.setup(self, mon: "pHatchling"))) {
-            self.addChild(crealing!);
-        }
-        
+            
         happinessBar = StatusBar();
         if ((happinessBar != nil) && (happinessBar!.setup(self, current: "happiness"))) {
             self.addChild(happinessBar!);
@@ -124,28 +127,35 @@ class GameScene: SKScene {
         if ((energyBar != nil) && (energyBar!.setup(self, current: "energy"))) {
             self.addChild(energyBar!);
         }
-        
+            
         hungerBar = StatusBar();
         if ((hungerBar != nil) && (hungerBar!.setup(self, current: "hunger"))) {
             self.addChild(hungerBar!);
         }
-        
+            
         thirstBar = StatusBar();
         if ((thirstBar != nil) && (thirstBar!.setup(self, current: "thirst"))) {
             self.addChild(thirstBar!);
         }
-        
+            
         funBar = StatusBar();
         if ((funBar != nil) && (funBar!.setup(self, current: "fun"))) {
             self.addChild(funBar!);
         }
-        
+            
         hygieneBar = StatusBar();
         if ((hygieneBar != nil) && (hygieneBar!.setup(self, current: "hygiene"))) {
             self.addChild(hygieneBar!);
         }
         
+        crealing = Crealing();
+        if (currentMon != nil) {
+            if ((crealing != nil) && (crealing!.setup(self, mon: currentMon!))) {
+                self.addChild(crealing!);
+            }
+        }
+        
         let timer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: ("refresh"), userInfo: nil, repeats: true);
-
+        
     }
 }

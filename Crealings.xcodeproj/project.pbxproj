@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		962366591AAF3E340008010B /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 962366561AAF3E340008010B /* start.png */; };
+		9623665A1AAF3E340008010B /* start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 962366571AAF3E340008010B /* start@2x.png */; };
+		9623665B1AAF3E340008010B /* start@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 962366581AAF3E340008010B /* start@3x.png */; };
+		962366651AAF76D70008010B /* bDying.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9623665D1AAF76D70008010B /* bDying.atlas */; };
+		962366661AAF76D70008010B /* bHappy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9623665E1AAF76D70008010B /* bHappy.atlas */; };
+		962366671AAF76D70008010B /* bMoreHappy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9623665F1AAF76D70008010B /* bMoreHappy.atlas */; };
+		962366681AAF76D70008010B /* bNeutral.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 962366601AAF76D70008010B /* bNeutral.atlas */; };
+		962366691AAF76D70008010B /* bSad.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 962366611AAF76D70008010B /* bSad.atlas */; };
+		9623666A1AAF76D70008010B /* bUnhappy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 962366621AAF76D70008010B /* bUnhappy.atlas */; };
+		9623666B1AAF76D70008010B /* bVeryHappy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 962366631AAF76D70008010B /* bVeryHappy.atlas */; };
+		9623666C1AAF76D70008010B /* bVerySad.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 962366641AAF76D70008010B /* bVerySad.atlas */; };
+		962366B71AAF78B00008010B /* bEgg.png in Resources */ = {isa = PBXBuildFile; fileRef = 962366B01AAF78B00008010B /* bEgg.png */; };
+		962366B81AAF78B00008010B /* bEgg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 962366B11AAF78B00008010B /* bEgg@2x.png */; };
+		962366B91AAF78B00008010B /* bEgg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 962366B21AAF78B00008010B /* bEgg@3x.png */; };
+		962366BA1AAF78B00008010B /* bEgg_crack1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 962366B31AAF78B00008010B /* bEgg_crack1.atlas */; };
+		962366BB1AAF78B00008010B /* bEgg_crack2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 962366B41AAF78B00008010B /* bEgg_crack2.atlas */; };
+		962366BC1AAF78B00008010B /* bEgg_crack3.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 962366B51AAF78B00008010B /* bEgg_crack3.atlas */; };
+		962366BD1AAF78B00008010B /* bEgg_new.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 962366B61AAF78B00008010B /* bEgg_new.atlas */; };
+		962366BF1AAF845C0008010B /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 962366BE1AAF845C0008010B /* logo.png */; };
 		9644A91A1AAD771D00FBD86C /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9644A9191AAD771D00FBD86C /* StatusBar.swift */; };
 		9644A9581AAD9F2500FBD86C /* bar_energy.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A9431AAD9F2500FBD86C /* bar_energy.png */; };
 		9644A9591AAD9F2500FBD86C /* bar_energy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A9441AAD9F2500FBD86C /* bar_energy@2x.png */; };
@@ -27,6 +46,18 @@
 		9644A9681AAD9F2500FBD86C /* bar_thirst@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A9531AAD9F2500FBD86C /* bar_thirst@2x.png */; };
 		9644A9691AAD9F2500FBD86C /* bar_thirst@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A9541AAD9F2500FBD86C /* bar_thirst@3x.png */; };
 		9644A96E1AADB4E200FBD86C /* Gradient.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9644A96D1AADB4E200FBD86C /* Gradient.atlas */; };
+		9653DB121AAED808005103F8 /* ChooseEggViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9653DB111AAED808005103F8 /* ChooseEggViewController.swift */; };
+		9653DB141AAEE328005103F8 /* Egg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9653DB131AAEE328005103F8 /* Egg.swift */; };
+		9653DB1C1AAEFA25005103F8 /* pEgg_crack1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9653DB181AAEFA25005103F8 /* pEgg_crack1.atlas */; };
+		9653DB1D1AAEFA25005103F8 /* pEgg_crack2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9653DB191AAEFA25005103F8 /* pEgg_crack2.atlas */; };
+		9653DB1E1AAEFA25005103F8 /* pEgg_crack3.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9653DB1A1AAEFA25005103F8 /* pEgg_crack3.atlas */; };
+		9653DB1F1AAEFA25005103F8 /* pEgg_new.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9653DB1B1AAEFA25005103F8 /* pEgg_new.atlas */; };
+		9653DB211AAEFD8E005103F8 /* eggCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9653DB201AAEFD8E005103F8 /* eggCell.swift */; };
+		9653DB251AAF0463005103F8 /* pEgg.png in Resources */ = {isa = PBXBuildFile; fileRef = 9653DB221AAF0463005103F8 /* pEgg.png */; };
+		9653DB261AAF0463005103F8 /* pEgg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9653DB231AAF0463005103F8 /* pEgg@2x.png */; };
+		9653DB271AAF0463005103F8 /* pEgg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9653DB241AAF0463005103F8 /* pEgg@3x.png */; };
+		9653DB2B1AAF0B1E005103F8 /* EggObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9653DB2A1AAF0B1E005103F8 /* EggObject.swift */; };
+		9653DB2D1AAF134F005103F8 /* EggScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9653DB2C1AAF134F005103F8 /* EggScene.swift */; };
 		96802AC21AA8D1C000B9AAF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96802AC11AA8D1C000B9AAF3 /* AppDelegate.swift */; };
 		96802AC61AA8D1C000B9AAF3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96802AC51AA8D1C000B9AAF3 /* GameScene.swift */; };
 		96802AC81AA8D1C000B9AAF3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96802AC71AA8D1C000B9AAF3 /* GameViewController.swift */; };
@@ -44,7 +75,8 @@
 		96802B281AAB801900B9AAF3 /* pSad.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 96802B271AAB801900B9AAF3 /* pSad.atlas */; };
 		96802B2A1AAB8C0B00B9AAF3 /* pDying.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 96802B291AAB8C0B00B9AAF3 /* pDying.atlas */; };
 		96F35FD01AAE7BE700105F55 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F35FCF1AAE7BE700105F55 /* Status.swift */; };
-		96F35FD41AAE956100105F55 /* LoadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F35FD31AAE956100105F55 /* LoadViewController.swift */; };
+		96F35FD41AAE956100105F55 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F35FD31AAE956100105F55 /* StartViewController.swift */; };
+		96F35FD61AAEA2C200105F55 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F35FD51AAEA2C200105F55 /* NewGameViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +90,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		962366561AAF3E340008010B /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
+		962366571AAF3E340008010B /* start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start@2x.png"; sourceTree = "<group>"; };
+		962366581AAF3E340008010B /* start@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start@3x.png"; sourceTree = "<group>"; };
+		9623665D1AAF76D70008010B /* bDying.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bDying.atlas; sourceTree = "<group>"; };
+		9623665E1AAF76D70008010B /* bHappy.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bHappy.atlas; sourceTree = "<group>"; };
+		9623665F1AAF76D70008010B /* bMoreHappy.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bMoreHappy.atlas; sourceTree = "<group>"; };
+		962366601AAF76D70008010B /* bNeutral.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bNeutral.atlas; sourceTree = "<group>"; };
+		962366611AAF76D70008010B /* bSad.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bSad.atlas; sourceTree = "<group>"; };
+		962366621AAF76D70008010B /* bUnhappy.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bUnhappy.atlas; sourceTree = "<group>"; };
+		962366631AAF76D70008010B /* bVeryHappy.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bVeryHappy.atlas; sourceTree = "<group>"; };
+		962366641AAF76D70008010B /* bVerySad.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bVerySad.atlas; sourceTree = "<group>"; };
+		962366B01AAF78B00008010B /* bEgg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bEgg.png; sourceTree = "<group>"; };
+		962366B11AAF78B00008010B /* bEgg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bEgg@2x.png"; sourceTree = "<group>"; };
+		962366B21AAF78B00008010B /* bEgg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bEgg@3x.png"; sourceTree = "<group>"; };
+		962366B31AAF78B00008010B /* bEgg_crack1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bEgg_crack1.atlas; sourceTree = "<group>"; };
+		962366B41AAF78B00008010B /* bEgg_crack2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bEgg_crack2.atlas; sourceTree = "<group>"; };
+		962366B51AAF78B00008010B /* bEgg_crack3.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bEgg_crack3.atlas; sourceTree = "<group>"; };
+		962366B61AAF78B00008010B /* bEgg_new.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bEgg_new.atlas; sourceTree = "<group>"; };
+		962366BE1AAF845C0008010B /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		9644A9191AAD771D00FBD86C /* StatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 		9644A9431AAD9F2500FBD86C /* bar_energy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar_energy.png; sourceTree = "<group>"; };
 		9644A9441AAD9F2500FBD86C /* bar_energy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_energy@2x.png"; sourceTree = "<group>"; };
@@ -78,6 +129,18 @@
 		9644A9531AAD9F2500FBD86C /* bar_thirst@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_thirst@2x.png"; sourceTree = "<group>"; };
 		9644A9541AAD9F2500FBD86C /* bar_thirst@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_thirst@3x.png"; sourceTree = "<group>"; };
 		9644A96D1AADB4E200FBD86C /* Gradient.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Gradient.atlas; sourceTree = "<group>"; };
+		9653DB111AAED808005103F8 /* ChooseEggViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseEggViewController.swift; sourceTree = "<group>"; };
+		9653DB131AAEE328005103F8 /* Egg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Egg.swift; sourceTree = "<group>"; };
+		9653DB181AAEFA25005103F8 /* pEgg_crack1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = pEgg_crack1.atlas; sourceTree = "<group>"; };
+		9653DB191AAEFA25005103F8 /* pEgg_crack2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = pEgg_crack2.atlas; sourceTree = "<group>"; };
+		9653DB1A1AAEFA25005103F8 /* pEgg_crack3.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = pEgg_crack3.atlas; sourceTree = "<group>"; };
+		9653DB1B1AAEFA25005103F8 /* pEgg_new.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = pEgg_new.atlas; sourceTree = "<group>"; };
+		9653DB201AAEFD8E005103F8 /* eggCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eggCell.swift; sourceTree = "<group>"; };
+		9653DB221AAF0463005103F8 /* pEgg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pEgg.png; sourceTree = "<group>"; };
+		9653DB231AAF0463005103F8 /* pEgg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pEgg@2x.png"; sourceTree = "<group>"; };
+		9653DB241AAF0463005103F8 /* pEgg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pEgg@3x.png"; sourceTree = "<group>"; };
+		9653DB2A1AAF0B1E005103F8 /* EggObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EggObject.swift; sourceTree = "<group>"; };
+		9653DB2C1AAF134F005103F8 /* EggScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EggScene.swift; sourceTree = "<group>"; };
 		96802ABC1AA8D1C000B9AAF3 /* Crealings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crealings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96802AC01AA8D1C000B9AAF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96802AC11AA8D1C000B9AAF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,7 +162,8 @@
 		96802B271AAB801900B9AAF3 /* pSad.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = pSad.atlas; sourceTree = "<group>"; };
 		96802B291AAB8C0B00B9AAF3 /* pDying.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = pDying.atlas; sourceTree = "<group>"; };
 		96F35FCF1AAE7BE700105F55 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
-		96F35FD31AAE956100105F55 /* LoadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadViewController.swift; sourceTree = "<group>"; };
+		96F35FD31AAE956100105F55 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		96F35FD51AAEA2C200105F55 /* NewGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +184,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		962366551AAF3E340008010B /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				962366BE1AAF845C0008010B /* logo.png */,
+				962366561AAF3E340008010B /* start.png */,
+				962366571AAF3E340008010B /* start@2x.png */,
+				962366581AAF3E340008010B /* start@3x.png */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		9623665C1AAF76D70008010B /* bHatchling */ = {
+			isa = PBXGroup;
+			children = (
+				9623665D1AAF76D70008010B /* bDying.atlas */,
+				9623665E1AAF76D70008010B /* bHappy.atlas */,
+				9623665F1AAF76D70008010B /* bMoreHappy.atlas */,
+				962366601AAF76D70008010B /* bNeutral.atlas */,
+				962366611AAF76D70008010B /* bSad.atlas */,
+				962366621AAF76D70008010B /* bUnhappy.atlas */,
+				962366631AAF76D70008010B /* bVeryHappy.atlas */,
+				962366641AAF76D70008010B /* bVerySad.atlas */,
+			);
+			path = bHatchling;
+			sourceTree = "<group>";
+		};
+		962366AF1AAF78B00008010B /* bEgg */ = {
+			isa = PBXGroup;
+			children = (
+				962366B01AAF78B00008010B /* bEgg.png */,
+				962366B11AAF78B00008010B /* bEgg@2x.png */,
+				962366B21AAF78B00008010B /* bEgg@3x.png */,
+				962366B31AAF78B00008010B /* bEgg_crack1.atlas */,
+				962366B41AAF78B00008010B /* bEgg_crack2.atlas */,
+				962366B51AAF78B00008010B /* bEgg_crack3.atlas */,
+				962366B61AAF78B00008010B /* bEgg_new.atlas */,
+			);
+			path = bEgg;
+			sourceTree = "<group>";
+		};
 		9644A9421AAD9F2500FBD86C /* StatusBars */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +248,20 @@
 				9644A9541AAD9F2500FBD86C /* bar_thirst@3x.png */,
 			);
 			path = StatusBars;
+			sourceTree = "<group>";
+		};
+		9653DB171AAEFA25005103F8 /* pEgg */ = {
+			isa = PBXGroup;
+			children = (
+				9653DB221AAF0463005103F8 /* pEgg.png */,
+				9653DB231AAF0463005103F8 /* pEgg@2x.png */,
+				9653DB241AAF0463005103F8 /* pEgg@3x.png */,
+				9653DB181AAEFA25005103F8 /* pEgg_crack1.atlas */,
+				9653DB191AAEFA25005103F8 /* pEgg_crack2.atlas */,
+				9653DB1A1AAEFA25005103F8 /* pEgg_crack3.atlas */,
+				9653DB1B1AAEFA25005103F8 /* pEgg_new.atlas */,
+			);
+			path = pEgg;
 			sourceTree = "<group>";
 		};
 		96802AB31AA8D1C000B9AAF3 = {
@@ -171,10 +289,12 @@
 				96802AC11AA8D1C000B9AAF3 /* AppDelegate.swift */,
 				96F35FD21AAE94CE00105F55 /* View Controllers */,
 				96F35FD11AAE94AE00105F55 /* Game */,
+				9653DB201AAEFD8E005103F8 /* eggCell.swift */,
 				96802AC91AA8D1C000B9AAF3 /* Main.storyboard */,
 				96802ACC1AA8D1C000B9AAF3 /* Images.xcassets */,
 				96802ACE1AA8D1C000B9AAF3 /* LaunchScreen.xib */,
 				96802ABF1AA8D1C000B9AAF3 /* Supporting Files */,
+				9653DB2A1AAF0B1E005103F8 /* EggObject.swift */,
 			);
 			path = Crealings;
 			sourceTree = "<group>";
@@ -207,6 +327,10 @@
 		96802AE71AA8D9DB00B9AAF3 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				962366AF1AAF78B00008010B /* bEgg */,
+				9623665C1AAF76D70008010B /* bHatchling */,
+				962366551AAF3E340008010B /* Buttons */,
+				9653DB171AAEFA25005103F8 /* pEgg */,
 				9644A9421AAD9F2500FBD86C /* StatusBars */,
 				96802B1A1AAB4B5800B9AAF3 /* PHatchling */,
 			);
@@ -233,6 +357,8 @@
 			children = (
 				96802AC51AA8D1C000B9AAF3 /* GameScene.swift */,
 				96802AE51AA8D27800B9AAF3 /* Crealing.swift */,
+				9653DB2C1AAF134F005103F8 /* EggScene.swift */,
+				9653DB131AAEE328005103F8 /* Egg.swift */,
 				96F35FCF1AAE7BE700105F55 /* Status.swift */,
 				9644A9191AAD771D00FBD86C /* StatusBar.swift */,
 			);
@@ -243,7 +369,9 @@
 			isa = PBXGroup;
 			children = (
 				96802AC71AA8D1C000B9AAF3 /* GameViewController.swift */,
-				96F35FD31AAE956100105F55 /* LoadViewController.swift */,
+				96F35FD31AAE956100105F55 /* StartViewController.swift */,
+				96F35FD51AAEA2C200105F55 /* NewGameViewController.swift */,
+				9653DB111AAED808005103F8 /* ChooseEggViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -329,35 +457,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				96802B2A1AAB8C0B00B9AAF3 /* pDying.atlas in Resources */,
+				9623666C1AAF76D70008010B /* bVerySad.atlas in Resources */,
 				9644A95B1AAD9F2500FBD86C /* bar_fun.png in Resources */,
+				962366681AAF76D70008010B /* bNeutral.atlas in Resources */,
+				962366BF1AAF845C0008010B /* logo.png in Resources */,
+				962366671AAF76D70008010B /* bMoreHappy.atlas in Resources */,
+				962366BC1AAF78B00008010B /* bEgg_crack3.atlas in Resources */,
+				962366B71AAF78B00008010B /* bEgg.png in Resources */,
 				96802B201AAB4B5800B9AAF3 /* pMoreHappy.atlas in Resources */,
 				96802AD01AA8D1C000B9AAF3 /* LaunchScreen.xib in Resources */,
 				9644A9651AAD9F2500FBD86C /* bar_hygiene@2x.png in Resources */,
 				9644A95A1AAD9F2500FBD86C /* bar_energy@3x.png in Resources */,
+				962366591AAF3E340008010B /* start.png in Resources */,
+				962366661AAF76D70008010B /* bHappy.atlas in Resources */,
 				96802B261AAB7DBA00B9AAF3 /* pUnhappy.atlas in Resources */,
+				9623665B1AAF3E340008010B /* start@3x.png in Resources */,
+				9623666B1AAF76D70008010B /* bVeryHappy.atlas in Resources */,
+				9653DB261AAF0463005103F8 /* pEgg@2x.png in Resources */,
+				9653DB271AAF0463005103F8 /* pEgg@3x.png in Resources */,
 				9644A9631AAD9F2500FBD86C /* bar_hunger@3x.png in Resources */,
 				96802B1F1AAB4B5800B9AAF3 /* pHappy.atlas in Resources */,
 				9644A95F1AAD9F2500FBD86C /* bar_happiness@2x.png in Resources */,
 				96802B211AAB4B5800B9AAF3 /* pVeryHappy.atlas in Resources */,
 				9644A9691AAD9F2500FBD86C /* bar_thirst@3x.png in Resources */,
+				9653DB1D1AAEFA25005103F8 /* pEgg_crack2.atlas in Resources */,
 				9644A95C1AAD9F2500FBD86C /* bar_fun@2x.png in Resources */,
+				9653DB1C1AAEFA25005103F8 /* pEgg_crack1.atlas in Resources */,
 				96802B281AAB801900B9AAF3 /* pSad.atlas in Resources */,
+				962366651AAF76D70008010B /* bDying.atlas in Resources */,
+				962366B81AAF78B00008010B /* bEgg@2x.png in Resources */,
+				962366BB1AAF78B00008010B /* bEgg_crack2.atlas in Resources */,
 				9644A9581AAD9F2500FBD86C /* bar_energy.png in Resources */,
+				962366BA1AAF78B00008010B /* bEgg_crack1.atlas in Resources */,
 				96802B241AAB756F00B9AAF3 /* pNeutral.atlas in Resources */,
 				9644A9601AAD9F2500FBD86C /* bar_happiness@3x.png in Resources */,
 				9644A9591AAD9F2500FBD86C /* bar_energy@2x.png in Resources */,
 				9644A9621AAD9F2500FBD86C /* bar_hunger@2x.png in Resources */,
 				9644A9611AAD9F2500FBD86C /* bar_hunger.png in Resources */,
+				9623666A1AAF76D70008010B /* bUnhappy.atlas in Resources */,
 				9644A9671AAD9F2500FBD86C /* bar_thirst.png in Resources */,
 				9644A95D1AAD9F2500FBD86C /* bar_fun@3x.png in Resources */,
+				962366B91AAF78B00008010B /* bEgg@3x.png in Resources */,
 				96802ACD1AA8D1C000B9AAF3 /* Images.xcassets in Resources */,
 				9644A9661AAD9F2500FBD86C /* bar_hygiene@3x.png in Resources */,
+				962366691AAF76D70008010B /* bSad.atlas in Resources */,
+				9653DB251AAF0463005103F8 /* pEgg.png in Resources */,
 				96802ACB1AA8D1C000B9AAF3 /* Main.storyboard in Resources */,
 				9644A96E1AADB4E200FBD86C /* Gradient.atlas in Resources */,
 				9644A9681AAD9F2500FBD86C /* bar_thirst@2x.png in Resources */,
+				9623665A1AAF3E340008010B /* start@2x.png in Resources */,
 				96802B221AAB4B5800B9AAF3 /* pVerySad.atlas in Resources */,
 				9644A95E1AAD9F2500FBD86C /* bar_happiness.png in Resources */,
 				9644A9641AAD9F2500FBD86C /* bar_hygiene.png in Resources */,
+				9653DB1E1AAEFA25005103F8 /* pEgg_crack3.atlas in Resources */,
+				962366BD1AAF78B00008010B /* bEgg_new.atlas in Resources */,
+				9653DB1F1AAEFA25005103F8 /* pEgg_new.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,13 +529,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9653DB2B1AAF0B1E005103F8 /* EggObject.swift in Sources */,
 				9644A91A1AAD771D00FBD86C /* StatusBar.swift in Sources */,
+				96F35FD61AAEA2C200105F55 /* NewGameViewController.swift in Sources */,
 				96802AC61AA8D1C000B9AAF3 /* GameScene.swift in Sources */,
-				96F35FD41AAE956100105F55 /* LoadViewController.swift in Sources */,
+				96F35FD41AAE956100105F55 /* StartViewController.swift in Sources */,
 				96F35FD01AAE7BE700105F55 /* Status.swift in Sources */,
+				9653DB2D1AAF134F005103F8 /* EggScene.swift in Sources */,
+				9653DB141AAEE328005103F8 /* Egg.swift in Sources */,
 				96802AC81AA8D1C000B9AAF3 /* GameViewController.swift in Sources */,
 				96802AE61AA8D27800B9AAF3 /* Crealing.swift in Sources */,
 				96802AC21AA8D1C000B9AAF3 /* AppDelegate.swift in Sources */,
+				9653DB121AAED808005103F8 /* ChooseEggViewController.swift in Sources */,
+				9653DB211AAEFD8E005103F8 /* eggCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,18 +10,20 @@ import UIKit
 import SpriteKit
 
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate {
     
-    var scene: GameScene? = nil;
+    var skView = SKView();
+    var gameScene: GameScene? = nil;
+    var eggScene: EggScene? = nil;
+    
+    var firstPlay: Bool = Bool();
+    
+    var eggType: String = String();
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillLayoutSubviews() {
-        scene = GameScene(size: view.bounds.size);
         
-        let skView = self.view as SKView
+        skView = self.view as SKView
         skView.showsFPS = true
         skView.showsNodeCount = true
         skView.showsPhysics = true
@@ -30,11 +32,56 @@ class GameViewController: UIViewController {
         /* Sprite Kit applies additional optimizations to improve rendering performance */
         skView.ignoresSiblingOrder = true
         
+        let defaults = NSUserDefaults.standardUserDefaults();
+        
+        if (!defaults.boolForKey("firstPlay")) {
+            println("FIRST PLAY")
+            firstPlay = true;
+            presentEggScene();
+        } else {
+            println("CONTINUE")
+            firstPlay = false;
+            presentGameScene();
+        }
+    }
+    
+    func presentEggScene () {
+        println("Present Egg Scene");
+        eggScene = EggScene(size: view.bounds.size);
+        
+        eggScene!.eggDelegate = self;
+        
         /* Set the scale mode to scale to fit the window */
-        scene!.scaleMode = .AspectFill
+        eggScene!.scaleMode = .AspectFill
         
-        skView.presentScene(scene)
+        skView.presentScene(eggScene)
+    }
+    
+    func presentGameScene () {
+        println("Present Game Scene");
+        gameScene = GameScene(size: view.bounds.size);
         
+        gameScene?.gameDelegate = self;
+        
+        /* Set the scale mode to scale to fit the window */
+        gameScene!.scaleMode = .AspectFill
+        
+        let fade: SKTransition = SKTransition.fadeWithColor(UIColor.whiteColor(), duration: 2.0);
+        skView.presentScene(gameScene, transition: fade);
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        println("View Will Appear");
+        if (firstPlay) {
+            (skView.scene as EggScene).eggType = self.eggType;
+            (skView.scene as EggScene).setupScene();
+        }
+    }
+    
+    func GameSceneSetup () {
+        println("Game Scene Setup");
+        (skView.scene as GameScene).currentMon = self.eggType;
+        (skView.scene as GameScene).setUpScene();
     }
 
     override func shouldAutorotate() -> Bool {

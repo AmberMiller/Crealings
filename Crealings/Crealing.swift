@@ -33,6 +33,7 @@ final class Crealing : SKNode {
     
     var crealingImages: [String] = [];
     let pHatchlingImages = ["pVeryHappy", "pMoreHappy", "pHappy", "pNeutral", "pUnhappy", "pSad", "pVerySad", "pDying"];
+    let bHatchlingImages = ["bVeryHappy", "bMoreHappy", "bHappy", "bNeutral", "bUnhappy", "bSad", "bVerySad", "bDying"];
 
     
     /***********************************************************
@@ -41,8 +42,10 @@ final class Crealing : SKNode {
     func setup (view: GameScene, mon: String) -> Bool {
         
         switch mon {
-            case "pHatchling":
+            case "purple":
                 crealingImages = pHatchlingImages;
+            case "blue":
+                crealingImages = bHatchlingImages;
             default:
                 println("Error: No Crealing Set");
         }
@@ -192,9 +195,9 @@ final class Crealing : SKNode {
                     blinkAnim
                     ]);
             default:
-                let wait = SKAction.waitForDuration(5)
-                let actions = [blinkAnim, wait]
-                loop = SKAction.sequence([ blinkAnim, SKAction.waitForDuration(5)])
+//                let wait = SKAction.waitForDuration(5)
+//                let actions = [blinkAnim, wait]
+                loop = SKAction.sequence([blinkAnim, SKAction.waitForDuration(5)])
         }
         crealingSprite?.runAction(SKAction.repeatActionForever(loop), withKey: "blinkAction")
     }
