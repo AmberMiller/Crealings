@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		962366591AAF3E340008010B /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 962366561AAF3E340008010B /* start.png */; };
-		9623665A1AAF3E340008010B /* start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 962366571AAF3E340008010B /* start@2x.png */; };
-		9623665B1AAF3E340008010B /* start@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 962366581AAF3E340008010B /* start@3x.png */; };
 		962366651AAF76D70008010B /* bDying.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9623665D1AAF76D70008010B /* bDying.atlas */; };
 		962366661AAF76D70008010B /* bHappy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9623665E1AAF76D70008010B /* bHappy.atlas */; };
 		962366671AAF76D70008010B /* bMoreHappy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 9623665F1AAF76D70008010B /* bMoreHappy.atlas */; };
@@ -25,7 +22,16 @@
 		962366BB1AAF78B00008010B /* bEgg_crack2.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 962366B41AAF78B00008010B /* bEgg_crack2.atlas */; };
 		962366BC1AAF78B00008010B /* bEgg_crack3.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 962366B51AAF78B00008010B /* bEgg_crack3.atlas */; };
 		962366BD1AAF78B00008010B /* bEgg_new.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 962366B61AAF78B00008010B /* bEgg_new.atlas */; };
-		962366BF1AAF845C0008010B /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 962366BE1AAF845C0008010B /* logo.png */; };
+		962366C11AAF91FA0008010B /* SoundFX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962366C01AAF91FA0008010B /* SoundFX.swift */; };
+		962366C31AAF940E0008010B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 962366C21AAF940E0008010B /* AVFoundation.framework */; };
+		962366C61AAF944A0008010B /* eggDrop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 962366C51AAF944A0008010B /* eggDrop.wav */; };
+		962366C81AAF94E50008010B /* triangle.wav in Resources */ = {isa = PBXBuildFile; fileRef = 962366C71AAF94E50008010B /* triangle.wav */; };
+		962366D21AAF9B790008010B /* background1.png in Resources */ = {isa = PBXBuildFile; fileRef = 962366CC1AAF9B790008010B /* background1.png */; };
+		962366D31AAF9B790008010B /* background1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 962366CD1AAF9B790008010B /* background1@2x.png */; };
+		962366D41AAF9B790008010B /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 962366CE1AAF9B790008010B /* logo.png */; };
+		962366D51AAF9B790008010B /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 962366CF1AAF9B790008010B /* start.png */; };
+		962366D61AAF9B790008010B /* start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 962366D01AAF9B790008010B /* start@2x.png */; };
+		962366D71AAF9B790008010B /* start@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 962366D11AAF9B790008010B /* start@3x.png */; };
 		9644A91A1AAD771D00FBD86C /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9644A9191AAD771D00FBD86C /* StatusBar.swift */; };
 		9644A9581AAD9F2500FBD86C /* bar_energy.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A9431AAD9F2500FBD86C /* bar_energy.png */; };
 		9644A9591AAD9F2500FBD86C /* bar_energy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A9441AAD9F2500FBD86C /* bar_energy@2x.png */; };
@@ -90,9 +96,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		962366561AAF3E340008010B /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
-		962366571AAF3E340008010B /* start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start@2x.png"; sourceTree = "<group>"; };
-		962366581AAF3E340008010B /* start@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start@3x.png"; sourceTree = "<group>"; };
 		9623665D1AAF76D70008010B /* bDying.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bDying.atlas; sourceTree = "<group>"; };
 		9623665E1AAF76D70008010B /* bHappy.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bHappy.atlas; sourceTree = "<group>"; };
 		9623665F1AAF76D70008010B /* bMoreHappy.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bMoreHappy.atlas; sourceTree = "<group>"; };
@@ -108,7 +111,16 @@
 		962366B41AAF78B00008010B /* bEgg_crack2.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bEgg_crack2.atlas; sourceTree = "<group>"; };
 		962366B51AAF78B00008010B /* bEgg_crack3.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bEgg_crack3.atlas; sourceTree = "<group>"; };
 		962366B61AAF78B00008010B /* bEgg_new.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = bEgg_new.atlas; sourceTree = "<group>"; };
-		962366BE1AAF845C0008010B /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		962366C01AAF91FA0008010B /* SoundFX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundFX.swift; sourceTree = "<group>"; };
+		962366C21AAF940E0008010B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		962366C51AAF944A0008010B /* eggDrop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = eggDrop.wav; sourceTree = "<group>"; };
+		962366C71AAF94E50008010B /* triangle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = triangle.wav; sourceTree = "<group>"; };
+		962366CC1AAF9B790008010B /* background1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background1.png; sourceTree = "<group>"; };
+		962366CD1AAF9B790008010B /* background1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background1@2x.png"; sourceTree = "<group>"; };
+		962366CE1AAF9B790008010B /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		962366CF1AAF9B790008010B /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
+		962366D01AAF9B790008010B /* start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start@2x.png"; sourceTree = "<group>"; };
+		962366D11AAF9B790008010B /* start@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start@3x.png"; sourceTree = "<group>"; };
 		9644A9191AAD771D00FBD86C /* StatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 		9644A9431AAD9F2500FBD86C /* bar_energy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar_energy.png; sourceTree = "<group>"; };
 		9644A9441AAD9F2500FBD86C /* bar_energy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_energy@2x.png"; sourceTree = "<group>"; };
@@ -171,6 +183,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				962366C31AAF940E0008010B /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,17 +197,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		962366551AAF3E340008010B /* Buttons */ = {
-			isa = PBXGroup;
-			children = (
-				962366BE1AAF845C0008010B /* logo.png */,
-				962366561AAF3E340008010B /* start.png */,
-				962366571AAF3E340008010B /* start@2x.png */,
-				962366581AAF3E340008010B /* start@3x.png */,
-			);
-			path = Buttons;
-			sourceTree = "<group>";
-		};
 		9623665C1AAF76D70008010B /* bHatchling */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +224,28 @@
 				962366B61AAF78B00008010B /* bEgg_new.atlas */,
 			);
 			path = bEgg;
+			sourceTree = "<group>";
+		};
+		962366C41AAF944A0008010B /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				962366C71AAF94E50008010B /* triangle.wav */,
+				962366C51AAF944A0008010B /* eggDrop.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		962366CB1AAF9B790008010B /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				962366CC1AAF9B790008010B /* background1.png */,
+				962366CD1AAF9B790008010B /* background1@2x.png */,
+				962366CE1AAF9B790008010B /* logo.png */,
+				962366CF1AAF9B790008010B /* start.png */,
+				962366D01AAF9B790008010B /* start@2x.png */,
+				962366D11AAF9B790008010B /* start@3x.png */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		9644A9421AAD9F2500FBD86C /* StatusBars */ = {
@@ -267,6 +291,7 @@
 		96802AB31AA8D1C000B9AAF3 = {
 			isa = PBXGroup;
 			children = (
+				962366C21AAF940E0008010B /* AVFoundation.framework */,
 				96802ABE1AA8D1C000B9AAF3 /* Crealings */,
 				96802AD81AA8D1C000B9AAF3 /* CrealingsTests */,
 				96802ABD1AA8D1C000B9AAF3 /* Products */,
@@ -290,11 +315,12 @@
 				96F35FD21AAE94CE00105F55 /* View Controllers */,
 				96F35FD11AAE94AE00105F55 /* Game */,
 				9653DB201AAEFD8E005103F8 /* eggCell.swift */,
+				9653DB2A1AAF0B1E005103F8 /* EggObject.swift */,
+				962366C01AAF91FA0008010B /* SoundFX.swift */,
 				96802AC91AA8D1C000B9AAF3 /* Main.storyboard */,
 				96802ACC1AA8D1C000B9AAF3 /* Images.xcassets */,
 				96802ACE1AA8D1C000B9AAF3 /* LaunchScreen.xib */,
 				96802ABF1AA8D1C000B9AAF3 /* Supporting Files */,
-				9653DB2A1AAF0B1E005103F8 /* EggObject.swift */,
 			);
 			path = Crealings;
 			sourceTree = "<group>";
@@ -327,9 +353,10 @@
 		96802AE71AA8D9DB00B9AAF3 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				962366CB1AAF9B790008010B /* UI */,
+				962366C41AAF944A0008010B /* Sounds */,
 				962366AF1AAF78B00008010B /* bEgg */,
 				9623665C1AAF76D70008010B /* bHatchling */,
-				962366551AAF3E340008010B /* Buttons */,
 				9653DB171AAEFA25005103F8 /* pEgg */,
 				9644A9421AAD9F2500FBD86C /* StatusBars */,
 				96802B1A1AAB4B5800B9AAF3 /* PHatchling */,
@@ -458,28 +485,30 @@
 			files = (
 				96802B2A1AAB8C0B00B9AAF3 /* pDying.atlas in Resources */,
 				9623666C1AAF76D70008010B /* bVerySad.atlas in Resources */,
+				962366D51AAF9B790008010B /* start.png in Resources */,
 				9644A95B1AAD9F2500FBD86C /* bar_fun.png in Resources */,
 				962366681AAF76D70008010B /* bNeutral.atlas in Resources */,
-				962366BF1AAF845C0008010B /* logo.png in Resources */,
 				962366671AAF76D70008010B /* bMoreHappy.atlas in Resources */,
 				962366BC1AAF78B00008010B /* bEgg_crack3.atlas in Resources */,
 				962366B71AAF78B00008010B /* bEgg.png in Resources */,
+				962366C61AAF944A0008010B /* eggDrop.wav in Resources */,
 				96802B201AAB4B5800B9AAF3 /* pMoreHappy.atlas in Resources */,
 				96802AD01AA8D1C000B9AAF3 /* LaunchScreen.xib in Resources */,
 				9644A9651AAD9F2500FBD86C /* bar_hygiene@2x.png in Resources */,
 				9644A95A1AAD9F2500FBD86C /* bar_energy@3x.png in Resources */,
-				962366591AAF3E340008010B /* start.png in Resources */,
 				962366661AAF76D70008010B /* bHappy.atlas in Resources */,
 				96802B261AAB7DBA00B9AAF3 /* pUnhappy.atlas in Resources */,
-				9623665B1AAF3E340008010B /* start@3x.png in Resources */,
 				9623666B1AAF76D70008010B /* bVeryHappy.atlas in Resources */,
 				9653DB261AAF0463005103F8 /* pEgg@2x.png in Resources */,
+				962366D31AAF9B790008010B /* background1@2x.png in Resources */,
 				9653DB271AAF0463005103F8 /* pEgg@3x.png in Resources */,
 				9644A9631AAD9F2500FBD86C /* bar_hunger@3x.png in Resources */,
 				96802B1F1AAB4B5800B9AAF3 /* pHappy.atlas in Resources */,
+				962366C81AAF94E50008010B /* triangle.wav in Resources */,
 				9644A95F1AAD9F2500FBD86C /* bar_happiness@2x.png in Resources */,
 				96802B211AAB4B5800B9AAF3 /* pVeryHappy.atlas in Resources */,
 				9644A9691AAD9F2500FBD86C /* bar_thirst@3x.png in Resources */,
+				962366D21AAF9B790008010B /* background1.png in Resources */,
 				9653DB1D1AAEFA25005103F8 /* pEgg_crack2.atlas in Resources */,
 				9644A95C1AAD9F2500FBD86C /* bar_fun@2x.png in Resources */,
 				9653DB1C1AAEFA25005103F8 /* pEgg_crack1.atlas in Resources */,
@@ -494,6 +523,7 @@
 				9644A9591AAD9F2500FBD86C /* bar_energy@2x.png in Resources */,
 				9644A9621AAD9F2500FBD86C /* bar_hunger@2x.png in Resources */,
 				9644A9611AAD9F2500FBD86C /* bar_hunger.png in Resources */,
+				962366D61AAF9B790008010B /* start@2x.png in Resources */,
 				9623666A1AAF76D70008010B /* bUnhappy.atlas in Resources */,
 				9644A9671AAD9F2500FBD86C /* bar_thirst.png in Resources */,
 				9644A95D1AAD9F2500FBD86C /* bar_fun@3x.png in Resources */,
@@ -501,11 +531,12 @@
 				96802ACD1AA8D1C000B9AAF3 /* Images.xcassets in Resources */,
 				9644A9661AAD9F2500FBD86C /* bar_hygiene@3x.png in Resources */,
 				962366691AAF76D70008010B /* bSad.atlas in Resources */,
+				962366D71AAF9B790008010B /* start@3x.png in Resources */,
 				9653DB251AAF0463005103F8 /* pEgg.png in Resources */,
 				96802ACB1AA8D1C000B9AAF3 /* Main.storyboard in Resources */,
 				9644A96E1AADB4E200FBD86C /* Gradient.atlas in Resources */,
 				9644A9681AAD9F2500FBD86C /* bar_thirst@2x.png in Resources */,
-				9623665A1AAF3E340008010B /* start@2x.png in Resources */,
+				962366D41AAF9B790008010B /* logo.png in Resources */,
 				96802B221AAB4B5800B9AAF3 /* pVerySad.atlas in Resources */,
 				9644A95E1AAD9F2500FBD86C /* bar_happiness.png in Resources */,
 				9644A9641AAD9F2500FBD86C /* bar_hygiene.png in Resources */,
@@ -542,6 +573,7 @@
 				96802AC21AA8D1C000B9AAF3 /* AppDelegate.swift in Sources */,
 				9653DB121AAED808005103F8 /* ChooseEggViewController.swift in Sources */,
 				9653DB211AAEFD8E005103F8 /* eggCell.swift in Sources */,
+				962366C11AAF91FA0008010B /* SoundFX.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

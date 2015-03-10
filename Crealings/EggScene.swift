@@ -21,6 +21,8 @@ class EggScene: SKScene {
     var eggType: String? = nil;
     var numTaps: Int = 0;
     
+    let soundFX: SoundFX = SoundFX();
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
     }
@@ -36,8 +38,10 @@ class EggScene: SKScene {
                     numTaps += 1;
                     println("Num Taps: \(numTaps)");
                     egg?.setEgg(numTaps);
+                    soundFX.playTapEgg();
                 } else {
                     println("Present Game Scene Delegate");
+                    soundFX.playTriangle();
                     eggDelegate?.presentGameScene();
                 }
             }
@@ -45,6 +49,11 @@ class EggScene: SKScene {
     }
     
     func setupScene () {
+        let bg: SKSpriteNode = SKSpriteNode(imageNamed: "background1");
+        bg.position = CGPointMake(self.size.width / 2, self.size.height / 2);
+        bg.zPosition = -2;
+        self.addChild(bg);
+
         egg = Egg();
         if (eggType != nil) {
             if ((egg != nil) && (egg!.setup(self, type: eggType!))) {

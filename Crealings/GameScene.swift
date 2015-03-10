@@ -117,7 +117,11 @@ class GameScene: SKScene {
     ************************************************************/
     
     func setUpScene () {
-            
+        var bg: SKSpriteNode = SKSpriteNode(imageNamed: "background1");
+        bg.zPosition = -2;
+        bg.position = CGPointMake(self.size.width / 2, self.size.height / 2);
+        self.addChild(bg);
+        
         happinessBar = StatusBar();
         if ((happinessBar != nil) && (happinessBar!.setup(self, current: "happiness"))) {
             self.addChild(happinessBar!);
