@@ -15,6 +15,8 @@ protocol EggSceneDelegate {
 
 class EggScene: SKScene {
     
+    let defaults = NSUserDefaults.standardUserDefaults();
+    
     var eggDelegate: EggSceneDelegate?;
     var egg: Egg? = nil;
     
@@ -41,6 +43,8 @@ class EggScene: SKScene {
                     soundFX.playTapEgg();
                 } else {
                     println("Present Game Scene Delegate");
+                    defaults.setBool(true, forKey: "firstPlay");
+                    
                     soundFX.playTriangle();
                     eggDelegate?.presentGameScene();
                 }

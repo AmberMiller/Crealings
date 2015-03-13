@@ -24,47 +24,46 @@ final class StatusBar : SKNode {
     /***********************************************************
         Set Up
     ************************************************************/
-    func setup (view: GameScene, current: String) -> Bool {
+    func setup (view: GameHUD, current: String) -> Bool {
         gradientAtlas = SKTextureAtlas(named: "Gradient");
+        barSprite = SKSpriteNode(color: UIColor.clearColor(), size: CGSizeMake(view.size.width / 6, view.size.height / 2));
         
         switch current {
         case "happiness":
-            barSprite = SKSpriteNode(imageNamed: "bar_happiness");
-            barSprite?.position = CGPointMake(view.size.width / 2 - 200.0, view.size.height - 30.0);
+            barSprite?.position = CGPointMake(0.0, -view.size.height + 2.0);
             barSprite?.name = "happiness";
             currentStatus = status.getHappiness();
         case "energy":
-            barSprite = SKSpriteNode(imageNamed: "bar_energy");
-            barSprite?.position = CGPointMake(view.size.width / 2 - 200.0, view.size.height - 75.0);
+            barSprite?.position = CGPointMake(view.size.width / 6, -view.size.height + 2.0);
             barSprite?.name = "energy";
             currentStatus = status.getEnergy();
         case "hunger":
-            barSprite = SKSpriteNode(imageNamed: "bar_hunger");
-            barSprite?.position = CGPointMake(view.size.width / 2, view.size.height - 30.0);
+            barSprite?.position = CGPointMake((view.size.width / 6) * 2, -view.size.height + 2.0);
             barSprite?.name = "hunger";
             currentStatus = status.getHunger();
         case "thirst":
-            barSprite = SKSpriteNode(imageNamed: "bar_thirst");
-            barSprite?.position = CGPointMake(view.size.width / 2, view.size.height - 75.0);
+            barSprite?.position = CGPointMake((view.size.width / 6) * 3, -view.size.height + 2.0);
             barSprite?.name = "thirst";
             currentStatus = status.getThirst();
         case "fun":
-            barSprite = SKSpriteNode(imageNamed: "bar_fun");
-            barSprite?.position = CGPointMake(view.size.width / 2 + 200.0, view.size.height - 30.0);
+            barSprite?.position = CGPointMake((view.size.width / 6) * 4, -view.size.height + 2.0);
             barSprite?.name = "fun";
             currentStatus = status.getFun();
         case "hygiene":
-            barSprite = SKSpriteNode(imageNamed: "bar_hygiene");
-            barSprite?.position = CGPointMake(view.size.width / 2 + 200.0, view.size.height - 75.0);
+            barSprite?.position = CGPointMake((view.size.width / 6) * 5 - 2, -view.size.height + 2.0);
             barSprite?.name = "hygiene";
             currentStatus = status.getHygiene();
         default:
             println("Error: No Status Set");
         }
         
-        barSprite?.anchorPoint = CGPointMake(0.5, 0.5);
+        barSprite?.anchorPoint = CGPointMake(0.0, 0.0);
+        
+        println("VIEW SIZE: \(view.size) BAR SPRITE SIZE: \(barSprite?.size)");
         
         statusSprite = SKSpriteNode(texture: gradientAtlas.textureNamed("gradient_100"));
+        statusSprite?.size = barSprite!.size;
+        statusSprite?.position = CGPointMake(barSprite!.size.width / 2, barSprite!.size.height / 2);
         statusSprite?.zPosition = -1;
         setStatus(currentStatus);
         barSprite?.addChild(statusSprite!);
@@ -77,6 +76,31 @@ final class StatusBar : SKNode {
     /***********************************************************
         Set Status
     ************************************************************/
+    
+    func setStatusBar (name: String) {
+        switch name {
+        case "happiness":
+            println("Happiness Tapped");
+            setStatus(status.getHappiness());
+        case "energy":
+            println("Energy Tapped");
+            setStatus(status.getEnergy());
+        case "hunger":
+            println("Hunger Tapped");
+            setStatus(status.getHunger());
+        case "thirst":
+            println("Thirst Tapped");
+            setStatus(status.getThirst());
+        case "fun":
+            println("Fun Tapped");
+            setStatus(status.getFun());
+        case "hygiene":
+            println("Hygiene Tapped");
+            setStatus(status.getHygiene());
+        default:
+            println("No Status Set");
+        }
+    }
     
     func setStatus (stat: Int) {
         switch stat {
@@ -127,39 +151,5 @@ final class StatusBar : SKNode {
 
         }
     }
-    
-    /***********************************************************
-        Tap Bar
-    ************************************************************/
-    
-    func tapStatusBar (name: String) {
-        switch name {
-            case "happiness":
-                println("Happiness Tapped");
-                status.setHappiness(10);
-                setStatus(status.getHappiness());
-            case "energy":
-                println("Energy Tapped");
-                status.setEnergy(10);
-                setStatus(status.getEnergy());
-            case "hunger":
-                println("Hunger Tapped");
-                status.setHunger(10);
-                setStatus(status.getHunger());
-            case "thirst":
-                println("Thirst Tapped");
-                status.setThirst(10);
-                setStatus(status.getThirst());
-            case "fun":
-                println("Fun Tapped");
-                status.setFun(10);
-                setStatus(status.getFun());
-            case "hygiene":
-                println("Hygiene Tapped");
-                status.setHygiene(10);
-                setStatus(status.getHygiene());
-            default:
-                println("Bar Tap?");
-        }
-    }
+
 }

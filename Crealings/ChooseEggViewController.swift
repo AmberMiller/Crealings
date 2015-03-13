@@ -12,6 +12,8 @@ import SpriteKit
 
 class ChooseEggViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    let defaults = NSUserDefaults.standardUserDefaults();
+    
     var eggArray: [EggObject] = [];
     var selectedCell: Int = Int();
     
@@ -42,9 +44,12 @@ class ChooseEggViewController: UIViewController, UICollectionViewDataSource, UIC
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "choseEgg") {
+            
             let gameData = segue.destinationViewController as GameViewController;
             let data: EggObject = eggArray[selectedCell];
             gameData.eggType = data.name;
+            
+            defaults.setValue(data.name, forKey: "userCrealing");
         }
     }
     

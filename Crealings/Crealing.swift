@@ -10,6 +10,17 @@ import SpriteKit
 
 final class Crealing : SKNode {
     
+    enum Gender: UInt32 {
+        case MALE = 0
+        case FEMALE
+    }
+    
+    enum Personality: UInt32 {
+        case ENERGETIC = 0
+    }
+    
+    let gameScene = GameScene.sharedInstance;
+
     var crealingSprite: SKSpriteNode? = nil;
     var animAtlas: SKTextureAtlas? = nil;
     var blinkAnimTextures: [SKTexture] = [];
@@ -195,8 +206,6 @@ final class Crealing : SKNode {
                     blinkAnim
                     ]);
             default:
-//                let wait = SKAction.waitForDuration(5)
-//                let actions = [blinkAnim, wait]
                 loop = SKAction.sequence([blinkAnim, SKAction.waitForDuration(5)])
         }
         crealingSprite?.runAction(SKAction.repeatActionForever(loop), withKey: "blinkAction")
@@ -209,40 +218,24 @@ final class Crealing : SKNode {
         println("Tapped Pet");
     }
     
-//    /***********************************************************
-//        Feeding the Pet
-//    ************************************************************/
-//    func feedPet (food: GameScene.ItemType) -> Bool {
-//        switch food {
-//            case .FOOD_APPLE:
-//                happiness += 5;
-//                hunger += 10;
-//                
-//                if (happiness > 100) {
-//                    happiness = 100;
-//                }
-//                
-//                if (hunger > 100) {
-//                    hunger = 100;
-//                }
-//                return true;
-//            case .FOOD_CHOCOLATE:
-//                happiness += 15;
-//                hunger += 25;
-//                
-//                if (happiness > 100) {
-//                    happiness = 100;
-//                }
-//                
-//                if (hunger > 100) {
-//                    hunger = 100;
-//                }
-//                return true;
-//            default:
-//                return false;
-//        }
-//    }
-//    
+    /***********************************************************
+        Feeding the Pet
+    ************************************************************/
+    func feedPet (food: GameScene.ItemType) -> Bool {
+        println("Feed Pet");
+        switch food {
+            case .FOOD_APPLE:
+                println("Feed Apple");
+                status.setHappiness(5);
+                status.setHunger(5);
+                return true;
+            case .FOOD_CHOCOLATE:
+                return true;
+            default:
+                return false;
+        }
+    }
+
 //    /***********************************************************
 //        Giving the Pet a Drink
 //    ************************************************************/

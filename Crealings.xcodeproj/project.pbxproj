@@ -80,6 +80,11 @@
 		96802B261AAB7DBA00B9AAF3 /* pUnhappy.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 96802B251AAB7DBA00B9AAF3 /* pUnhappy.atlas */; };
 		96802B281AAB801900B9AAF3 /* pSad.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 96802B271AAB801900B9AAF3 /* pSad.atlas */; };
 		96802B2A1AAB8C0B00B9AAF3 /* pDying.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 96802B291AAB8C0B00B9AAF3 /* pDying.atlas */; };
+		96DED2AE1AB247910099E701 /* main_hud.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DED2AB1AB247900099E701 /* main_hud.png */; };
+		96DED2AF1AB247910099E701 /* main_hud@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DED2AC1AB247910099E701 /* main_hud@2x.png */; };
+		96DED2B01AB247910099E701 /* main_hud@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DED2AD1AB247910099E701 /* main_hud@3x.png */; };
+		96DED2B21AB248620099E701 /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DED2B11AB248620099E701 /* SceneManager.swift */; };
+		96DED2B51AB2539F0099E701 /* GameHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DED2B41AB2539F0099E701 /* GameHUD.swift */; };
 		96F35FD01AAE7BE700105F55 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F35FCF1AAE7BE700105F55 /* Status.swift */; };
 		96F35FD41AAE956100105F55 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F35FD31AAE956100105F55 /* StartViewController.swift */; };
 		96F35FD61AAEA2C200105F55 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F35FD51AAEA2C200105F55 /* NewGameViewController.swift */; };
@@ -173,6 +178,11 @@
 		96802B251AAB7DBA00B9AAF3 /* pUnhappy.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = pUnhappy.atlas; sourceTree = "<group>"; };
 		96802B271AAB801900B9AAF3 /* pSad.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = pSad.atlas; sourceTree = "<group>"; };
 		96802B291AAB8C0B00B9AAF3 /* pDying.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = pDying.atlas; sourceTree = "<group>"; };
+		96DED2AB1AB247900099E701 /* main_hud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_hud.png; sourceTree = "<group>"; };
+		96DED2AC1AB247910099E701 /* main_hud@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_hud@2x.png"; sourceTree = "<group>"; };
+		96DED2AD1AB247910099E701 /* main_hud@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_hud@3x.png"; sourceTree = "<group>"; };
+		96DED2B11AB248620099E701 /* SceneManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
+		96DED2B41AB2539F0099E701 /* GameHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameHUD.swift; sourceTree = "<group>"; };
 		96F35FCF1AAE7BE700105F55 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		96F35FD31AAE956100105F55 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		96F35FD51AAEA2C200105F55 /* NewGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +248,9 @@
 		962366CB1AAF9B790008010B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				96DED2AB1AB247900099E701 /* main_hud.png */,
+				96DED2AC1AB247910099E701 /* main_hud@2x.png */,
+				96DED2AD1AB247910099E701 /* main_hud@3x.png */,
 				962366CC1AAF9B790008010B /* background1.png */,
 				962366CD1AAF9B790008010B /* background1@2x.png */,
 				962366CE1AAF9B790008010B /* logo.png */,
@@ -312,7 +325,9 @@
 			children = (
 				96802AE71AA8D9DB00B9AAF3 /* Assets */,
 				96802AC11AA8D1C000B9AAF3 /* AppDelegate.swift */,
+				96DED2B11AB248620099E701 /* SceneManager.swift */,
 				96F35FD21AAE94CE00105F55 /* View Controllers */,
+				96DED2B31AB24B100099E701 /* HUD */,
 				96F35FD11AAE94AE00105F55 /* Game */,
 				9653DB201AAEFD8E005103F8 /* eggCell.swift */,
 				9653DB2A1AAF0B1E005103F8 /* EggObject.swift */,
@@ -379,6 +394,15 @@
 			path = PHatchling;
 			sourceTree = "<group>";
 		};
+		96DED2B31AB24B100099E701 /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				96DED2B41AB2539F0099E701 /* GameHUD.swift */,
+				9644A9191AAD771D00FBD86C /* StatusBar.swift */,
+			);
+			name = HUD;
+			sourceTree = "<group>";
+		};
 		96F35FD11AAE94AE00105F55 /* Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,7 +411,6 @@
 				9653DB2C1AAF134F005103F8 /* EggScene.swift */,
 				9653DB131AAEE328005103F8 /* Egg.swift */,
 				96F35FCF1AAE7BE700105F55 /* Status.swift */,
-				9644A9191AAD771D00FBD86C /* StatusBar.swift */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -484,6 +507,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96802B2A1AAB8C0B00B9AAF3 /* pDying.atlas in Resources */,
+				96DED2AF1AB247910099E701 /* main_hud@2x.png in Resources */,
 				9623666C1AAF76D70008010B /* bVerySad.atlas in Resources */,
 				962366D51AAF9B790008010B /* start.png in Resources */,
 				9644A95B1AAD9F2500FBD86C /* bar_fun.png in Resources */,
@@ -500,6 +524,7 @@
 				96802B261AAB7DBA00B9AAF3 /* pUnhappy.atlas in Resources */,
 				9623666B1AAF76D70008010B /* bVeryHappy.atlas in Resources */,
 				9653DB261AAF0463005103F8 /* pEgg@2x.png in Resources */,
+				96DED2B01AB247910099E701 /* main_hud@3x.png in Resources */,
 				962366D31AAF9B790008010B /* background1@2x.png in Resources */,
 				9653DB271AAF0463005103F8 /* pEgg@3x.png in Resources */,
 				9644A9631AAD9F2500FBD86C /* bar_hunger@3x.png in Resources */,
@@ -509,6 +534,7 @@
 				96802B211AAB4B5800B9AAF3 /* pVeryHappy.atlas in Resources */,
 				9644A9691AAD9F2500FBD86C /* bar_thirst@3x.png in Resources */,
 				962366D21AAF9B790008010B /* background1.png in Resources */,
+				96DED2AE1AB247910099E701 /* main_hud.png in Resources */,
 				9653DB1D1AAEFA25005103F8 /* pEgg_crack2.atlas in Resources */,
 				9644A95C1AAD9F2500FBD86C /* bar_fun@2x.png in Resources */,
 				9653DB1C1AAEFA25005103F8 /* pEgg_crack1.atlas in Resources */,
@@ -563,10 +589,12 @@
 				9653DB2B1AAF0B1E005103F8 /* EggObject.swift in Sources */,
 				9644A91A1AAD771D00FBD86C /* StatusBar.swift in Sources */,
 				96F35FD61AAEA2C200105F55 /* NewGameViewController.swift in Sources */,
+				96DED2B51AB2539F0099E701 /* GameHUD.swift in Sources */,
 				96802AC61AA8D1C000B9AAF3 /* GameScene.swift in Sources */,
 				96F35FD41AAE956100105F55 /* StartViewController.swift in Sources */,
 				96F35FD01AAE7BE700105F55 /* Status.swift in Sources */,
 				9653DB2D1AAF134F005103F8 /* EggScene.swift in Sources */,
+				96DED2B21AB248620099E701 /* SceneManager.swift in Sources */,
 				9653DB141AAEE328005103F8 /* Egg.swift in Sources */,
 				96802AC81AA8D1C000B9AAF3 /* GameViewController.swift in Sources */,
 				96802AE61AA8D27800B9AAF3 /* Crealing.swift in Sources */,

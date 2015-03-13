@@ -12,13 +12,15 @@ import SpriteKit
 
 class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate {
     
+    let defaults = NSUserDefaults.standardUserDefaults();
+
     var skView = SKView();
     var gameScene: GameScene? = nil;
     var eggScene: EggScene? = nil;
     
     var firstPlay: Bool = Bool();
     
-    var eggType: String = String();
+    var eggType: String? = nil;
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,14 +75,17 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
     override func viewWillAppear(animated: Bool) {
         println("View Will Appear");
         if (firstPlay) {
-            (skView.scene as EggScene).eggType = self.eggType;
+            (skView.scene as EggScene).eggType = eggType;
             (skView.scene as EggScene).setupScene();
         }
     }
     
     func GameSceneSetup () {
         println("Game Scene Setup");
-        (skView.scene as GameScene).currentMon = self.eggType;
+        if (eggType == nil) {
+            eggType = defaults.valueForKey("userCrealing") as? String;
+        }
+        (skView.scene as GameScene).currentMon = eggType;
         (skView.scene as GameScene).setUpScene();
     }
 
