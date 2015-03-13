@@ -59,6 +59,11 @@ class GameScene: SKScene {
         gameDelegate?.GameSceneSetup();
     }
     
+    func refresh () {
+        if (crealing != nil && gameHUD!.refresh()) {
+            crealing!.setMood(crealing!.getMood());
+        }
+    }
     
     /***********************************************************
         Touches
@@ -76,32 +81,45 @@ class GameScene: SKScene {
                     crealing?.tapPet();
                 case "HUD":
                     println("HUD Tapped");
+                case "menu":
+                    println("Tap Menu");
+                case "shop":
+                    println("Tap Shop");
+                case "fight":
+                    println("Tap Fight");
+                case "coin":
+                    println("Tap Coin");
+                case "gem":
+                    println("Tap Gem");
+                case "exp":
+                    println("Tap Exp");
+                case "help":
+                    println("Tap Help");
                 case "happiness":
                     println("Tap Happiness");
-        
-    
-//                    happinessBar?.setStatusBar("happiness");
-//                case "energy":
-//                    energyBar?.setStatusBar("energy");
-//                case "hunger":
-//                    //TODO Set food type dynamically
-//                    if (crealing!.feedPet(ItemType.FOOD_APPLE)) {
-//                        feed();
-//                    }
-//                case "thirst":
-//                    thirstBar?.setStatusBar("thirst");
-//                case "fun":
-//                    funBar?.setStatusBar("fun");
-//                case "hygiene":
-//                    status.setHygiene(10);
-//                    hygieneBar?.setStatusBar("hygiene");
+                    checkMood();
+                case "energy":
+                    println("Tap Energy");
+                    checkMood();
+                case "hunger":
+                    println("Tap Hunger");
+                    //TODO Set food type dynamically
+                    if (gameHUD != nil && crealing!.feedPet(ItemType.FOOD_APPLE)) {
+                        gameHUD!.feed();
+                    }
+                    checkMood();
+                case "thirst":
+                    println("Tap Thirst");
+                    checkMood();
+                case "fun":
+                    println("Tap Fun");
+                    checkMood();
+                case "hygiene":
+                    println("Tap Hygiene");
+                    checkMood();
                 default:
                     break;
                 }
-//
-//                if (crealing != nil) {
-//                    crealing!.setMood(crealing!.getMood());
-//                }
             }
         }
     }
@@ -143,36 +161,12 @@ class GameScene: SKScene {
             }
         }
         
-//        let timer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: ("refresh"), userInfo: nil, repeats: true);
-        
+        let timer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: ("refresh"), userInfo: nil, repeats: true);
     }
     
-    /***********************************************************
-        Item Stuff
-    ************************************************************/
-    
-//    func energize () {
-//        happinessBar?.setStatusBar("happiness");
-//        energyBar?.setStatusBar("energy");
-//    }
-//    
-//    func feed () {
-//        happinessBar?.setStatusBar("happiness");
-//        hungerBar?.setStatusBar("hunger");
-//    }
-//    
-//    func hydrate () {
-//        happinessBar?.setStatusBar("happiness");
-//        thirstBar?.setStatusBar("thirst");
-//    }
-//    
-//    func play () {
-//        happinessBar?.setStatusBar("happiness");
-//        funBar?.setStatusBar("fun");
-//    }
-//    
-//    func bathe () {
-//        happinessBar?.setStatusBar("happiness");
-//        hygieneBar?.setStatusBar("hygiene");
-//    }
+    func checkMood () {
+        if (crealing != nil) {
+            crealing!.setMood(crealing!.getMood());
+        }
+    }
 }

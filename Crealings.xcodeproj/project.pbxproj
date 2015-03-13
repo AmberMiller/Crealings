@@ -85,6 +85,9 @@
 		96DED2B01AB247910099E701 /* main_hud@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DED2AD1AB247910099E701 /* main_hud@3x.png */; };
 		96DED2B21AB248620099E701 /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DED2B11AB248620099E701 /* SceneManager.swift */; };
 		96DED2B51AB2539F0099E701 /* GameHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DED2B41AB2539F0099E701 /* GameHUD.swift */; };
+		96DED2B91AB274C10099E701 /* main_hud_alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DED2B61AB274C10099E701 /* main_hud_alpha.png */; };
+		96DED2BA1AB274C10099E701 /* main_hud_alpha@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DED2B71AB274C10099E701 /* main_hud_alpha@2x.png */; };
+		96DED2BB1AB274C10099E701 /* main_hud_alpha@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DED2B81AB274C10099E701 /* main_hud_alpha@3x.png */; };
 		96F35FD01AAE7BE700105F55 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F35FCF1AAE7BE700105F55 /* Status.swift */; };
 		96F35FD41AAE956100105F55 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F35FD31AAE956100105F55 /* StartViewController.swift */; };
 		96F35FD61AAEA2C200105F55 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F35FD51AAEA2C200105F55 /* NewGameViewController.swift */; };
@@ -183,6 +186,9 @@
 		96DED2AD1AB247910099E701 /* main_hud@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_hud@3x.png"; sourceTree = "<group>"; };
 		96DED2B11AB248620099E701 /* SceneManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
 		96DED2B41AB2539F0099E701 /* GameHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameHUD.swift; sourceTree = "<group>"; };
+		96DED2B61AB274C10099E701 /* main_hud_alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_hud_alpha.png; sourceTree = "<group>"; };
+		96DED2B71AB274C10099E701 /* main_hud_alpha@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_hud_alpha@2x.png"; sourceTree = "<group>"; };
+		96DED2B81AB274C10099E701 /* main_hud_alpha@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_hud_alpha@3x.png"; sourceTree = "<group>"; };
 		96F35FCF1AAE7BE700105F55 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		96F35FD31AAE956100105F55 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		96F35FD51AAEA2C200105F55 /* NewGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
@@ -248,6 +254,9 @@
 		962366CB1AAF9B790008010B /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				96DED2B61AB274C10099E701 /* main_hud_alpha.png */,
+				96DED2B71AB274C10099E701 /* main_hud_alpha@2x.png */,
+				96DED2B81AB274C10099E701 /* main_hud_alpha@3x.png */,
 				96DED2AB1AB247900099E701 /* main_hud.png */,
 				96DED2AC1AB247910099E701 /* main_hud@2x.png */,
 				96DED2AD1AB247910099E701 /* main_hud@3x.png */,
@@ -553,16 +562,19 @@
 				9623666A1AAF76D70008010B /* bUnhappy.atlas in Resources */,
 				9644A9671AAD9F2500FBD86C /* bar_thirst.png in Resources */,
 				9644A95D1AAD9F2500FBD86C /* bar_fun@3x.png in Resources */,
+				96DED2B91AB274C10099E701 /* main_hud_alpha.png in Resources */,
 				962366B91AAF78B00008010B /* bEgg@3x.png in Resources */,
 				96802ACD1AA8D1C000B9AAF3 /* Images.xcassets in Resources */,
 				9644A9661AAD9F2500FBD86C /* bar_hygiene@3x.png in Resources */,
 				962366691AAF76D70008010B /* bSad.atlas in Resources */,
+				96DED2BA1AB274C10099E701 /* main_hud_alpha@2x.png in Resources */,
 				962366D71AAF9B790008010B /* start@3x.png in Resources */,
 				9653DB251AAF0463005103F8 /* pEgg.png in Resources */,
 				96802ACB1AA8D1C000B9AAF3 /* Main.storyboard in Resources */,
 				9644A96E1AADB4E200FBD86C /* Gradient.atlas in Resources */,
 				9644A9681AAD9F2500FBD86C /* bar_thirst@2x.png in Resources */,
 				962366D41AAF9B790008010B /* logo.png in Resources */,
+				96DED2BB1AB274C10099E701 /* main_hud_alpha@3x.png in Resources */,
 				96802B221AAB4B5800B9AAF3 /* pVerySad.atlas in Resources */,
 				9644A95E1AAD9F2500FBD86C /* bar_happiness.png in Resources */,
 				9644A9641AAD9F2500FBD86C /* bar_hygiene.png in Resources */,
