@@ -10,6 +10,8 @@ import SpriteKit
 
 protocol GameSceneDelegate {
     func GameSceneSetup();
+    func MenuButtonClicked();
+    func FightButtonClicked();
 }
 
 class GameScene: SKScene {
@@ -83,6 +85,7 @@ class GameScene: SKScene {
                     println("HUD Tapped");
                 case "menu":
                     println("Tap Menu");
+                    gameDelegate?.MenuButtonClicked();
                 case "shop":
                     println("Tap Shop");
                 case "fight":
@@ -110,17 +113,27 @@ class GameScene: SKScene {
                     checkMood();
                 case "thirst":
                     println("Tap Thirst");
+                    if (gameHUD != nil && crealing!.hydratePet(ItemType.DRINK_JUICE)) {
+                        gameHUD!.hydrate();
+                    }
                     checkMood();
                 case "fun":
                     println("Tap Fun");
+                    if (gameHUD != nil && crealing!.playWith(ItemType.TOY_BALL)) {
+                        gameHUD!.play();
+                    }
                     checkMood();
                 case "hygiene":
                     println("Tap Hygiene");
+                    if (gameHUD != nil && crealing!.cleanPet()) {
+                        gameHUD?.bathe();
+                    }
                     checkMood();
                 default:
                     break;
                 }
             }
+            break;
         }
     }
     
@@ -142,11 +155,12 @@ class GameScene: SKScene {
 //        bg.position = CGPointMake(self.size.width / 2, self.size.height / 2);
 //        self.addChild(bg);
         
+        /* Setup game menu */
         gameHUD = GameHUD(imageNamed: "main_hud");
         gameHUD?.position = CGPointMake(0.0, self.frame.height);
-        let ratio: CGFloat = 682.666687011719 / 62;
-        let HUDHeight: CGFloat = self.size.width / ratio;
-        gameHUD?.size = CGSizeMake(self.size.width, HUDHeight);
+        let ratio: CGFloat = 682.666687011719 / 62; //Get original aspect ratio of image
+        let HUDHeight: CGFloat = self.size.width / ratio; //Set height with aspect ratio
+        gameHUD?.size = CGSizeMake(self.size.width, HUDHeight); //Set menu size to width of screen
         
         if ((gameHUD != nil) && (gameHUD!.setupHUD())) {
             self.addChild(self.gameHUD!);
@@ -154,6 +168,7 @@ class GameScene: SKScene {
         
         println("GAME SIZE: \(self.frame.size) HUD SIZE: \(gameHUD?.frame.size)");
         
+        /* Add crealing to scene */
         crealing = Crealing();
         if (currentMon != nil) {
             if ((crealing != nil) && (crealing!.setup(self, mon: currentMon!))) {
@@ -161,9 +176,11 @@ class GameScene: SKScene {
             }
         }
         
+        //For Testing Purposes Only - Change stats every 10 secs
         let timer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: ("refresh"), userInfo: nil, repeats: true);
     }
     
+    /* Get crealing mood and set respectively */
     func checkMood () {
         if (crealing != nil) {
             crealing!.setMood(crealing!.getMood());

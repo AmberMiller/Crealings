@@ -81,6 +81,7 @@ final class Crealing : SKNode {
         println("Mood Total: \(moodTotal)")
         switch moodTotal {
             case 90...100:
+                println("VERY HAPPY");
                 mood = GameScene.Mood.VERY_HAPPY;
             case 79...89:
                 mood = GameScene.Mood.MORE_HAPPY;
@@ -195,7 +196,7 @@ final class Crealing : SKNode {
                     loopAnim, loopAnim, loopAnim, loopAnim,
                     loopAnim, loopAnim, loopAnim, loopAnim,
                     blinkAnim
-                    ]);
+                ]);
         case GameScene.Mood.VERY_SAD:
                 loopAnimTextures = [animAtlas!.textureNamed("cry1"), animAtlas!.textureNamed("cry2")];
                 let loopAnim = SKAction.animateWithTextures(loopAnimTextures, timePerFrame: 0.1);
@@ -204,15 +205,17 @@ final class Crealing : SKNode {
                     loopAnim, loopAnim, loopAnim, loopAnim,
                     loopAnim, loopAnim, loopAnim, loopAnim,
                     blinkAnim
-                    ]);
-            default:
-                loop = SKAction.sequence([blinkAnim, SKAction.waitForDuration(5)])
+                ]);
+        default:
+            loop = SKAction.sequence([blinkAnim, SKAction.waitForDuration(5)])
         }
+        
+        //Run animation and repeat
         crealingSprite?.runAction(SKAction.repeatActionForever(loop), withKey: "blinkAction")
     }
     
     /***********************************************************
-    Touching the Pet
+        Touching the Pet
     ************************************************************/
     func tapPet () {
         println("Tapped Pet");
@@ -236,66 +239,47 @@ final class Crealing : SKNode {
         }
     }
 
-//    /***********************************************************
-//        Giving the Pet a Drink
-//    ************************************************************/
-//    func hydratePet (drink: GameScene.ItemType) -> Bool {
-//        switch drink {
-//            case .DRINK_WATER:
-//                thirst += 5;
-//                
-//                if (thirst > 100) {
-//                    thirst = 100;
-//                }
-//                return true;
-//            case .DRINK_JUICE:
-//                happiness += 10;
-//                thirst += 10;
-//                
-//                if (happiness > 100) {
-//                    happiness = 100;
-//                }
-//                
-//                if (thirst > 100) {
-//                    thirst = 100;
-//                }
-//                return true;
-//            default:
-//                return false;
-//        }
-//    }
-//    
-//    /***********************************************************
-//        Playing With the Pet
-//    ************************************************************/
-//    func playWith (toy: GameScene.ItemType) -> Bool {
-//        switch toy {
-//        case .TOY_BALL:
-//            happiness += 10
-//            fun += 15;
-//
-//            if (happiness > 100) {
-//                happiness = 100;
-//            }
-//            
-//            if (fun > 100) {
-//                fun = 100;
-//            }
-//            return true;
-//        case .TOY_BOOK:
-//            happiness += 10;
-//            fun += 15;
-//            
-//            if (happiness > 100) {
-//                happiness = 100;
-//            }
-//            
-//            if (fun > 100) {
-//                fun = 100;
-//            }
-//            return true;
-//        default:
-//            return false;
-//        }
-//    }
+    /***********************************************************
+        Giving the Pet a Drink
+    ************************************************************/
+    func hydratePet (drink: GameScene.ItemType) -> Bool {
+        switch drink {
+            case .DRINK_WATER:
+                status.setThirst(5);
+                return true;
+            case .DRINK_JUICE:
+                status.setHappiness(10);
+                status.setThirst(10);
+                
+                return true;
+            default:
+                return false;
+        }
+    }
+    
+    /***********************************************************
+        Playing With the Pet
+    ************************************************************/
+    func playWith (toy: GameScene.ItemType) -> Bool {
+        switch toy {
+        case .TOY_BALL:
+            status.setHappiness(10);
+            status.setFun(15);
+            return true;
+        case .TOY_BOOK:
+            status.setHappiness(10);
+            status.setFun(10);
+            return true;
+        default:
+            return false;
+        }
+    }
+    
+    /***********************************************************
+        Cleaning the Pet
+    ************************************************************/
+    func cleanPet () -> Bool {
+        status.setHygiene(50);
+        return true;
+    }
 }

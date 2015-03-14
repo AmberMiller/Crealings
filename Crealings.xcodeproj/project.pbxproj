@@ -88,6 +88,7 @@
 		96DED2B91AB274C10099E701 /* main_hud_alpha.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DED2B61AB274C10099E701 /* main_hud_alpha.png */; };
 		96DED2BA1AB274C10099E701 /* main_hud_alpha@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DED2B71AB274C10099E701 /* main_hud_alpha@2x.png */; };
 		96DED2BB1AB274C10099E701 /* main_hud_alpha@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DED2B81AB274C10099E701 /* main_hud_alpha@3x.png */; };
+		96DED2BD1AB392A80099E701 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DED2BC1AB392A80099E701 /* StatsViewController.swift */; };
 		96F35FD01AAE7BE700105F55 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F35FCF1AAE7BE700105F55 /* Status.swift */; };
 		96F35FD41AAE956100105F55 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F35FD31AAE956100105F55 /* StartViewController.swift */; };
 		96F35FD61AAEA2C200105F55 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F35FD51AAEA2C200105F55 /* NewGameViewController.swift */; };
@@ -189,6 +190,7 @@
 		96DED2B61AB274C10099E701 /* main_hud_alpha.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_hud_alpha.png; sourceTree = "<group>"; };
 		96DED2B71AB274C10099E701 /* main_hud_alpha@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_hud_alpha@2x.png"; sourceTree = "<group>"; };
 		96DED2B81AB274C10099E701 /* main_hud_alpha@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_hud_alpha@3x.png"; sourceTree = "<group>"; };
+		96DED2BC1AB392A80099E701 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		96F35FCF1AAE7BE700105F55 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		96F35FD31AAE956100105F55 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		96F35FD51AAEA2C200105F55 /* NewGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
@@ -427,10 +429,11 @@
 		96F35FD21AAE94CE00105F55 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				96802AC71AA8D1C000B9AAF3 /* GameViewController.swift */,
 				96F35FD31AAE956100105F55 /* StartViewController.swift */,
 				96F35FD51AAEA2C200105F55 /* NewGameViewController.swift */,
 				9653DB111AAED808005103F8 /* ChooseEggViewController.swift */,
+				96802AC71AA8D1C000B9AAF3 /* GameViewController.swift */,
+				96DED2BC1AB392A80099E701 /* StatsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -609,6 +612,7 @@
 				96DED2B21AB248620099E701 /* SceneManager.swift in Sources */,
 				9653DB141AAEE328005103F8 /* Egg.swift in Sources */,
 				96802AC81AA8D1C000B9AAF3 /* GameViewController.swift in Sources */,
+				96DED2BD1AB392A80099E701 /* StatsViewController.swift in Sources */,
 				96802AE61AA8D27800B9AAF3 /* Crealing.swift in Sources */,
 				96802AC21AA8D1C000B9AAF3 /* AppDelegate.swift in Sources */,
 				9653DB121AAED808005103F8 /* ChooseEggViewController.swift in Sources */,

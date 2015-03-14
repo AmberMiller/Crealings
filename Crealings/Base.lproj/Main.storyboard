@@ -79,6 +79,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="xk8-dn-lDl" secondAttribute="centerY" id="5rA-wt-3iF"/>
                             <constraint firstAttribute="centerX" secondItem="xk8-dn-lDl" secondAttribute="centerX" id="hTT-NV-0vV"/>
@@ -187,8 +188,53 @@
             </objects>
             <point key="canvasLocation" x="874" y="-83"/>
         </scene>
+        <!--Stats View Controller-->
+        <scene sceneID="CLW-v4-oH2">
+            <objects>
+                <viewController storyboardIdentifier="StatsController" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hQn-tI-0fX" customClass="StatsViewController" customModule="Crealings" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GDp-1p-2l4"/>
+                        <viewControllerLayoutGuide type="bottom" id="1rn-1s-BLh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZO7-jn-iAc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background1.png" translatesAutoresizingMaskIntoConstraints="NO" id="mBN-Ss-Mej">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WeZ-Wy-UVV">
+                                <rect key="frame" x="16" y="40" width="36" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backToGame:" destination="hQn-tI-0fX" eventType="touchUpInside" id="vK7-8x-tFW"/>
+                                    <segue destination="6R5-7V-V0e" kind="unwind" unwindAction="unwindToGame:" id="dU3-YS-ina"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="mBN-Ss-Mej" secondAttribute="trailing" constant="-16" id="0j8-fU-52N"/>
+                            <constraint firstItem="WeZ-Wy-UVV" firstAttribute="leading" secondItem="ZO7-jn-iAc" secondAttribute="leadingMargin" id="3tV-U2-Cd7"/>
+                            <constraint firstItem="mBN-Ss-Mej" firstAttribute="leading" secondItem="ZO7-jn-iAc" secondAttribute="leadingMargin" constant="-16" id="C9t-9F-Dq4"/>
+                            <constraint firstItem="mBN-Ss-Mej" firstAttribute="top" secondItem="GDp-1p-2l4" secondAttribute="bottom" constant="-20" id="IOS-nj-YTA"/>
+                            <constraint firstItem="1rn-1s-BLh" firstAttribute="top" secondItem="mBN-Ss-Mej" secondAttribute="bottom" id="KUZ-3H-5H6"/>
+                            <constraint firstItem="WeZ-Wy-UVV" firstAttribute="top" secondItem="GDp-1p-2l4" secondAttribute="bottom" constant="20" id="sf1-ym-6o6"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7gS-nM-acw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="6R5-7V-V0e" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1531" y="-83"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="background1.png" width="2048" height="1536"/>
         <image name="logo.png" width="969" height="354"/>
         <image name="start.png" width="420" height="420"/>
     </resources>

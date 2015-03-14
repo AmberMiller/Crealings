@@ -72,12 +72,13 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
         skView.presentScene(gameScene, transition: fade);
     }
     
-    override func viewWillAppear(animated: Bool) {
-        println("View Will Appear");
-        if (firstPlay) {
-            (skView.scene as EggScene).eggType = eggType;
-            (skView.scene as EggScene).setupScene();
+    func EggSceneSetup () {
+        println("Egg Scene Setup");
+        if (eggType == nil) {
+            eggType = defaults.valueForKey("userCrealing") as? String;
         }
+        (skView.scene as EggScene).eggType = eggType;
+        (skView.scene as EggScene).setupScene();
     }
     
     func GameSceneSetup () {
@@ -87,6 +88,16 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
         }
         (skView.scene as GameScene).currentMon = eggType;
         (skView.scene as GameScene).setUpScene();
+    }
+    
+    func MenuButtonClicked() {
+        println("Game Delegate: Menu");
+        let view = self.storyboard?.instantiateViewControllerWithIdentifier("StatsController") as StatsViewController;
+        self.presentViewController(view, animated: true, completion: nil);
+    }
+    
+    func FightButtonClicked() {
+        println("Game Delegate: Fight");
     }
 
     override func shouldAutorotate() -> Bool {

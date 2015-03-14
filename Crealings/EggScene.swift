@@ -10,6 +10,7 @@ import Foundation
 import SpriteKit
 
 protocol EggSceneDelegate {
+    func EggSceneSetup()
     func presentGameScene()
 }
 
@@ -27,6 +28,7 @@ class EggScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+        eggDelegate?.EggSceneSetup();
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
