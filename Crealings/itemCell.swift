@@ -9,9 +9,8 @@
 import Foundation
 import UIKit
 
-class eggCell: UICollectionViewCell {
+class itemCell: UICollectionViewCell {
     
-    @IBOutlet weak var eggImage: UIImageView!
-    
+    @IBOutlet weak var itemImage: UIImageView!
     
 }

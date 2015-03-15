@@ -11,6 +11,7 @@ import SpriteKit
 protocol GameSceneDelegate {
     func GameSceneSetup();
     func MenuButtonClicked();
+    func ShopButtonClicked();
     func FightButtonClicked();
 }
 
@@ -80,7 +81,9 @@ class GameScene: SKScene {
             if (node.name != nil) {
                 switch node.name! {
                 case "crealing":
-                    crealing?.tapPet();
+                    if (gameHUD != nil && crealing!.tapPet()) {
+                        gameHUD?.pet();
+                    }
                 case "HUD":
                     println("HUD Tapped");
                 case "menu":
@@ -88,6 +91,7 @@ class GameScene: SKScene {
                     gameDelegate?.MenuButtonClicked();
                 case "shop":
                     println("Tap Shop");
+                    gameDelegate?.ShopButtonClicked();
                 case "fight":
                     println("Tap Fight");
                 case "coin":

@@ -12,8 +12,10 @@ import SpriteKit
 
 class ChooseEggViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    let defaults = NSUserDefaults.standardUserDefaults();
+    @IBOutlet weak var eggChooser: UICollectionView!
     
+    let defaults = NSUserDefaults.standardUserDefaults();
+
     var eggArray: [EggObject] = [];
     var selectedCell: Int = Int();
     
@@ -24,11 +26,15 @@ class ChooseEggViewController: UIViewController, UICollectionViewDataSource, UIC
 
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: eggCell = collectionView.dequeueReusableCellWithReuseIdentifier("eggCell", forIndexPath: indexPath) as eggCell;
+        let cell: itemCell = collectionView.dequeueReusableCellWithReuseIdentifier("eggCell", forIndexPath: indexPath) as itemCell;
         
         let egg = eggArray[indexPath.row];
         
-        cell.eggImage.image = egg.image;
+        cell.itemImage.image = egg.image;
+        
+        let height: CGFloat = collectionView.frame.height - 40.0;
+        cell.frame.size = CGSizeMake(height, height);
+        cell.center.y = collectionView.frame.size.height / 2;
         
         return cell
     }

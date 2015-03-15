@@ -121,6 +121,10 @@ class GameHUD: SKSpriteNode {
         return true;
     }
     
+    func pet () {
+        happinessBar?.setStatusBar("happiness");
+    }
+    
     /***********************************************************
         Item Stuff
     ************************************************************/

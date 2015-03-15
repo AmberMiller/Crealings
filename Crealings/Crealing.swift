@@ -217,8 +217,11 @@ final class Crealing : SKNode {
     /***********************************************************
         Touching the Pet
     ************************************************************/
-    func tapPet () {
+    func tapPet () -> Bool {
         println("Tapped Pet");
+        status.setHappiness(5);
+        
+        return true;
     }
     
     /***********************************************************

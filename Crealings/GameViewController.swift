@@ -90,13 +90,19 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
         (skView.scene as GameScene).setUpScene();
     }
     
-    func MenuButtonClicked() {
+    func MenuButtonClicked () {
         println("Game Delegate: Menu");
         let view = self.storyboard?.instantiateViewControllerWithIdentifier("StatsController") as StatsViewController;
         self.presentViewController(view, animated: true, completion: nil);
     }
     
-    func FightButtonClicked() {
+    func ShopButtonClicked () {
+        println("Game Delegate: Shop");
+        let view = self.storyboard?.instantiateViewControllerWithIdentifier("ShopController") as ShopViewController;
+        self.presentViewController(view, animated: true, completion: nil);
+    }
+    
+    func FightButtonClicked () {
         println("Game Delegate: Fight");
     }
 
