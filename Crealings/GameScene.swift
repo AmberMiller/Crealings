@@ -13,6 +13,8 @@ protocol GameSceneDelegate {
     func MenuButtonClicked();
     func ShopButtonClicked();
     func FightButtonClicked();
+    func showItemBag();
+    func hideItemBag();
 }
 
 class GameScene: SKScene {
@@ -50,6 +52,7 @@ class GameScene: SKScene {
     }
     
     var gameDelegate: GameSceneDelegate?;
+    var itemBagIsHidden: Bool = true;
 
     var currentMon: String? = nil;
     
@@ -77,6 +80,7 @@ class GameScene: SKScene {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self);
             let node = nodeAtPoint(location);
+            println("Node Location: \(node.position)");
             
             if (node.name != nil) {
                 switch node.name! {
@@ -133,11 +137,29 @@ class GameScene: SKScene {
                         gameHUD?.bathe();
                     }
                     checkMood();
+                case "bag":
+                    println("Tap Bag");
+                    if (itemBagIsHidden) {
+                        gameDelegate?.showItemBag();
+                        itemBagIsHidden = false;
+                    } else {
+                        gameDelegate?.hideItemBag();
+                        itemBagIsHidden = true;
+                    }
+                    
                 default:
                     break;
                 }
             }
             break;
+        }
+    }
+    
+    override func touchesMoved (touches: NSSet, withEvent event: UIEvent) {
+        for touch: AnyObject in touches {
+            let location = touch.locationInNode(self);
+            let node = nodeAtPoint(location);
+            println("Node Location Moved: \(node.position)");
         }
     }
     
@@ -154,17 +176,17 @@ class GameScene: SKScene {
     ************************************************************/
     
     func setUpScene () {
-//        var bg: SKSpriteNode = SKSpriteNode(imageNamed: "background1");
-//        bg.zPosition = -2;
-//        bg.position = CGPointMake(self.size.width / 2, self.size.height / 2);
-//        self.addChild(bg);
+        var bg: SKSpriteNode = SKSpriteNode(imageNamed: "background_bluepolka");
+        bg.zPosition = -2;
+        bg.size = CGSizeMake(self.size.width, getRatioHeight(bg.size.width, height: bg.size.height));
+        bg.position = CGPointMake(self.size.width / 2, self.size.height / 2);
+        self.addChild(bg);
         
         /* Setup game menu */
         gameHUD = GameHUD(imageNamed: "main_hud");
         gameHUD?.position = CGPointMake(0.0, self.frame.height);
-        let ratio: CGFloat = 682.666687011719 / 62; //Get original aspect ratio of image
-        let HUDHeight: CGFloat = self.size.width / ratio; //Set height with aspect ratio
-        gameHUD?.size = CGSizeMake(self.size.width, HUDHeight); //Set menu size to width of screen
+        
+        gameHUD?.size = CGSizeMake(self.size.width, getRatioHeight(gameHUD!.size.width, height: gameHUD!.size.height)); //Set menu size to width of screen
         
         if ((gameHUD != nil) && (gameHUD!.setupHUD())) {
             self.addChild(self.gameHUD!);
@@ -184,10 +206,30 @@ class GameScene: SKScene {
         let timer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: ("refresh"), userInfo: nil, repeats: true);
     }
     
+    func getRatioHeight (width: CGFloat, height: CGFloat) -> CGFloat {
+        let ratio: CGFloat = width / height; //Get original aspect ratio of image
+        return (self.size.width / ratio); //Return new height with aspect ratio
+    }
+    
     /* Get crealing mood and set respectively */
     func checkMood () {
         if (crealing != nil) {
             crealing!.setMood(crealing!.getMood());
         }
+    }
+    
+    func addItem (item: ItemType, tapPosition: CGPoint) {
+        var newItem: SKSpriteNode?;
+        switch item {
+            case ItemType.FOOD_APPLE:
+                newItem = SKSpriteNode(imageNamed: "apple");
+            default:
+                newItem = SKSpriteNode(imageNamed: "ball");
+        }
+        
+        newItem?.size = CGSizeMake(newItem!.size.width / 1.5, newItem!.size.height / 1.5);
+        newItem?.position = tapPosition;
+        println("Position: \(tapPosition)");
+        self.addChild(newItem!);
     }
 }

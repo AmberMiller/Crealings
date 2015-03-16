@@ -28,6 +28,7 @@ class GameHUD: SKSpriteNode {
     var funBar: StatusBar? = nil;
     var hygieneBar: StatusBar? = nil;
     
+    var itemBagButton: SKSpriteNode? = nil;
     
     func refresh () -> Bool {
         happinessBar?.setStatus(status.setHappiness(-10));
@@ -75,8 +76,9 @@ class GameHUD: SKSpriteNode {
         gemBar?.name = "gem";
         self.addChild(gemBar!);
         
-        expBar = SKSpriteNode(color: UIColor.greenColor(), size: CGSizeMake(self.size.width / 6, self.size.height / 2));
-        expBar?.position = CGPointMake(self.size.width / 1.27, 0.0);
+        expBar = SKSpriteNode(color: UIColor(red: 0.447, green: 0.447, blue: 0.447, alpha: 1.0),
+                              size: CGSizeMake(self.size.width / 6, self.size.height / 2));
+        expBar?.position = CGPointMake(self.size.width / 1.26, 0.0);
         expBar?.anchorPoint = CGPointMake(0.0, 1.0);
         expBar?.name = "exp";
         self.addChild(expBar!);
@@ -117,6 +119,13 @@ class GameHUD: SKSpriteNode {
         if ((hygieneBar != nil) && (hygieneBar!.setup(self, current: "hygiene"))) {
             self.addChild(hygieneBar!);
         }
+        
+        /* Item Bag Button */
+        itemBagButton = SKSpriteNode(imageNamed: "bag_button");
+        itemBagButton?.anchorPoint = CGPointMake(1.0, 1.0);
+        itemBagButton?.position = CGPointMake(self.size.width - 10.0, -self.size.height * 4.5);
+        itemBagButton?.name = "bag";
+        self.addChild(itemBagButton!);
         
         return true;
     }

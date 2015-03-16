@@ -62,7 +62,7 @@ final class Crealing : SKNode {
         }
         setMood(getMood())
 
-        crealingSprite?.position = CGPointMake(view.size.width / 2, view.size.height / 3.5);
+        crealingSprite?.position = CGPointMake(view.size.width / 2, view.size.height / 3.2);
         crealingSprite?.name = "crealing";
         self.addChild(crealingSprite!);
 
@@ -145,13 +145,11 @@ final class Crealing : SKNode {
         let atlasNum = animAtlas!.textureNames.count / 3;
         for (var i = 1; i < atlasNum; i++) {
             let name = moodName + "\(i)"
-            println(name)
             
             blinkAnimTextures.append(self.animAtlas!.textureNamed(name)!)
         }
         for (var i = atlasNum; i > 0; i--) {
             let name = moodName + "\(i)"
-            println(name)
             blinkAnimTextures.append(self.animAtlas!.textureNamed(name)!)
             
         }

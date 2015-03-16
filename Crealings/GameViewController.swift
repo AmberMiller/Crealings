@@ -10,7 +10,8 @@ import UIKit
 import SpriteKit
 
 
-class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate {
+class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate,
+                          UICollectionViewDataSource, UICollectionViewDelegate {
     
     let defaults = NSUserDefaults.standardUserDefaults();
 
@@ -21,7 +22,29 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
     var firstPlay: Bool = Bool();
     
     var eggType: String? = nil;
-
+    
+    var foodArray: [itemObject] = [];
+    var drinkArray: [itemObject] = [];
+    var toysArray: [itemObject] = [];
+    var selectedCell: Int = Int();
+    
+    @IBOutlet weak var item_shelf: UIImageView!
+    @IBOutlet weak var collection1: UICollectionView!
+    @IBOutlet weak var collection2: UICollectionView!
+    @IBOutlet weak var collection3: UICollectionView!
+    
+    @IBAction func longPress(sender: UILongPressGestureRecognizer) {
+        println("Long Press Action Location: \(sender.locationInView(self.view))");
+        if (!(skView.scene as GameScene).itemBagIsHidden) {
+            hideItemBag();
+            (skView.scene as GameScene).addItem(GameScene.ItemType.FOOD_APPLE, tapPosition: sender.locationInView(self.view));
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        hideItemBag();
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -64,6 +87,7 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
         gameScene = GameScene(size: view.bounds.size);
         
         gameScene?.gameDelegate = self;
+        
         
         /* Set the scale mode to scale to fit the window */
         gameScene!.scaleMode = .AspectFill
