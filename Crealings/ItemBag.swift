@@ -58,8 +58,6 @@ class ItemBag: SKNode {
         
         
         collection3 = SKSpriteNode();
-        collection3?.color = UIColor.blackColor();
-        collection3?.alpha = 0.5;
         collection3?.anchorPoint = CGPointMake(0.0, 0.0);
         collection3?.size = CGSizeMake(itemShelf!.size.width / 1.11, itemShelf!.size.height / 3.9);
         collection3?.position = CGPointMake(-itemShelf!.size.width / 2.21, -itemShelf!.size.height / 2.33);
@@ -75,7 +73,7 @@ class ItemBag: SKNode {
         for (var i = 0; i < currentArray.count; i++) {
             let object: itemObject = currentArray[i];
             var item: SKSpriteNode = SKSpriteNode(imageNamed: object.itemImageName);
-            item.name = object.itemName;
+            item.name = object.itemImageName;
             item.anchorPoint = CGPointMake(0.0, 0.0);
             item.size = CGSizeMake(collection1!.size.height, collection1!.size.height);
             
@@ -93,6 +91,29 @@ class ItemBag: SKNode {
             
             collection.addChild(item);
         }
+    }
+    
+    func getItemObject (nodeName: String) -> itemObject? {
+        var itemType: GameScene.ItemType;
+        var itemDict: [String: itemObject] = [:];
+        
+        for item in foodArray {
+            itemDict[item.itemImageName] = item;
+        }
+        
+        for item in drinkArray {
+            itemDict[item.itemImageName] = item;
+        }
+        
+        for item in toysArray {
+            itemDict[item.itemImageName] = item;
+        }
+        
+        if (itemDict.indexForKey(nodeName) != nil) {
+            println("Item Dict Type: \(itemDict[nodeName]!)")
+            return itemDict[nodeName]!;
+        }
+        return nil;
     }
     
     func loadData () -> Bool {

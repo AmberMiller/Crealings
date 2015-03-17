@@ -64,6 +64,9 @@ final class Crealing : SKNode {
 
         crealingSprite?.position = CGPointMake(view.size.width / 2, view.size.height / 3.2);
         crealingSprite?.name = "crealing";
+        crealingSprite?.physicsBody = SKPhysicsBody(rectangleOfSize: crealingSprite!.size);
+        crealingSprite?.physicsBody?.dynamic = false;
+        crealingSprite?.physicsBody?.usesPreciseCollisionDetection = true;
         self.addChild(crealingSprite!);
 
         isAlive = true;

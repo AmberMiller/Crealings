@@ -82,6 +82,9 @@ class GameHUD: SKSpriteNode {
         expBar?.name = "exp";
         self.addChild(expBar!);
         
+//        vec4 color = mix(vec4(0.0, 1.0, 0.0, 0.0), vec4(0.0, 0.0, 1.0, 0.0), v_tex_coord.y);
+//        gl_FragColor = color;
+        
         helpButton = SKSpriteNode(color: UIColor.redColor(), size: CGSizeMake(self.size.width / 12, self.size.height / 2));
         helpButton?.position = CGPointMake(self.size.width / 1.045, 0.0);
         helpButton?.anchorPoint = CGPointMake(0.0, 1.0);
