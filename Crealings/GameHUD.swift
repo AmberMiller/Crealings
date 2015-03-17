@@ -30,6 +30,7 @@ class GameHUD: SKSpriteNode {
     
     var itemBagButton: SKSpriteNode? = nil;
     
+    //For testing purposes, decrease each status by 10 every 10 seconds
     func refresh () -> Bool {
         happinessBar?.setStatus(status.setHappiness(-10));
         energyBar?.setStatus(status.setEnergy(-10));
@@ -40,6 +41,10 @@ class GameHUD: SKSpriteNode {
         
         return true;
     }
+    
+    /***********************************************************
+        Setup
+    ************************************************************/
     
     func setupHUD () -> Bool {
         self.anchorPoint = CGPointMake(0.0, 1.0);
@@ -57,33 +62,36 @@ class GameHUD: SKSpriteNode {
         shopButton?.name = "shop"
         self.addChild(shopButton!);
         
-        fightButton = SKSpriteNode(color: UIColor.orangeColor(), size: CGSizeMake(self.size.width / 8, self.size.height / 2));
-        fightButton?.position = CGPointMake(self.size.width / 3.95, 0.0);
-        fightButton?.anchorPoint = CGPointMake(0.0, 1.0);
-        fightButton?.name = "fight";
-        self.addChild(fightButton!);
+        /* Not using in game for class */
         
-        coinBar = SKSpriteNode(color: UIColor.blueColor(), size: CGSizeMake(self.size.width / 6, self.size.height / 2));
-        coinBar?.position = CGPointMake(self.size.width / 2.45, 0.0);
-        coinBar?.anchorPoint = CGPointMake(0.0, 1.0);
-        coinBar?.name = "coin";
-        self.addChild(coinBar!);
-        
-        gemBar = SKSpriteNode(color: UIColor.redColor(), size: CGSizeMake(self.size.width / 6, self.size.height / 2));
-        gemBar?.position = CGPointMake(self.size.width / 1.68, 0.0);
-        gemBar?.anchorPoint = CGPointMake(0.0, 1.0);
-        gemBar?.name = "gem";
-        self.addChild(gemBar!);
-        
-        expBar = SKSpriteNode(color: UIColor(red: 0.447, green: 0.447, blue: 0.447, alpha: 1.0),
-                              size: CGSizeMake(self.size.width / 6, self.size.height / 2));
-        expBar?.position = CGPointMake(self.size.width / 1.26, 0.0);
-        expBar?.anchorPoint = CGPointMake(0.0, 1.0);
-        expBar?.name = "exp";
-        self.addChild(expBar!);
+//        fightButton = SKSpriteNode(color: UIColor.orangeColor(), size: CGSizeMake(self.size.width / 8, self.size.height / 2));
+//        fightButton?.position = CGPointMake(self.size.width / 3.95, 0.0);
+//        fightButton?.anchorPoint = CGPointMake(0.0, 1.0);
+//        fightButton?.name = "fight";
+//        self.addChild(fightButton!);
+//        
+//        coinBar = SKSpriteNode(color: UIColor.blueColor(), size: CGSizeMake(self.size.width / 6, self.size.height / 2));
+//        coinBar?.position = CGPointMake(self.size.width / 2.45, 0.0);
+//        coinBar?.anchorPoint = CGPointMake(0.0, 1.0);
+//        coinBar?.name = "coin";
+//        self.addChild(coinBar!);
+//        
+//        gemBar = SKSpriteNode(color: UIColor.redColor(), size: CGSizeMake(self.size.width / 6, self.size.height / 2));
+//        gemBar?.position = CGPointMake(self.size.width / 1.68, 0.0);
+//        gemBar?.anchorPoint = CGPointMake(0.0, 1.0);
+//        gemBar?.name = "gem";
+//        self.addChild(gemBar!);
+//        
+//        expBar = SKSpriteNode(color: UIColor(red: 0.447, green: 0.447, blue: 0.447, alpha: 1.0),
+//                              size: CGSizeMake(self.size.width / 6, self.size.height / 2));
+//        expBar?.position = CGPointMake(self.size.width / 1.26, 0.0);
+//        expBar?.anchorPoint = CGPointMake(0.0, 1.0);
+//        expBar?.name = "exp";
+//        self.addChild(expBar!);
         
 //        vec4 color = mix(vec4(0.0, 1.0, 0.0, 0.0), vec4(0.0, 0.0, 1.0, 0.0), v_tex_coord.y);
 //        gl_FragColor = color;
+        //gradient color for exp bar
         
         helpButton = SKSpriteNode(color: UIColor.redColor(), size: CGSizeMake(self.size.width / 12, self.size.height / 2));
         helpButton?.position = CGPointMake(self.size.width / 1.045, 0.0);
@@ -91,7 +99,7 @@ class GameHUD: SKSpriteNode {
         helpButton?.name = "help";
         self.addChild(helpButton!);
         
-        /* Status Bars */
+        /* Status Bars */ //Calls StatusBar setup for each status
         happinessBar = StatusBar();
         if ((happinessBar != nil) && (happinessBar!.setup(self, current: "happiness"))) {
             self.addChild(happinessBar!);
@@ -132,13 +140,14 @@ class GameHUD: SKSpriteNode {
         return true;
     }
     
+    
+    /***********************************************************
+        Interactions
+    ************************************************************/
+    
     func pet () {
         happinessBar?.setStatusBar("happiness");
     }
-    
-    /***********************************************************
-        Item Stuff
-    ************************************************************/
     
     func energize () {
         happinessBar?.setStatusBar("happiness");

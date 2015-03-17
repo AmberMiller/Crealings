@@ -14,15 +14,20 @@ class ShopViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var collection2: UICollectionView!
     @IBOutlet weak var collection3: UICollectionView!
     
-    var foodArray: [itemObject] = [];
-    var drinkArray: [itemObject] = [];
-    var toysArray: [itemObject] = [];
+    var foodArray: [NSDictionary] = [];
+    var drinkArray: [NSDictionary] = [];
+    var toysArray: [NSDictionary] = [];
     var selectedCell: Int = Int();
     
+    var gameData: GameData?;
+    
     override func viewDidLoad() {
-        if (foodArray.isEmpty || drinkArray.isEmpty || toysArray.isEmpty) {
-            setupData();
-        }
+        gameData = GameData();
+        gameData?.loadData();
+        
+        foodArray = gameData!.getFoodItemsArray();
+        drinkArray = gameData!.getDrinkItemsArray();
+        toysArray = gameData!.getToyItemsArray();
     }
     
     @IBAction func backButton(sender: UIButton) {
@@ -32,7 +37,7 @@ class ShopViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         var cell: itemCell = itemCell();
-        var item: itemObject? = nil;
+        var item: NSDictionary? = nil;
 
         switch collectionView {
             case collection1:
@@ -52,7 +57,8 @@ class ShopViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         
         if (item != nil) {
-            cell.itemImage.image = item!.itemImage;
+            let imageName: AnyObject? = item!["imageName"];
+            cell.itemImage.image = UIImage(named: imageName as String);
         }
         
         let height: CGFloat = collectionView.frame.height - 10.0;
@@ -78,7 +84,7 @@ class ShopViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         selectedCell = indexPath.row;
         var view: String = String();
-        var item: itemObject? = nil;
+        var item: NSDictionary? = nil;
         
         switch collectionView {
             case collection1:
@@ -93,18 +99,19 @@ class ShopViewController: UIViewController, UICollectionViewDataSource, UICollec
             default:
                 break;
         }
-        println("Collection: \(view) Selected Item: \(item?.itemName)");
+        let name: AnyObject? = item!["name"] as String;
+        println("Collection: \(view) Selected Item: \(name)");
     }
     
     func setupData () {
-        foodArray.removeAll();
-        foodArray.append(itemObject(_itemName: "Apple", _itemType: GameScene.ItemType.FOOD_APPLE, _itemCost: 0, _itemDescription: "An apple.", _itemImage: "apple"));
-        
-        drinkArray.removeAll();
-        drinkArray.append(itemObject(_itemName: "Water", _itemType: GameScene.ItemType.DRINK_WATER, _itemCost: 0, _itemDescription: "The most basic of drinks.", _itemImage: "water"));
-//        drinkArray.append(itemObject(_itemName: "Juice", _itemType: GameScene.ItemType.DRINK_JUICE, _itemCost: 0, _itemDescription: "It's the quenchiest!", _itemImage: "juice"));
-        
-        toysArray.removeAll();
-        toysArray.append(itemObject(_itemName: "Toy Ball", _itemType: GameScene.ItemType.TOY_BALL, _itemCost: 0, _itemDescription: "Throw the ball.", _itemImage: "ball"));
+//        foodArray.removeAll();
+//        foodArray.append(itemObject(_itemName: "Apple", _itemType: UsableItem.ItemType.FOOD_APPLE, _itemCost: 0, _itemDescription: "An apple.", _itemImage: "apple"));
+//        
+//        drinkArray.removeAll();
+//        drinkArray.append(itemObject(_itemName: "Water", _itemType: UsableItem.ItemType.DRINK_WATER, _itemCost: 0, _itemDescription: "The most basic of drinks.", _itemImage: "water"));
+////        drinkArray.append(itemObject(_itemName: "Juice", _itemType: GameScene.ItemType.DRINK_JUICE, _itemCost: 0, _itemDescription: "It's the quenchiest!", _itemImage: "juice"));
+//        
+//        toysArray.removeAll();
+//        toysArray.append(itemObject(_itemName: "Toy Ball", _itemType: UsableItem.ItemType.TOY_BALL, _itemCost: 0, _itemDescription: "Throw the ball.", _itemImage: "ball"));
     }
 }

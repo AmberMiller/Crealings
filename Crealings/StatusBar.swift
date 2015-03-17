@@ -28,39 +28,41 @@ final class StatusBar : SKNode {
         gradientAtlas = SKTextureAtlas(named: "Gradient");
         barSprite = SKSpriteNode(color: UIColor.clearColor(), size: CGSizeMake(view.size.width / 6, view.size.height / 2));
         
+        /* Set status bar sprite for each status as called */
         switch current {
-        case "happiness":
-            barSprite?.position = CGPointMake(0.0, -view.size.height + 2.0);
-            barSprite?.name = "happiness";
-            currentStatus = status.getHappiness();
-        case "energy":
-            barSprite?.position = CGPointMake(view.size.width / 6, -view.size.height + 2.0);
-            barSprite?.name = "energy";
-            currentStatus = status.getEnergy();
-        case "hunger":
-            barSprite?.position = CGPointMake((view.size.width / 6) * 2, -view.size.height + 2.0);
-            barSprite?.name = "hunger";
-            currentStatus = status.getHunger();
-        case "thirst":
-            barSprite?.position = CGPointMake((view.size.width / 6) * 3, -view.size.height + 2.0);
-            barSprite?.name = "thirst";
-            currentStatus = status.getThirst();
-        case "fun":
-            barSprite?.position = CGPointMake((view.size.width / 6) * 4, -view.size.height + 2.0);
-            barSprite?.name = "fun";
-            currentStatus = status.getFun();
-        case "hygiene":
-            barSprite?.position = CGPointMake((view.size.width / 6) * 5 - 2, -view.size.height + 2.0);
-            barSprite?.name = "hygiene";
-            currentStatus = status.getHygiene();
-        default:
-            println("Error: No Status Set");
+            case "happiness":
+                barSprite?.position = CGPointMake(0.0, -view.size.height + 2.0);
+                barSprite?.name = "happiness";
+                currentStatus = status.getHappiness();
+            case "energy":
+                barSprite?.position = CGPointMake(view.size.width / 6, -view.size.height + 2.0);
+                barSprite?.name = "energy";
+                currentStatus = status.getEnergy();
+            case "hunger":
+                barSprite?.position = CGPointMake((view.size.width / 6) * 2, -view.size.height + 2.0);
+                barSprite?.name = "hunger";
+                currentStatus = status.getHunger();
+            case "thirst":
+                barSprite?.position = CGPointMake((view.size.width / 6) * 3, -view.size.height + 2.0);
+                barSprite?.name = "thirst";
+                currentStatus = status.getThirst();
+            case "fun":
+                barSprite?.position = CGPointMake((view.size.width / 6) * 4, -view.size.height + 2.0);
+                barSprite?.name = "fun";
+                currentStatus = status.getFun();
+            case "hygiene":
+                barSprite?.position = CGPointMake((view.size.width / 6) * 5 - 2, -view.size.height + 2.0);
+                barSprite?.name = "hygiene";
+                currentStatus = status.getHygiene();
+            default:
+                println("Error: No Status Set");
         }
         
         barSprite?.anchorPoint = CGPointMake(0.0, 0.0);
         
         println("VIEW SIZE: \(view.size) BAR SPRITE SIZE: \(barSprite?.size)");
         
+        /* Add status sprite with gradient image atlas to display current status */
         statusSprite = SKSpriteNode(texture: gradientAtlas.textureNamed("gradient_100"));
         statusSprite?.size = barSprite!.size;
         statusSprite?.position = CGPointMake(barSprite!.size.width / 2, barSprite!.size.height / 2);
@@ -77,6 +79,7 @@ final class StatusBar : SKNode {
         Set Status
     ************************************************************/
     
+    /* Called to set image based on current status bar */
     func setStatusBar (name: String) {
         switch name {
         case "happiness":
@@ -102,6 +105,7 @@ final class StatusBar : SKNode {
         }
     }
     
+    /* Set image based on closest in range */
     func setStatus (stat: Int) {
         switch stat {
             case 100:

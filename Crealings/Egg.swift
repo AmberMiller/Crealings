@@ -48,6 +48,7 @@ class Egg: SKNode {
         var egg2: SKTexture = SKTexture();
         var egg3: SKTexture = SKTexture();
         
+        /* Set egg image animation based on numTaps */
         switch numTaps {
             case 0:
                 animAtlas = SKTextureAtlas(named: eggImages[0]);

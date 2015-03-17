@@ -41,7 +41,7 @@ class EggScene: SKScene {
                 if (numTaps < 3) {
                     numTaps += 1;
                     println("Num Taps: \(numTaps)");
-                    egg?.setEgg(numTaps);
+                    egg?.setEgg(numTaps); //Set egg image based on taps
                     soundFX.playTapEgg();
                 } else {
                     println("Present Game Scene Delegate");
@@ -53,6 +53,10 @@ class EggScene: SKScene {
             }
         }
     }
+    
+    /***********************************************************
+        Setup
+    ************************************************************/
     
     func setupScene () {
         let bg: SKSpriteNode = SKSpriteNode(imageNamed: "background1");

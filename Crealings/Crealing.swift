@@ -67,6 +67,8 @@ final class Crealing : SKNode {
         crealingSprite?.physicsBody = SKPhysicsBody(rectangleOfSize: crealingSprite!.size);
         crealingSprite?.physicsBody?.dynamic = false;
         crealingSprite?.physicsBody?.usesPreciseCollisionDetection = true;
+        crealingSprite?.physicsBody?.categoryBitMask = GameScene.CollisionType.CREALING.rawValue;
+        crealingSprite?.physicsBody?.contactTestBitMask = GameScene.CollisionType.ITEM.rawValue;
         self.addChild(crealingSprite!);
 
         isAlive = true;
@@ -228,7 +230,7 @@ final class Crealing : SKNode {
     /***********************************************************
         Feeding the Pet
     ************************************************************/
-    func feedPet (food: GameScene.ItemType) -> Bool {
+    func feedPet (food: UsableItem.ItemType) -> Bool {
         println("Feed Pet");
         switch food {
             case .FOOD_APPLE:
@@ -246,7 +248,7 @@ final class Crealing : SKNode {
     /***********************************************************
         Giving the Pet a Drink
     ************************************************************/
-    func hydratePet (drink: GameScene.ItemType) -> Bool {
+    func hydratePet (drink: UsableItem.ItemType) -> Bool {
         switch drink {
             case .DRINK_WATER:
                 status.setThirst(5);
@@ -264,7 +266,7 @@ final class Crealing : SKNode {
     /***********************************************************
         Playing With the Pet
     ************************************************************/
-    func playWith (toy: GameScene.ItemType) -> Bool {
+    func playWith (toy: UsableItem.ItemType) -> Bool {
         switch toy {
         case .TOY_BALL:
             status.setHappiness(10);

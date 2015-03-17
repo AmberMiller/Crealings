@@ -12,10 +12,11 @@ import UIKit
 class ItemBag: SKNode {
  
     var gameScene: GameScene = GameScene.sharedInstance;
+    var gameData: GameData = GameData();
     
-    var foodArray: [itemObject] = [];
-    var drinkArray: [itemObject] = [];
-    var toysArray: [itemObject] = [];
+    var foodArray: [Dictionary <String, AnyObject>] = [];
+    var drinkArray: [Dictionary <String, AnyObject>] = [];
+    var toysArray: [Dictionary <String, AnyObject>] = [];
     var selectedCell: Int = Int();
     
     var itemShelf: SKSpriteNode? = nil;
@@ -25,6 +26,10 @@ class ItemBag: SKNode {
     var collection3: SKSpriteNode? = nil;
     
     var itemBagIsHidden: Bool = true;
+    
+    /***********************************************************
+        Setup
+    ************************************************************/
     
     func setup (view: GameScene) {
         loadData();
@@ -37,46 +42,54 @@ class ItemBag: SKNode {
         let ratioHeight: CGFloat = newViewHeight / ratio;
         itemShelf?.size = CGSizeMake(newViewHeight, ratioHeight);
         
+        /* Add node to first shelf */
         collection1 = SKSpriteNode();
         collection1?.anchorPoint = CGPointMake(0.0, 0.0);
         collection1?.size = CGSizeMake(itemShelf!.size.width / 1.11, itemShelf!.size.height / 3.9);
         collection1?.position = CGPointMake(-itemShelf!.size.width / 2.21, itemShelf!.size.height / 6);
         collection1?.zPosition = 2;
         
-        addChildren(collection1!, currentArray: foodArray);
+        addChildren(collection1!, currentArray: foodArray); //Add food to shelf node
         itemShelf?.addChild(collection1!);
         
-
+        /* Add node to second shelf */
         collection2 = SKSpriteNode();
         collection2?.anchorPoint = CGPointMake(0.0, 0.0);
         collection2?.size = CGSizeMake(itemShelf!.size.width / 1.11, itemShelf!.size.height / 3.9);
         collection2?.position = CGPointMake(-itemShelf!.size.width / 2.21, -itemShelf!.size.height / 7.3);
         collection2?.zPosition = 2;
         
-        addChildren(collection2!, currentArray: drinkArray);
+        addChildren(collection2!, currentArray: drinkArray); //Add drink to shelf node
         itemShelf?.addChild(collection2!);
         
-        
+        /* Add node to third shelf */
         collection3 = SKSpriteNode();
         collection3?.anchorPoint = CGPointMake(0.0, 0.0);
         collection3?.size = CGSizeMake(itemShelf!.size.width / 1.11, itemShelf!.size.height / 3.9);
         collection3?.position = CGPointMake(-itemShelf!.size.width / 2.21, -itemShelf!.size.height / 2.33);
         collection3?.zPosition = 2;
         
-        addChildren(collection3!, currentArray: toysArray);
+        addChildren(collection3!, currentArray: toysArray); //Add toys to shelf node
         itemShelf?.addChild(collection3!);
         
         self.addChild(itemShelf!);
     }
     
-    func addChildren (collection: SKSpriteNode, currentArray: [itemObject]) {
+    /***********************************************************
+        Adding Items
+    ************************************************************/
+    
+    /* Loop through current array and add each object to current shelf node */
+    func addChildren (collection: SKSpriteNode, currentArray: [Dictionary <String, AnyObject>]) {
         for (var i = 0; i < currentArray.count; i++) {
-            let object: itemObject = currentArray[i];
-            var item: SKSpriteNode = SKSpriteNode(imageNamed: object.itemImageName);
-            item.name = object.itemImageName;
+            let object: Dictionary <String, AnyObject> = currentArray[i];
+            let itemName = object["imageName"] as String;
+            var item: SKSpriteNode = SKSpriteNode(imageNamed: itemName);
+            item.name = itemName;
             item.anchorPoint = CGPointMake(0.0, 0.0);
-            item.size = CGSizeMake(collection1!.size.height, collection1!.size.height);
+            item.size = CGSizeMake(collection.size.height, collection.size.height);
             
+            //Set position based on current number in array plus extra spacing after the first object
             let currentNum: CGFloat = CGFloat(i);
             let currentPosition: CGFloat = item.size.width * currentNum;
             var space: CGFloat?;
@@ -93,40 +106,42 @@ class ItemBag: SKNode {
         }
     }
     
-    func getItemObject (nodeName: String) -> itemObject? {
-        var itemType: GameScene.ItemType;
-        var itemDict: [String: itemObject] = [:];
+    /***********************************************************
+        Passing Data if Exists
+    ************************************************************/
+    
+    /* Loop through each array and check if nodeName matches any of the items */
+    func getItemDict (nodeName: String) -> Dictionary <String, AnyObject>? {
         
         for item in foodArray {
-            itemDict[item.itemImageName] = item;
+            if (item["imageName"] as String == nodeName) {
+                return item;
+            }
         }
         
         for item in drinkArray {
-            itemDict[item.itemImageName] = item;
+            if (item["imageName"] as String == nodeName) {
+                return item;
+            }
         }
         
         for item in toysArray {
-            itemDict[item.itemImageName] = item;
-        }
-        
-        if (itemDict.indexForKey(nodeName) != nil) {
-            println("Item Dict Type: \(itemDict[nodeName]!)")
-            return itemDict[nodeName]!;
+            if (item["imageName"] as String == nodeName) {
+                return item;
+            }
         }
         return nil;
     }
     
+    /***********************************************************
+        Set item data from gameData
+    ************************************************************/
     func loadData () -> Bool {
-        foodArray.removeAll();
-        foodArray.append(itemObject(_itemName: "Apple", _itemType: GameScene.ItemType.FOOD_APPLE, _itemCost: 0, _itemDescription: "An apple.", _itemImage: "apple"));
-        foodArray.append(itemObject(_itemName: "Chocolate", _itemType: GameScene.ItemType.FOOD_CHOCOLATE, _itemCost: 0, _itemDescription: "CHOCOLATE!!!", _itemImage: "ball"));
+        gameData.loadData();
         
-        drinkArray.removeAll();
-        drinkArray.append(itemObject(_itemName: "Water", _itemType: GameScene.ItemType.DRINK_WATER, _itemCost: 0, _itemDescription: "The most basic of drinks.", _itemImage: "water"));
-        //        drinkArray.append(itemObject(_itemName: "Juice", _itemType: GameScene.ItemType.DRINK_JUICE, _itemCost: 0, _itemDescription: "It's the quenchiest!", _itemImage: "juice"));
-        
-        toysArray.removeAll();
-        toysArray.append(itemObject(_itemName: "Toy Ball", _itemType: GameScene.ItemType.TOY_BALL, _itemCost: 0, _itemDescription: "Throw the ball.", _itemImage: "ball"));
+        foodArray = gameData.getFoodItemsArray();
+        drinkArray = gameData.getDrinkItemsArray();
+        toysArray = gameData.getToyItemsArray();
         
         return true;
     }
