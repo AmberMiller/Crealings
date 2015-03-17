@@ -15,6 +15,7 @@ class itemObject {
     var itemCost: Int = Int();
     var itemDescription: String = String();
     var itemImage: UIImage = UIImage();
+    var itemImageName: String = String();
     
     init (_itemName: String, _itemType: GameScene.ItemType, _itemCost: Int, _itemDescription: String, _itemImage: String) {
         itemName = _itemName;
@@ -22,6 +23,7 @@ class itemObject {
         itemCost = _itemCost;
         itemDescription = _itemDescription;
         itemImage = UIImage(named: _itemImage)!;
+        itemImageName = _itemImage;
     }
     
 }

@@ -13,11 +13,9 @@ protocol GameSceneDelegate {
     func MenuButtonClicked();
     func ShopButtonClicked();
     func FightButtonClicked();
-    func showItemBag();
-    func hideItemBag();
 }
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     class var sharedInstance: GameScene {
         
@@ -52,13 +50,19 @@ class GameScene: SKScene {
     }
     
     var gameDelegate: GameSceneDelegate?;
-    var itemBagIsHidden: Bool = true;
 
     var currentMon: String? = nil;
     
     var gameHUD: GameHUD? = nil;
     
     var crealing: Crealing? = nil;
+    
+    var itemBag: ItemBag? = nil;
+    
+    var touching: Bool = Bool();
+    var touchLength: NSTimeInterval = 0;
+    var tapLocation: CGPoint = CGPoint();
+    var addedItem: Bool = Bool();
         
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -78,80 +82,96 @@ class GameScene: SKScene {
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         /* Called when a touch begins */
         for touch: AnyObject in touches {
-            let location = touch.locationInNode(self);
-            let node = nodeAtPoint(location);
+            tapLocation = touch.locationInNode(self);
+            let node = nodeAtPoint(tapLocation);
+            touching = true;
+            touchLength = 0;
+            addedItem = false;
+
             println("Node Location: \(node.position)");
+            let nameArray: [String] = ["crealing", "menu", "shop", "fight", "coin", "gem", "exp", "help", "happiness", "energy", "hunger", "thirst", "fun", "hygiene"];
             
             if (node.name != nil) {
-                switch node.name! {
-                case "crealing":
-                    if (gameHUD != nil && crealing!.tapPet()) {
-                        gameHUD?.pet();
-                    }
-                case "HUD":
-                    println("HUD Tapped");
-                case "menu":
-                    println("Tap Menu");
-                    gameDelegate?.MenuButtonClicked();
-                case "shop":
-                    println("Tap Shop");
-                    gameDelegate?.ShopButtonClicked();
-                case "fight":
-                    println("Tap Fight");
-                case "coin":
-                    println("Tap Coin");
-                case "gem":
-                    println("Tap Gem");
-                case "exp":
-                    println("Tap Exp");
-                case "help":
-                    println("Tap Help");
-                case "happiness":
-                    println("Tap Happiness");
-                    checkMood();
-                case "energy":
-                    println("Tap Energy");
-                    checkMood();
-                case "hunger":
-                    println("Tap Hunger");
-                    //TODO Set food type dynamically
-                    if (gameHUD != nil && crealing!.feedPet(ItemType.FOOD_APPLE)) {
-                        gameHUD!.feed();
-                    }
-                    checkMood();
-                case "thirst":
-                    println("Tap Thirst");
-                    if (gameHUD != nil && crealing!.hydratePet(ItemType.DRINK_JUICE)) {
-                        gameHUD!.hydrate();
-                    }
-                    checkMood();
-                case "fun":
-                    println("Tap Fun");
-                    if (gameHUD != nil && crealing!.playWith(ItemType.TOY_BALL)) {
-                        gameHUD!.play();
-                    }
-                    checkMood();
-                case "hygiene":
-                    println("Tap Hygiene");
-                    if (gameHUD != nil && crealing!.cleanPet()) {
-                        gameHUD?.bathe();
-                    }
-                    checkMood();
-                case "bag":
-                    println("Tap Bag");
-                    if (itemBagIsHidden) {
-                        gameDelegate?.showItemBag();
-                        itemBagIsHidden = false;
+                println("Node Name: \(node.name)");
+                
+                for nodeName in nameArray {
+                    if (node.name != nodeName) {
+                        println("Item Shelf Tapped");
+                        if (node.name == "bag") {
+                            println("Tap Bag");
+                            if (itemBag != nil) {
+                                itemBag?.removeFromParent();
+                                itemBag = nil;
+                                break;
+                            } else {
+                                itemBag = ItemBag();
+                                itemBag?.setup(self)
+                                self.addChild(itemBag!);
+                                break;
+                            }
+                        } else {
+                        }
                     } else {
-                        gameDelegate?.hideItemBag();
-                        itemBagIsHidden = true;
+                        closeBag();
+                        
+                        switch node.name! {
+                        case "crealing":
+                            if (gameHUD != nil && crealing!.tapPet()) {
+                                gameHUD?.pet();
+                            }
+                        case "menu":
+                            println("Tap Menu");
+                            gameDelegate?.MenuButtonClicked();
+                        case "shop":
+                            println("Tap Shop");
+                            gameDelegate?.ShopButtonClicked();
+                        case "fight":
+                            println("Tap Fight");
+                        case "coin":
+                            println("Tap Coin");
+                        case "gem":
+                            println("Tap Gem");
+                        case "exp":
+                            println("Tap Exp");
+                        case "help":
+                            println("Tap Help");
+                        case "happiness":
+                            println("Tap Happiness");
+                            checkMood();
+                        case "energy":
+                            println("Tap Energy");
+                            checkMood();
+                        case "hunger":
+                            println("Tap Hunger");
+                            //TODO Set food type dynamically
+                            if (gameHUD != nil && crealing!.feedPet(ItemType.FOOD_APPLE)) {
+                                gameHUD!.feed();
+                            }
+                            checkMood();
+                        case "thirst":
+                            println("Tap Thirst");
+                            if (gameHUD != nil && crealing!.hydratePet(ItemType.DRINK_JUICE)) {
+                                gameHUD!.hydrate();
+                            }
+                            checkMood();
+                        case "fun":
+                            println("Tap Fun");
+                            if (gameHUD != nil && crealing!.playWith(ItemType.TOY_BALL)) {
+                                gameHUD!.play();
+                            }
+                            checkMood();
+                        case "hygiene":
+                            println("Tap Hygiene");
+                            if (gameHUD != nil && crealing!.cleanPet()) {
+                                gameHUD?.bathe();
+                            }
+                            checkMood();
+                        default:
+                            break;
+                        }
                     }
-                    
-                default:
-                    break;
                 }
             }
-            break;
         }
     }
     
@@ -163,12 +183,41 @@ class GameScene: SKScene {
         }
     }
     
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+        println("Touch Length: \(touchLength)");
+        for touch: AnyObject in touches {
+            let location = touch.locationInNode(self);
+            let node = nodeAtPoint(location);
+            
+            touching = false;
+            if (touchLength > 0.3) {
+            }
+        }
+    }
+    
     /***********************************************************
         Update
     ************************************************************/
    
      override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        if (touching) {
+            var lastUpdate: NSTimeInterval = NSTimeInterval();
+            var timeSinceLast: CFTimeInterval = currentTime - lastUpdate;
+            lastUpdate = currentTime;
+            
+            if (timeSinceLast > 1) {
+                timeSinceLast = 1.0 / 60.0;
+                lastUpdate = currentTime;
+            }
+            
+            touchLength += timeSinceLast;
+            
+            if (touchLength > 0.3 && !addedItem) {
+                closeBag();
+                addItem(GameScene.ItemType.FOOD_APPLE, tapPosition: tapLocation);
+            }
+        }
     }
     
     /***********************************************************
@@ -176,6 +225,12 @@ class GameScene: SKScene {
     ************************************************************/
     
     func setUpScene () {
+        /* Set physicsWorld */
+        physicsWorld.contactDelegate = self;
+        self.physicsWorld.gravity = CGVectorMake(0.0, -5.0);
+        self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame);
+        view?.showsPhysics = true;
+        
         var bg: SKSpriteNode = SKSpriteNode(imageNamed: "background_bluepolka");
         bg.zPosition = -2;
         bg.size = CGSizeMake(self.size.width, getRatioHeight(bg.size.width, height: bg.size.height));
@@ -229,7 +284,20 @@ class GameScene: SKScene {
         
         newItem?.size = CGSizeMake(newItem!.size.width / 1.5, newItem!.size.height / 1.5);
         newItem?.position = tapPosition;
+        newItem?.physicsBody = SKPhysicsBody(circleOfRadius: newItem!.size.width / 2);
+        newItem?.physicsBody?.dynamic = true;
+        newItem?.physicsBody?.allowsRotation = true;
+        newItem?.physicsBody?.usesPreciseCollisionDetection = true;
+
         println("Position: \(tapPosition)");
+        addedItem = true;
         self.addChild(newItem!);
+    }
+    
+    func closeBag () {
+        if (itemBag != nil) {
+            itemBag?.removeFromParent();
+            itemBag = nil;
+        }
     }
 }

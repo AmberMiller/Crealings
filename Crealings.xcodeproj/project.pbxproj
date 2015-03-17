@@ -61,7 +61,6 @@
 		962BA75C1AB63829001579A1 /* exit_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 962BA7591AB63829001579A1 /* exit_button.png */; };
 		962BA75D1AB63829001579A1 /* exit_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 962BA75A1AB63829001579A1 /* exit_button@2x.png */; };
 		962BA75E1AB63829001579A1 /* exit_button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 962BA75B1AB63829001579A1 /* exit_button@3x.png */; };
-		962BA7601AB63A03001579A1 /* GameViewController_ItemBagEXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962BA75F1AB63A03001579A1 /* GameViewController_ItemBagEXT.swift */; };
 		9644A91A1AAD771D00FBD86C /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9644A9191AAD771D00FBD86C /* StatusBar.swift */; };
 		9644A9581AAD9F2500FBD86C /* bar_energy.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A9431AAD9F2500FBD86C /* bar_energy.png */; };
 		9644A9591AAD9F2500FBD86C /* bar_energy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9644A9441AAD9F2500FBD86C /* bar_energy@2x.png */; };
@@ -120,9 +119,9 @@
 		96DED2C91AB4715C0099E701 /* back_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DED2C61AB4715C0099E701 /* back_button.png */; };
 		96DED2CA1AB4715C0099E701 /* back_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DED2C71AB4715C0099E701 /* back_button@2x.png */; };
 		96DED2CB1AB4715C0099E701 /* back_button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96DED2C81AB4715C0099E701 /* back_button@3x.png */; };
+		96EA6F3B1AB7A5C00095247E /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EA6F3A1AB7A5C00095247E /* NewGameViewController.swift */; };
 		96F35FD01AAE7BE700105F55 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F35FCF1AAE7BE700105F55 /* Status.swift */; };
 		96F35FD41AAE956100105F55 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F35FD31AAE956100105F55 /* StartViewController.swift */; };
-		96F35FD61AAEA2C200105F55 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F35FD51AAEA2C200105F55 /* NewGameViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,7 +189,6 @@
 		962BA7591AB63829001579A1 /* exit_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exit_button.png; sourceTree = "<group>"; };
 		962BA75A1AB63829001579A1 /* exit_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exit_button@2x.png"; sourceTree = "<group>"; };
 		962BA75B1AB63829001579A1 /* exit_button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exit_button@3x.png"; sourceTree = "<group>"; };
-		962BA75F1AB63A03001579A1 /* GameViewController_ItemBagEXT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController_ItemBagEXT.swift; sourceTree = "<group>"; };
 		9644A9191AAD771D00FBD86C /* StatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 		9644A9431AAD9F2500FBD86C /* bar_energy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar_energy.png; sourceTree = "<group>"; };
 		9644A9441AAD9F2500FBD86C /* bar_energy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_energy@2x.png"; sourceTree = "<group>"; };
@@ -253,9 +251,9 @@
 		96DED2C61AB4715C0099E701 /* back_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_button.png; sourceTree = "<group>"; };
 		96DED2C71AB4715C0099E701 /* back_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_button@2x.png"; sourceTree = "<group>"; };
 		96DED2C81AB4715C0099E701 /* back_button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_button@3x.png"; sourceTree = "<group>"; };
+		96EA6F3A1AB7A5C00095247E /* NewGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
 		96F35FCF1AAE7BE700105F55 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		96F35FD31AAE956100105F55 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
-		96F35FD51AAEA2C200105F55 /* NewGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -532,6 +530,7 @@
 			children = (
 				96DED2B41AB2539F0099E701 /* GameHUD.swift */,
 				9644A9191AAD771D00FBD86C /* StatusBar.swift */,
+				962BA7571AB63586001579A1 /* ItemBag.swift */,
 			);
 			name = HUD;
 			sourceTree = "<group>";
@@ -544,7 +543,6 @@
 				9653DB2C1AAF134F005103F8 /* EggScene.swift */,
 				9653DB131AAEE328005103F8 /* Egg.swift */,
 				96F35FCF1AAE7BE700105F55 /* Status.swift */,
-				962BA7571AB63586001579A1 /* ItemBag.swift */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -553,10 +551,9 @@
 			isa = PBXGroup;
 			children = (
 				96F35FD31AAE956100105F55 /* StartViewController.swift */,
-				96F35FD51AAEA2C200105F55 /* NewGameViewController.swift */,
+				96EA6F3A1AB7A5C00095247E /* NewGameViewController.swift */,
 				9653DB111AAED808005103F8 /* ChooseEggViewController.swift */,
 				96802AC71AA8D1C000B9AAF3 /* GameViewController.swift */,
-				962BA75F1AB63A03001579A1 /* GameViewController_ItemBagEXT.swift */,
 				96DED2BC1AB392A80099E701 /* StatsViewController.swift */,
 				96DED2C41AB46F690099E701 /* ShopViewController.swift */,
 			);
@@ -755,9 +752,7 @@
 			files = (
 				9653DB2B1AAF0B1E005103F8 /* EggObject.swift in Sources */,
 				9644A91A1AAD771D00FBD86C /* StatusBar.swift in Sources */,
-				962BA7601AB63A03001579A1 /* GameViewController_ItemBagEXT.swift in Sources */,
 				96DED2C51AB46F690099E701 /* ShopViewController.swift in Sources */,
-				96F35FD61AAEA2C200105F55 /* NewGameViewController.swift in Sources */,
 				96DED2B51AB2539F0099E701 /* GameHUD.swift in Sources */,
 				96802AC61AA8D1C000B9AAF3 /* GameScene.swift in Sources */,
 				96F35FD41AAE956100105F55 /* StartViewController.swift in Sources */,
@@ -772,6 +767,7 @@
 				96802AC21AA8D1C000B9AAF3 /* AppDelegate.swift in Sources */,
 				9653DB121AAED808005103F8 /* ChooseEggViewController.swift in Sources */,
 				962BA7581AB63586001579A1 /* ItemBag.swift in Sources */,
+				96EA6F3B1AB7A5C00095247E /* NewGameViewController.swift in Sources */,
 				9653DB211AAEFD8E005103F8 /* itemCell.swift in Sources */,
 				962366C11AAF91FA0008010B /* SoundFX.swift in Sources */,
 			);

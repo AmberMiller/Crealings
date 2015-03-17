@@ -43,7 +43,6 @@ class GameHUD: SKSpriteNode {
     
     func setupHUD () -> Bool {
         self.anchorPoint = CGPointMake(0.0, 1.0);
-        self.name = "HUD";
         
         /* Menu Buttons */
         menuButton = SKSpriteNode(color: UIColor.redColor(), size: CGSizeMake(self.size.width / 9, self.size.height / 2));
