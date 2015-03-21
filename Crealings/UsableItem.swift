@@ -40,6 +40,7 @@ class UsableItem: SKNode {
         self.physicsBody?.usesPreciseCollisionDetection = true;
         self.physicsBody?.categoryBitMask = GameScene.CollisionType.ITEM.rawValue;
         self.physicsBody?.contactTestBitMask = GameScene.CollisionType.CREALING.rawValue;
+        self.physicsBody?.collisionBitMask = GameScene.CollisionType.FLOOR.rawValue;
         self.addChild(newItem!);
         
         gameScene.addedItem = true;

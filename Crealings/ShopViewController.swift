@@ -14,6 +14,18 @@ class ShopViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var collection2: UICollectionView!
     @IBOutlet weak var collection3: UICollectionView!
     
+    @IBOutlet weak var alertImage: UIImageView!
+    @IBOutlet weak var itemName: UILabel!
+    @IBOutlet weak var itemCost: UILabel!
+    @IBOutlet weak var itemDescription: UILabel!
+    @IBOutlet weak var numOwned: UILabel!
+    @IBOutlet weak var itemImage: UIImageView!
+    @IBOutlet weak var costLabel: UILabel!
+    @IBOutlet weak var ownedLabel: UILabel!
+    
+    @IBOutlet weak var buyButton: UIButton!
+    @IBOutlet weak var exitButton: UIButton!
+    
     var foodArray: [NSDictionary] = [];
     var drinkArray: [NSDictionary] = [];
     var toysArray: [NSDictionary] = [];
@@ -24,6 +36,8 @@ class ShopViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewDidLoad() {
         gameData = GameData();
         gameData?.loadData();
+        
+        hideItemData();
         
         foodArray = gameData!.getFoodItemsArray();
         drinkArray = gameData!.getDrinkItemsArray();
@@ -101,17 +115,69 @@ class ShopViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         let name: AnyObject? = item!["name"] as String;
         println("Collection: \(view) Selected Item: \(name)");
+        if (setAlertData(collectionView, indexPath: indexPath.row)) {
+            showItemData();
+        }
     }
     
-    func setupData () {
-//        foodArray.removeAll();
-//        foodArray.append(itemObject(_itemName: "Apple", _itemType: UsableItem.ItemType.FOOD_APPLE, _itemCost: 0, _itemDescription: "An apple.", _itemImage: "apple"));
-//        
-//        drinkArray.removeAll();
-//        drinkArray.append(itemObject(_itemName: "Water", _itemType: UsableItem.ItemType.DRINK_WATER, _itemCost: 0, _itemDescription: "The most basic of drinks.", _itemImage: "water"));
-////        drinkArray.append(itemObject(_itemName: "Juice", _itemType: GameScene.ItemType.DRINK_JUICE, _itemCost: 0, _itemDescription: "It's the quenchiest!", _itemImage: "juice"));
-//        
-//        toysArray.removeAll();
-//        toysArray.append(itemObject(_itemName: "Toy Ball", _itemType: UsableItem.ItemType.TOY_BALL, _itemCost: 0, _itemDescription: "Throw the ball.", _itemImage: "ball"));
+    func setAlertData (collectionView: UICollectionView, indexPath: Int) -> Bool {
+        var item: NSDictionary? = nil;
+        
+        switch collectionView {
+        case collection1:
+            item = foodArray[indexPath];
+        case collection2:
+            item = drinkArray[indexPath];
+        case collection3:
+            item = toysArray[indexPath];
+        default:
+            break;
+        }
+        
+        if (item != nil) {
+            itemName.text = item!["name"] as? String;
+            itemCost.text = toString(item!["cost"]!);
+            itemDescription.text = item!["description"] as? String;
+            numOwned.text = toString(item!["numOwned"]!);
+            itemImage.image = UIImage(named: (item!["imageName"] as String));
+            
+            return true;
+        }
+        
+        return false;
+    }
+    
+    func showItemData () {
+        alertImage.hidden = false;
+        itemName.hidden = false;
+        itemCost.hidden = false;
+        itemDescription.hidden = false;
+        numOwned.hidden = false;
+        itemImage.hidden = false;
+        costLabel.hidden = false;
+        ownedLabel.hidden = false;
+        buyButton.hidden = false;
+        exitButton.hidden = false;
+    }
+    
+    func hideItemData () {
+        alertImage.hidden = true;
+        itemName.hidden = true;
+        itemCost.hidden = true;
+        itemDescription.hidden = true;
+        numOwned.hidden = true;
+        itemImage.hidden = true;
+        costLabel.hidden = true;
+        ownedLabel.hidden = true;
+        buyButton.hidden = true;
+        exitButton.hidden = true;
+    }
+    
+    @IBAction func buyButton(sender: UIButton) {
+        
+    }
+    
+    @IBAction func closeButton(sender: UIButton) {
+        hideItemData();
     }
 }

@@ -24,12 +24,11 @@ extension GameScene {
             addedItem = false;
             
             println("Node Location: \(node.position)");
-            
             if (node.name != nil) {
                 println("Node Name: \(node.name)");
                 /* If node.name is in nameArray, close the bag and continue based on name,
                 else do item shelf functions */
-                let nameArray: [String] = ["crealing", "menu", "shop", "fight", "coin", "gem", "exp", "help", "happiness", "energy", "hunger", "thirst", "fun", "hygiene"];
+                let nameArray: [String] = ["crealing", "menu", "shop", "fight", "coin", "gem", "exp", "help", "happiness", "energy", "hunger", "thirst", "fun", "hygiene", "toStart"];
                 let found = find(nameArray, node.name!) != nil;
                 
                 if (found) {
@@ -38,8 +37,16 @@ extension GameScene {
                     
                     switch node.name! {
                     case "crealing":
-                        if (gameHUD != nil && crealing!.tapPet()) {
-                            gameHUD?.pet();
+                        if (crealing!.isAlive) { //If alive, interact with
+                            if (gameHUD != nil && crealing!.tapPet()) {
+                                gameHUD?.interactWith();
+                            }
+                        } else { //If dead, show alert
+                            let alertBox = AlertBox();
+                            
+                            if (alertBox.setup(self)) {
+                                self.addChild(alertBox);
+                            }
                         }
                     case "menu":
                         println("Tap Menu");
@@ -57,37 +64,13 @@ extension GameScene {
                         println("Tap Exp");
                     case "help":
                         println("Tap Help");
-                    case "happiness":
-                        println("Tap Happiness");
-                        checkMood();
-                    case "energy":
-                        println("Tap Energy");
-                        checkMood();
-                    case "hunger":
-                        println("Tap Hunger");
-                        //TODO Set food type dynamically
-                        if (gameHUD != nil && crealing!.feedPet(UsableItem.ItemType.FOOD_APPLE)) {
-                            gameHUD!.feed();
-                        }
-                        checkMood();
-                    case "thirst":
-                        println("Tap Thirst");
-                        if (gameHUD != nil && crealing!.hydratePet(UsableItem.ItemType.DRINK_JUICE)) {
-                            gameHUD!.hydrate();
-                        }
-                        checkMood();
-                    case "fun":
-                        println("Tap Fun");
-                        if (gameHUD != nil && crealing!.playWith(UsableItem.ItemType.TOY_BALL)) {
-                            gameHUD!.play();
-                        }
-                        checkMood();
-                    case "hygiene":
-                        println("Tap Hygiene");
-                        if (gameHUD != nil && crealing!.cleanPet()) {
-                            gameHUD?.bathe();
-                        }
-                        checkMood();
+                    case "happiness", "energy", "hunger", "thirst", "fun", "hygiene":
+                        println("Status Bar Tapped");
+                    case "toStart":
+                        self.removeAllActions();
+                        self.removeAllChildren();
+                        self.userData = nil;
+                        gameDelegate?.clearGame();
                     default:
                         break;
                     }
@@ -139,6 +122,11 @@ extension GameScene {
             if (usableItem != nil) {
                 usableItem?.physicsBody?.affectedByGravity = true;
             }
+            
+            /* If the item is over the crealing, give item when user lets go */
+            if (itemHovering) {
+                giveItemToPet();
+            }
         }
     }
     
@@ -148,5 +136,79 @@ extension GameScene {
     
     func didBeginContact(contact: SKPhysicsContact) {
         println("Did Begin Contact");
+        
+        /* Set contact bodies to variables */
+        var firstBody: SKPhysicsBody, secondBody: SKPhysicsBody = SKPhysicsBody();
+        
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            firstBody = contact.bodyA;
+            secondBody = contact.bodyB;
+        } else {
+            firstBody = contact.bodyB;
+            secondBody = contact.bodyA;
+        }
+        
+        /* If item touches the edge, remove item */
+        if firstBody.categoryBitMask == CollisionType.ITEM.rawValue && secondBody.categoryBitMask == CollisionType.FLOOR.rawValue {
+            if (!touching) {
+                //TODO: Add poof animation on removal
+                usableItem?.removeFromParent();
+                usableItem = nil;
+            }
+        }
+        
+        /* If item is dropped on crealing, interact with crealing and remove item */
+        if firstBody.categoryBitMask == CollisionType.CREALING.rawValue && secondBody.categoryBitMask == CollisionType.ITEM.rawValue {
+            
+            itemHovering = true; //Item is over crealing
+            
+            /* If the user drops the item above the crealing, give item */
+            if (!touching) {
+                giveItemToPet();
+            }
+        }
+    }
+    
+    func didEndContact(contact: SKPhysicsContact) {
+        println("Did End Contact");
+        
+        /* Set contact bodies to variables */
+        var firstBody: SKPhysicsBody, secondBody: SKPhysicsBody = SKPhysicsBody();
+        
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            firstBody = contact.bodyA;
+            secondBody = contact.bodyB;
+        } else {
+            firstBody = contact.bodyB;
+            secondBody = contact.bodyA;
+        }
+        
+        /* If item stops touching crealing */
+        if firstBody.categoryBitMask == CollisionType.CREALING.rawValue && secondBody.categoryBitMask == CollisionType.ITEM.rawValue {
+            itemHovering = false; //Item is not over crealing
+        }
+    }
+    
+    /* Pull item data, set status changes, refresh mood, and remove item from scene */
+    func giveItemToPet () {
+        if (usableItemDict != nil && gameHUD? != nil && crealing!.giveItem(usableItemDict!["happinessChange"] as Int,
+            energy: usableItemDict!["energyChange"] as Int,
+            hunger: usableItemDict!["hungerChange"] as Int,
+            thirst: usableItemDict!["thirstChange"] as Int,
+            fun: usableItemDict!["funChange"] as Int,
+            hygiene: usableItemDict!["hygieneChange"] as Int))
+        {
+            let itemName: String = usableItemDict!["name"] as String;
+            println("Item Given to Pet: \(itemName)");
+            
+            gameHUD!.interactWith();
+            checkMood();
+            
+            usableItem?.removeFromParent();
+            usableItem = nil;
+            usableItemDict = nil;
+            itemHovering = false;
+        }
+
     }
 }

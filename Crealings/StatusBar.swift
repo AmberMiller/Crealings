@@ -83,22 +83,22 @@ final class StatusBar : SKNode {
     func setStatusBar (name: String) {
         switch name {
         case "happiness":
-            println("Happiness Tapped");
+//            println("Happiness Tapped");
             setStatus(status.getHappiness());
         case "energy":
-            println("Energy Tapped");
+//            println("Energy Tapped");
             setStatus(status.getEnergy());
         case "hunger":
-            println("Hunger Tapped");
+//            println("Hunger Tapped");
             setStatus(status.getHunger());
         case "thirst":
-            println("Thirst Tapped");
+//            println("Thirst Tapped");
             setStatus(status.getThirst());
         case "fun":
-            println("Fun Tapped");
+//            println("Fun Tapped");
             setStatus(status.getFun());
         case "hygiene":
-            println("Hygiene Tapped");
+//            println("Hygiene Tapped");
             setStatus(status.getHygiene());
         default:
             println("No Status Set");

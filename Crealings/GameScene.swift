@@ -13,6 +13,7 @@ protocol GameSceneDelegate {
     func MenuButtonClicked();
     func ShopButtonClicked();
     func FightButtonClicked();
+    func clearGame();
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -30,29 +31,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     enum CollisionType: UInt32 {
         case CREALING = 0
         case ITEM
-    }
-    
-    enum Mood: UInt32 {
-        case VERY_HAPPY = 0
-        case MORE_HAPPY
-        case HAPPY
-        case NEUTRAL
-        case UNHAPPY
-        case SAD
-        case VERY_SAD
-        case DYING
-        case DEAD
+        case FLOOR
     }
     
     var gameDelegate: GameSceneDelegate?;
-    var gameData: GameData?;
-
+    var gameData: GameData = GameData.sharedInstance;
+    let status: Status = Status.sharedInstance;
+    
+    var isNewGame: Bool = Bool();
+    
     var currentMon: String? = nil;
     
     var gameHUD: GameHUD? = nil;
     
     var crealing: Crealing? = nil;
-    
+
     var itemBag: ItemBag? = nil;
     
     var usableItem: UsableItem? = nil;
@@ -63,6 +56,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var addedItem: Bool = Bool();
     var isItem: Bool = Bool();
     var selectedNodeName: String = String();
+    var usableItemDict: Dictionary <String, AnyObject>? = nil;
+    var itemHovering: Bool = Bool();
+    
+    var refreshRate: NSTimeInterval = 0;
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -83,21 +80,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
    
      override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
-        if (touching) { //If user is holding tap
             var lastUpdate: NSTimeInterval = NSTimeInterval();
             var timeSinceLast: CFTimeInterval = currentTime - lastUpdate;
             lastUpdate = currentTime;
-            
+        
+//        println("UPDATE: currentTime = \(currentTime), lastUpdate = \(lastUpdate), timeSinceLast = \(timeSinceLast),");
+        
             /* If frame rate drops, keep ratio */
             if (timeSinceLast > 1) {
                 timeSinceLast = 1.0 / 60.0;
                 lastUpdate = currentTime;
             }
-            
+        
+//        println(" timeSinceLast = \(timeSinceLast)");
+        
+        refreshRate += timeSinceLast;
+        
+//        println("Refresh Time: \(refreshRate)");
+        
+        if (refreshRate > 6.0) {
+            refresh();
+            refreshRate = 0;
+        }
+
+        if (touching) { //If user is holding tap
+
             touchLength += timeSinceLast; //Track touch length
             
             
-            if (touchLength > 0.2 //If long pres last more than 2 seconds
+            if (touchLength > 0.2 //If long press last more than 2 seconds
                 && !addedItem //Prevents multiple items
                 && isItem //Make sure user pressed an item node on shelf
                 && (itemBag != nil) //Make sure itemBag is "open"
@@ -105,7 +116,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             {
                 /* Create and add item based on current location */
                 usableItem = UsableItem();
-                usableItem!.addItem(itemBag!.getItemDict(selectedNodeName)!, tapPosition: tapLocation);
+                usableItemDict = itemBag!.getItemDict(selectedNodeName)!;
+                usableItem!.addItem(usableItemDict!, tapPosition: tapLocation);
                 self.addChild(usableItem!);
                 closeBag(); //Close the bag
             }
@@ -117,18 +129,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     ************************************************************/
     
     func setUpScene () {
-        gameData = GameData();
-        gameData!.loadData();
+        gameData.loadData();
+        
+        println("isNewGame: \(isNewGame)");
+        if (isNewGame) {
+            status.resetData();
+        }
         
         /* Set physicsWorld */
         physicsWorld.contactDelegate = self;
         self.physicsWorld.gravity = CGVectorMake(0.0, -3.0);
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame);
+        self.physicsBody!.categoryBitMask = CollisionType.FLOOR.rawValue;
+        self.physicsBody!.contactTestBitMask = CollisionType.ITEM.rawValue;
         view?.showsPhysics = true; //Show physics bounds
         
         
         /* Add background to scene */
-        var bg: SKSpriteNode = SKSpriteNode(imageNamed: "background_bluepolka");
+        let bg: SKSpriteNode = SKSpriteNode(imageNamed: "background_bluepolka");
         bg.zPosition = -2; //Make sure is behind
         bg.size = CGSizeMake(self.size.width, getRatioHeight(bg.size.width, height: bg.size.height)); //Keep ratio
         bg.position = CGPointMake(self.size.width / 2, self.size.height / 2);
@@ -153,9 +171,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.addChild(crealing!);
             }
         }
-        
-        //For Testing Purposes Only - Change stats every 10 secs
-        let timer = NSTimer.scheduledTimerWithTimeInterval(10.0, target: self, selector: ("refresh"), userInfo: nil, repeats: true);
     }
     
     func getRatioHeight (width: CGFloat, height: CGFloat) -> CGFloat {

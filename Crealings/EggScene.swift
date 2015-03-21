@@ -11,7 +11,7 @@ import SpriteKit
 
 protocol EggSceneDelegate {
     func EggSceneSetup()
-    func presentGameScene()
+    func presentGameScene(from: String)
 }
 
 class EggScene: SKScene {
@@ -48,7 +48,9 @@ class EggScene: SKScene {
                     defaults.setBool(true, forKey: "firstPlay");
                     
                     soundFX.playTriangle();
-                    eggDelegate?.presentGameScene();
+                    eggDelegate?.presentGameScene("eggScene");
+                    self.removeAllActions();
+                    self.removeAllChildren();
                 }
             }
         }

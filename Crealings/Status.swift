@@ -20,16 +20,43 @@ final class Status {
         return statusData.instance
     }
     
-    var happiness: Int = 100;
-    var energy: Int = 80;
-    var hunger: Int = 60;
-    var thirst: Int = 50;
-    var fun: Int = 30;
-    var hygiene: Int = 10;
+    var gameData: GameData = GameData.sharedInstance;
+    
+    var happiness: Int = Int();
+    var energy: Int = Int();
+    var hunger: Int = Int();
+    var thirst: Int = Int();
+    var fun: Int = Int();
+    var hygiene: Int = Int();
     
     /***********************************************************
         Set
     ************************************************************/
+    
+    func setDataFromPlist (_happiness: Int, _energy: Int, _hunger: Int, _thirst: Int, _fun: Int, _hygiene: Int) {
+        happiness = _happiness;
+        energy = _energy;
+        hunger = _hunger;
+        thirst = _thirst;
+        fun = _fun;
+        hygiene = _hygiene;
+    }
+    
+    func resetData () {
+        happiness = 50;
+        energy = 100;
+        hunger = 50;
+        thirst = 50;
+        fun = 50;
+        hygiene = 100;
+        
+        gameData.writeStatus(happiness, key: "happiness");
+        gameData.writeStatus(energy, key: "energy");
+        gameData.writeStatus(hunger, key: "hunger");
+        gameData.writeStatus(thirst, key: "thirst");
+        gameData.writeStatus(fun, key: "fun");
+        gameData.writeStatus(hygiene, key: "hygiene");
+    }
     
     func setHappiness (change: Int) -> Int {
         happiness = getHappiness();
@@ -39,6 +66,8 @@ final class Status {
         } else if (happiness < 0) {
             happiness = 0;
         }
+        
+        gameData.writeStatus(happiness, key: "happiness");
         return happiness;
     }
     
@@ -50,6 +79,8 @@ final class Status {
         } else if (energy < 0) {
             energy = 0;
         }
+        
+        gameData.writeStatus(energy, key: "energy");
         return energy;
     }
     
@@ -61,6 +92,8 @@ final class Status {
         } else if (hunger < 0) {
             hunger = 0;
         }
+        
+        gameData.writeStatus(hunger, key: "hunger");
         return hunger;
     }
     
@@ -72,6 +105,8 @@ final class Status {
         } else if (thirst < 0) {
             thirst = 0;
         }
+        
+        gameData.writeStatus(thirst, key: "thirst");
         return thirst;
     }
     
@@ -83,6 +118,8 @@ final class Status {
         } else if (fun < 0) {
             fun = 0;
         }
+        
+        gameData.writeStatus(fun, key: "fun");
         return fun;
     }
     
@@ -94,6 +131,8 @@ final class Status {
         } else if (hygiene < 0) {
             hygiene = 0;
         }
+        
+        gameData.writeStatus(hygiene, key: "hygiene");
         return hygiene;
     }
     

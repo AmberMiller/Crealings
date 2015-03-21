@@ -15,29 +15,12 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
     let defaults = NSUserDefaults.standardUserDefaults();
 
     var skView = SKView();
-    var gameScene: GameScene? = nil;
-    var eggScene: EggScene? = nil;
     
     var firstPlay: Bool = Bool();
     
     var eggType: String? = nil;
-
     
-//    @IBOutlet weak var item_shelf: UIImageView!
-//    @IBOutlet weak var collection1: UICollectionView!
-//    @IBOutlet weak var collection2: UICollectionView!
-//    @IBOutlet weak var collection3: UICollectionView!
-//    
-//    @IBAction func longPress(sender: UILongPressGestureRecognizer) {
-//        println("Long Press Action Location: \(sender.locationInView(self.view))");
-//        if (!(skView.scene as GameScene).itemBagIsHidden) {
-//            hideItemBag();
-//            (skView.scene as GameScene).addItem(GameScene.ItemType.FOOD_APPLE, tapPosition: sender.locationInView(self.view));
-//        }
-//    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(animated: Bool) {
         
         skView = self.view as SKView
         skView.showsFPS = true
@@ -57,31 +40,36 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
         } else {
             println("CONTINUE")
             firstPlay = false;
-            presentGameScene();
+            presentGameScene("continue");
         }
     }
     
     func presentEggScene () {
         println("Present Egg Scene");
-        eggScene = EggScene(size: view.bounds.size);
+        let eggScene = EggScene(size: view.bounds.size);
         
-        eggScene!.eggDelegate = self;
+        eggScene.eggDelegate = self;
         
         /* Set the scale mode to scale to fit the window */
-        eggScene!.scaleMode = .AspectFill
+        eggScene.scaleMode = .AspectFill
         
         skView.presentScene(eggScene)
     }
     
-    func presentGameScene () {
+    func presentGameScene (from: String) {
         println("Present Game Scene");
-        gameScene = GameScene(size: view.bounds.size);
+        let gameScene = GameScene(size: view.bounds.size);
         
-        gameScene?.gameDelegate = self;
+        gameScene.gameDelegate = self;
         
+        if (from == "eggScene") {
+            gameScene.isNewGame = true;
+        } else {
+            gameScene.isNewGame = false;
+        }
         
         /* Set the scale mode to scale to fit the window */
-        gameScene!.scaleMode = .AspectFill
+        gameScene.scaleMode = .AspectFill
         
         let fade: SKTransition = SKTransition.fadeWithColor(UIColor.whiteColor(), duration: 2.0);
         skView.presentScene(gameScene, transition: fade);
@@ -119,6 +107,17 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
     
     func FightButtonClicked () {
         println("Game Delegate: Fight");
+    }
+    
+    func clearGame () {
+        defaults.setBool(false, forKey: "firstPlay");
+        
+        if (defaults.boolForKey("firstPlay")) {
+            self.dismissViewControllerAnimated(true, completion: nil);
+        } else {
+            let view = self.storyboard?.instantiateViewControllerWithIdentifier("StartController") as StartViewController;
+            self.presentViewController(view, animated: true, completion: nil);
+        }
     }
 
     override func shouldAutorotate() -> Bool {

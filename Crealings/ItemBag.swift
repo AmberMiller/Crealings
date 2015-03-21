@@ -34,13 +34,14 @@ class ItemBag: SKNode {
     func setup (view: GameScene) {
         loadData();
         self.position = CGPointMake(view.size.width / 2, view.size.height / 2.3);
+        self.zPosition = 2;
         
         itemShelf = SKSpriteNode(imageNamed: "shop_shelf");
         
         let ratio: CGFloat = itemShelf!.size.width / itemShelf!.size.height;
-        let newViewHeight: CGFloat = view.size.width / 1.3;
-        let ratioHeight: CGFloat = newViewHeight / ratio;
-        itemShelf?.size = CGSizeMake(newViewHeight, ratioHeight);
+        let newViewWidth: CGFloat = view.size.width / 1.3;
+        let ratioHeight: CGFloat = newViewWidth / ratio;
+        itemShelf?.size = CGSizeMake(newViewWidth, ratioHeight);
         
         /* Add node to first shelf */
         collection1 = SKSpriteNode();

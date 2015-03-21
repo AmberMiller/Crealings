@@ -10,18 +10,29 @@ import Foundation
 
 class GameData {
     
+    class var sharedInstance: GameData {
+        
+        struct gameData {
+            
+            static let instance: GameData = GameData()
+        }
+        
+        return gameData.instance
+    }
+    
     let fileManager = NSFileManager.defaultManager();
     let directory: [String]? = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,NSSearchPathDomainMask.AllDomainsMask, true) as? [String];
     var plistPath = String();
     var gameData = NSMutableDictionary();
     
-//    var status: NSDictionary = [:];
-//    var happiness: Int? = nil;
-//    var energy: Int? = nil;
-//    var hunger: Int? = nil;
-//    var thirst: Int? = nil;
-//    var fun: Int? = nil;
-//    var hygiene: Int? = nil;
+    var statusDict = [:];
+    
+    var happiness: Int = Int();
+    var energy: Int = Int();
+    var hunger: Int = Int();
+    var thirst: Int = Int();
+    var fun: Int = Int();
+    var hygiene: Int = Int();
     
     var items = [:];
     var foodItems: [Dictionary <String, AnyObject>] = [];
@@ -38,7 +49,7 @@ class GameData {
             let plistFile = "gameData.plist";
             plistPath = docPath.stringByAppendingPathComponent(plistFile);
             
-            resetData();
+//            resetData();
 
             let fileExists: Bool = fileManager.fileExistsAtPath(plistPath);
             
@@ -52,13 +63,18 @@ class GameData {
             gameData = NSMutableDictionary(contentsOfFile: plistPath)!;
             println("/n/nLOADING DATA\n\n\(gameData)");
             
-//            status = gameData["Status"] as NSDictionary;
-//            happiness = status["happiness"] as? Int;
-//            energy = status["energy"] as? Int;
-//            hunger = status["hunger"] as? Int;
-//            thirst = status["thirst"] as? Int;
-//            fun = status["fun"] as? Int;
-//            hygiene = status["hygiene"] as? Int;
+            statusDict = gameData["Status"] as Dictionary <String, AnyObject>;
+            happiness = statusDict["happiness"] as Int;
+            energy = statusDict["energy"] as Int;
+            hunger = statusDict["hunger"] as Int;
+            thirst = statusDict["thirst"] as Int;
+            fun = statusDict["fun"] as Int;
+            hygiene = statusDict["hygiene"] as Int;
+            
+            println("StatusDict: \(statusDict)");
+            
+            let status: Status = Status.sharedInstance;
+            status.setDataFromPlist(happiness, _energy: energy, _hunger: hunger, _thirst: thirst, _fun: fun, _hygiene: hygiene);
             
             items = gameData["Items"] as Dictionary <String, AnyObject>;
             foodItems = items["Food"] as [Dictionary <String, AnyObject>];
@@ -79,153 +95,15 @@ class GameData {
         return toyItems;
     }
     
-    /* Write data to plist */
-//    func writeStatus (value: Int, key: String)
-//    {
-//        status.setValue(value, forKey: key);
+     /* Write data to plist */
+    func writeStatus (value: Int, key: String)
+    {
+        println("Status Dict: \(statusDict), Happiness: \(happiness)");
+//        statusDict.setValue(value, forKey: key);
 //        gameData.writeToFile(plistPath, atomically: true);
-//    }
+    }
     
-//    /***********************************************************
-//        Set
-//    ************************************************************/
-//    
-//    func setHappiness (change: Int) -> Int {
-//        happiness = getHappiness();
-//        happiness! += change;
-//        if (happiness > 100) {
-//            happiness = 100;
-//        } else if (happiness < 0) {
-//            happiness = 0;
-//        }
-//        writeStatus(happiness!, key: "happiness");
-//        return happiness!;
-//    }
-//    
-//    func setEnergy (change: Int) -> Int {
-//        energy = getEnergy();
-//        energy! += change;
-//        if (energy > 100) {
-//            energy = 100;
-//        } else if (energy < 0) {
-//            energy = 0;
-//        }
-//        return energy!;
-//    }
-//    
-//    func setHunger (change: Int) -> Int {
-//        hunger = getHunger();
-//        hunger! += change;
-//        if (hunger > 100) {
-//            hunger = 100;
-//        } else if (hunger < 0) {
-//            hunger = 0;
-//        }
-//        return hunger!;
-//    }
-//    
-//    func setThirst (change: Int) -> Int {
-//        thirst = getThirst();
-//        thirst! += change
-//        if (thirst > 100) {
-//            thirst = 100;
-//        } else if (thirst < 0) {
-//            thirst = 0;
-//        }
-//        return thirst!;
-//    }
-//    
-//    func setFun (change: Int) -> Int {
-//        fun = getFun();
-//        fun! += change;
-//        if (fun > 100) {
-//            fun = 100;
-//        } else if (fun < 0) {
-//            fun = 0;
-//        }
-//        return fun!;
-//    }
-//    
-//    func setHygiene (change: Int) -> Int {
-//        hygiene = getHygiene();
-//        hygiene! += change;
-//        if (hygiene > 100) {
-//            hygiene = 100;
-//        } else if (hygiene < 0) {
-//            hygiene = 0;
-//        }
-//        return hygiene!;
-//    }
-//    
-//    
-//    /***********************************************************
-//        Get
-//    ************************************************************/
-//    
-//    func getMoodTotal () -> Int {
-//        let moodTotal = (getHappiness() + getEnergy() + getHunger() + getThirst() + getFun() + getHygiene()) / 6;
-//        return moodTotal;
-//    }
-//    
-//    func getHappiness () -> Int {
-//        if (happiness == nil) {
-//            loadData()
-//        } else {
-//            happiness = status["happiness"] as? Int;
-//        }
-//        println("Happiness: \(happiness!)");
-//        return happiness!;
-//    }
-//    
-//    func getEnergy () -> Int {
-//        if (energy == nil) {
-//            loadData()
-//        } else {
-//            energy = status["energy"] as? Int;
-//        }
-//        println("Energy: \(energy!)");
-//        return energy!;
-//    }
-//    
-//    func getHunger () -> Int {
-//        if (hunger == nil) {
-//            loadData()
-//        } else {
-//            hunger = status["hunger"] as? Int;
-//        }
-//        println("Hunger: \(hunger!)");
-//        return hunger!;
-//    }
-//    
-//    func getThirst () -> Int {
-//        if (thirst == nil) {
-//            loadData()
-//        } else {
-//            thirst = status["thirst"] as? Int;
-//        }
-//        println("Thirst: \(thirst!)");
-//        return thirst!;
-//    }
-//    
-//    func getFun () -> Int {
-//        if (fun == nil) {
-//            loadData()
-//        } else {
-//            fun = status["fun"] as? Int;
-//        }
-//        println("Fun: \(fun!)");
-//        return fun!;
-//    }
-//    
-//    func getHygiene () -> Int {
-//        if (hygiene == nil) {
-//            loadData()
-//        } else {
-//            hygiene = status["hygiene"] as? Int;
-//        }
-//        println("Hygiene: \(hygiene!)");
-//        return hygiene!;
-//    }
+
     
     /* Remove plist copy at filePath, completely resets all data */
     func resetData ()

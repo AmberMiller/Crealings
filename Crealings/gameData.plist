@@ -2,6 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Status</key>
+	<dict>
+		<key>happiness</key>
+		<integer>50</integer>
+		<key>energy</key>
+		<integer>100</integer>
+		<key>hunger</key>
+		<integer>50</integer>
+		<key>thirst</key>
+		<integer>50</integer>
+		<key>fun</key>
+		<integer>50</integer>
+		<key>hygiene</key>
+		<integer>100</integer>
+	</dict>
 	<key>Items</key>
 	<dict>
 		<key>Food</key>
@@ -10,7 +25,7 @@
 				<key>name</key>
 				<string>Apple</string>
 				<key>description</key>
-				<string>An apple.</string>
+				<string>An apple a day keeps anyone away if you throw it hard enough. +5 Happiness, +5 Hunger</string>
 				<key>cost</key>
 				<integer>0</integer>
 				<key>imageName</key>
@@ -27,12 +42,14 @@
 				<integer>0</integer>
 				<key>hygieneChange</key>
 				<integer>0</integer>
+				<key>numOwned</key>
+				<integer>0</integer>
 			</dict>
 			<dict>
 				<key>name</key>
 				<string>Broccoli</string>
 				<key>description</key>
-				<string>Ick!</string>
+				<string>Eww, brocolli! -5 Happiness, +10 Hunger</string>
 				<key>cost</key>
 				<integer>5</integer>
 				<key>imageName</key>
@@ -49,12 +66,14 @@
 				<integer>0</integer>
 				<key>hygieneChange</key>
 				<integer>0</integer>
+				<key>numOwned</key>
+				<integer>0</integer>
 			</dict>
 			<dict>
 				<key>name</key>
 				<string>Chocolate</string>
 				<key>description</key>
-				<string>CHOCOLATE!!!</string>
+				<string>Chocolate? CHOCOLATE!!! +20 Happiness, +5 Hunger</string>
 				<key>cost</key>
 				<integer>50</integer>
 				<key>imageName</key>
@@ -71,6 +90,8 @@
 				<integer>0</integer>
 				<key>hygieneChange</key>
 				<integer>0</integer>
+				<key>numOwned</key>
+				<integer>0</integer>
 			</dict>
 		</array>
 		<key>Drinks</key>
@@ -79,7 +100,7 @@
 				<key>name</key>
 				<string>Water</string>
 				<key>description</key>
-				<string>The most basic thirst quencher.</string>
+				<string>The most basic thirst quencher. +5 Thirst</string>
 				<key>cost</key>
 				<integer>0</integer>
 				<key>imageName</key>
@@ -96,6 +117,8 @@
 				<integer>0</integer>
 				<key>hygieneChange</key>
 				<integer>0</integer>
+				<key>numOwned</key>
+				<integer>0</integer>
 			</dict>
 		</array>
 		<key>Toys</key>
@@ -104,7 +127,7 @@
 				<key>name</key>
 				<string>Toy Ball</string>
 				<key>description</key>
-				<string>Throw the ball. Throw it!</string>
+				<string>Throw the ball. Throw it! +10 Happiness, -10 Energy, +10 Fun, -10 Hygiene</string>
 				<key>cost</key>
 				<integer>0</integer>
 				<key>imageName</key>
@@ -121,6 +144,8 @@
 				<integer>10</integer>
 				<key>hygieneChange</key>
 				<integer>-10</integer>
+				<key>numOwned</key>
+				<integer>0</integer>
 			</dict>
 		</array>
 	</dict>

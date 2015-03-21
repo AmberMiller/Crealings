@@ -145,33 +145,12 @@ class GameHUD: SKSpriteNode {
         Interactions
     ************************************************************/
     
-    func pet () {
-        happinessBar?.setStatusBar("happiness");
-    }
-    
-    func energize () {
+    func interactWith () {
         happinessBar?.setStatusBar("happiness");
         energyBar?.setStatusBar("energy");
-    }
-    
-    func feed () {
-        happinessBar?.setStatusBar("happiness");
         hungerBar?.setStatusBar("hunger");
-    }
-    
-    func hydrate () {
-        happinessBar?.setStatusBar("happiness");
         thirstBar?.setStatusBar("thirst");
-    }
-    
-    func play () {
-        happinessBar?.setStatusBar("happiness");
         funBar?.setStatusBar("fun");
-    }
-    
-    func bathe () {
-        happinessBar?.setStatusBar("happiness");
         hygieneBar?.setStatusBar("hygiene");
     }
-    
 }

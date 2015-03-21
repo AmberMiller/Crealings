@@ -10,6 +10,18 @@ import SpriteKit
 
 final class Crealing : SKNode {
     
+    enum Mood: UInt32 {
+        case VERY_HAPPY = 0
+        case MORE_HAPPY
+        case HAPPY
+        case NEUTRAL
+        case UNHAPPY
+        case SAD
+        case VERY_SAD
+        case DYING
+        case DEAD
+    }
+    
     enum Gender: UInt32 {
         case MALE = 0
         case FEMALE
@@ -20,11 +32,16 @@ final class Crealing : SKNode {
     }
     
     let gameScene = GameScene.sharedInstance;
+    
+    var view: GameScene? = nil;
 
     var crealingSprite: SKSpriteNode? = nil;
+    var tombStoneSprite: SKSpriteNode? = nil;
     var animAtlas: SKTextureAtlas? = nil;
     var blinkAnimTextures: [SKTexture] = [];
     var blinkAnim: SKAction = SKAction();
+    
+    var isAlive: Bool = Bool();
     
     var age: Int = 0;
 
@@ -38,7 +55,6 @@ final class Crealing : SKNode {
     let status: Status = Status.sharedInstance;
     
     var idle: Bool = true;
-    var isAlive: Bool = true;
     
     var moodTotal: Int = 100;
     
@@ -50,7 +66,9 @@ final class Crealing : SKNode {
     /***********************************************************
         Set Up
     ************************************************************/
-    func setup (view: GameScene, mon: String) -> Bool {
+    func setup (_view: GameScene, mon: String) -> Bool {
+        
+        view = _view;
         
         switch mon {
             case "purple":
@@ -62,17 +80,29 @@ final class Crealing : SKNode {
         }
         setMood(getMood())
 
-        crealingSprite?.position = CGPointMake(view.size.width / 2, view.size.height / 3.2);
-        crealingSprite?.name = "crealing";
-        crealingSprite?.physicsBody = SKPhysicsBody(rectangleOfSize: crealingSprite!.size);
-        crealingSprite?.physicsBody?.dynamic = false;
-        crealingSprite?.physicsBody?.usesPreciseCollisionDetection = true;
-        crealingSprite?.physicsBody?.categoryBitMask = GameScene.CollisionType.CREALING.rawValue;
-        crealingSprite?.physicsBody?.contactTestBitMask = GameScene.CollisionType.ITEM.rawValue;
-        self.addChild(crealingSprite!);
+        if (isAlive) {
+            crealingSprite?.position = CGPointMake(view!.size.width / 2, view!.size.height / 3.2);
+            crealingSprite?.name = "crealing";
+            crealingSprite?.physicsBody = SKPhysicsBody(rectangleOfSize: crealingSprite!.size);
+            crealingSprite?.physicsBody?.dynamic = false;
+            crealingSprite?.physicsBody?.usesPreciseCollisionDetection = true;
+            crealingSprite?.physicsBody?.categoryBitMask = GameScene.CollisionType.CREALING.rawValue;
+            crealingSprite?.physicsBody?.contactTestBitMask = GameScene.CollisionType.ITEM.rawValue;
+            self.addChild(crealingSprite!);
+        }
 
-        isAlive = true;
         return true;
+    }
+    
+    func isDead () {
+        crealingSprite?.removeFromParent();
+        crealingSprite = nil;
+        
+        tombStoneSprite = SKSpriteNode(imageNamed: "dead");
+        tombStoneSprite?.position = CGPointMake(view!.size.width / 2, view!.size.height / 3.2);
+        tombStoneSprite?.name = "crealing";
+        
+        self.addChild(tombStoneSprite!);
     }
     
     /***********************************************************
@@ -80,38 +110,43 @@ final class Crealing : SKNode {
     ************************************************************/
     
     //Set mood based on current stats
-    func getMood () -> GameScene.Mood {
-        var mood: GameScene.Mood;
+    func getMood () -> Mood {
+        var mood: Mood;
         let moodTotal = status.getMoodTotal();
+        
+        if (moodTotal > 0) {
+            isAlive = true;
+        }
+        
         println("Mood Total: \(moodTotal)")
         switch moodTotal {
             case 90...100:
                 println("VERY HAPPY");
-                mood = GameScene.Mood.VERY_HAPPY;
+                mood = Mood.VERY_HAPPY;
             case 79...89:
-                mood = GameScene.Mood.MORE_HAPPY;
+                mood = Mood.MORE_HAPPY;
             case 65...78:
-                mood = GameScene.Mood.HAPPY;
+                mood = Mood.HAPPY;
             case 50...64:
-                mood = GameScene.Mood.NEUTRAL;
+                mood = Mood.NEUTRAL;
             case 40...49:
-                mood = GameScene.Mood.UNHAPPY;
+                mood = Mood.UNHAPPY;
             case 26...39:
-                mood = GameScene.Mood.SAD;
+                mood = Mood.SAD;
             case 15...25:
-                mood = GameScene.Mood.VERY_SAD;
+                mood = Mood.VERY_SAD;
             case 1...14:
-                mood = GameScene.Mood.DYING;
+                mood = Mood.DYING;
             case 0:
-                mood = GameScene.Mood.DYING;
+                mood = Mood.DEAD;
                 isAlive = false;
             default:
-                mood = GameScene.Mood.NEUTRAL;
+                mood = Mood.NEUTRAL;
         }
         return mood;
     }
     
-    func setMood (mood: GameScene.Mood) {
+    func setMood (mood: Mood) {
         var moodName: String = "";
         //Set current atlas based on mood
         switch mood {
@@ -139,6 +174,9 @@ final class Crealing : SKNode {
         case .DYING:
             animAtlas = SKTextureAtlas(named: crealingImages[7]);
             moodName = "dying";
+        case .DEAD:
+            isDead();
+            return;
         default:
             animAtlas = SKTextureAtlas(named: crealingImages[3]);
             moodName = "neutral"
@@ -182,7 +220,7 @@ final class Crealing : SKNode {
         
         //If very happy, sad or very sad, loop first two images before running blinkAnim
         switch getMood() {
-            case GameScene.Mood.VERY_HAPPY:
+            case Mood.VERY_HAPPY:
                 loopAnimTextures = [animAtlas!.textureNamed("vhappy1"), animAtlas!.textureNamed("vhappy2")];
                 let loopAnim = SKAction.animateWithTextures(loopAnimTextures, timePerFrame: 0.1);
                 
@@ -191,7 +229,7 @@ final class Crealing : SKNode {
                     loopAnim, loopAnim, loopAnim, loopAnim,
                     blinkAnim
                 ]);
-        case GameScene.Mood.SAD:
+        case Mood.SAD:
                 loopAnimTextures = [animAtlas!.textureNamed("sad1"), animAtlas!.textureNamed("sad2")];
                 let loopAnim = SKAction.animateWithTextures(loopAnimTextures, timePerFrame: 0.1);
                 
@@ -200,7 +238,7 @@ final class Crealing : SKNode {
                     loopAnim, loopAnim, loopAnim, loopAnim,
                     blinkAnim
                 ]);
-        case GameScene.Mood.VERY_SAD:
+        case Mood.VERY_SAD:
                 loopAnimTextures = [animAtlas!.textureNamed("cry1"), animAtlas!.textureNamed("cry2")];
                 let loopAnim = SKAction.animateWithTextures(loopAnimTextures, timePerFrame: 0.1);
                 
@@ -227,65 +265,14 @@ final class Crealing : SKNode {
         return true;
     }
     
-    /***********************************************************
-        Feeding the Pet
-    ************************************************************/
-    func feedPet (food: UsableItem.ItemType) -> Bool {
-        println("Feed Pet");
-        switch food {
-            case .FOOD_APPLE:
-                println("Feed Apple");
-                status.setHappiness(5);
-                status.setHunger(5);
-                return true;
-            case .FOOD_CHOCOLATE:
-                return true;
-            default:
-                return false;
-        }
-    }
-
-    /***********************************************************
-        Giving the Pet a Drink
-    ************************************************************/
-    func hydratePet (drink: UsableItem.ItemType) -> Bool {
-        switch drink {
-            case .DRINK_WATER:
-                status.setThirst(5);
-                return true;
-            case .DRINK_JUICE:
-                status.setHappiness(10);
-                status.setThirst(10);
-                
-                return true;
-            default:
-                return false;
-        }
-    }
-    
-    /***********************************************************
-        Playing With the Pet
-    ************************************************************/
-    func playWith (toy: UsableItem.ItemType) -> Bool {
-        switch toy {
-        case .TOY_BALL:
-            status.setHappiness(10);
-            status.setFun(15);
-            return true;
-        case .TOY_BOOK:
-            status.setHappiness(10);
-            status.setFun(10);
-            return true;
-        default:
-            return false;
-        }
-    }
-    
-    /***********************************************************
-        Cleaning the Pet
-    ************************************************************/
-    func cleanPet () -> Bool {
-        status.setHygiene(50);
+    func giveItem (happiness: Int, energy: Int, hunger: Int, thirst: Int, fun: Int, hygiene: Int) -> Bool {
+        status.setHappiness(happiness);
+        status.setEnergy(energy);
+        status.setHunger(hunger);
+        status.setThirst(thirst);
+        status.setFun(fun);
+        status.setHygiene(hygiene);
+        
         return true;
     }
 }
