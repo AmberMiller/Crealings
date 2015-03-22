@@ -204,6 +204,11 @@ extension GameScene {
             gameHUD!.interactWith();
             checkMood();
             
+            var numOwned: Int = usableItemDict!["numOwned"] as Int;
+            numOwned -= 1;
+            usableItemDict!.updateValue(numOwned, forKey: "numOwned");
+            gameData.setItemData(usableItemDict!);
+            
             usableItem?.removeFromParent();
             usableItem = nil;
             usableItemDict = nil;

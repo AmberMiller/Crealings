@@ -76,6 +76,17 @@ class ItemBag: SKNode {
         self.addChild(itemShelf!);
     }
     
+    func reloadData () {
+        collection1?.removeAllChildren();
+        addChildren(collection1!, currentArray: foodArray); //Add food to shelf node
+
+        collection2?.removeAllChildren();
+        addChildren(collection2!, currentArray: drinkArray); //Add drink to shelf node
+
+        collection3?.removeAllChildren();
+        addChildren(collection3!, currentArray: toysArray); //Add toys to shelf node
+    }
+    
     /***********************************************************
         Adding Items
     ************************************************************/
@@ -84,26 +95,28 @@ class ItemBag: SKNode {
     func addChildren (collection: SKSpriteNode, currentArray: [Dictionary <String, AnyObject>]) {
         for (var i = 0; i < currentArray.count; i++) {
             let object: Dictionary <String, AnyObject> = currentArray[i];
-            let itemName = object["imageName"] as String;
-            var item: SKSpriteNode = SKSpriteNode(imageNamed: itemName);
-            item.name = itemName;
-            item.anchorPoint = CGPointMake(0.0, 0.0);
-            item.size = CGSizeMake(collection.size.height, collection.size.height);
-            
-            //Set position based on current number in array plus extra spacing after the first object
-            let currentNum: CGFloat = CGFloat(i);
-            let currentPosition: CGFloat = item.size.width * currentNum;
-            var space: CGFloat?;
-            
-            if (i == 0) {
-                space = 0.0;
-            } else {
-                space = item.size.width / 4;
+            if (object["numOwned"] as Int > 0) {
+                let itemName = object["imageName"] as String;
+                var item: SKSpriteNode = SKSpriteNode(imageNamed: itemName);
+                item.name = itemName;
+                item.anchorPoint = CGPointMake(0.0, 0.0);
+                item.size = CGSizeMake(collection.size.height, collection.size.height);
+                
+                //Set position based on current number in array plus extra spacing after the first object
+                let currentNum: CGFloat = CGFloat(i);
+                let currentPosition: CGFloat = item.size.width * currentNum;
+                var space: CGFloat?;
+                
+                if (i == 0) {
+                    space = 0.0;
+                } else {
+                    space = item.size.width / 4;
+                }
+                
+                item.position = CGPointMake(currentPosition + space!, 0.0);
+                
+                collection.addChild(item);
             }
-            
-            item.position = CGPointMake(currentPosition + space!, 0.0);
-            
-            collection.addChild(item);
         }
     }
     
@@ -135,7 +148,7 @@ class ItemBag: SKNode {
     }
     
     /***********************************************************
-        Set item data from gameData
+        Set Item Data
     ************************************************************/
     func loadData () -> Bool {
         gameData.loadData();
@@ -146,4 +159,6 @@ class ItemBag: SKNode {
         
         return true;
     }
+    
+
 }

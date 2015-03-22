@@ -15,9 +15,8 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
     let defaults = NSUserDefaults.standardUserDefaults();
 
     var skView = SKView();
-    
     var firstPlay: Bool = Bool();
-    
+    var firstLoad: Bool = true;
     var eggType: String? = nil;
     
     override func viewWillAppear(animated: Bool) {
@@ -62,17 +61,22 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
         
         gameScene.gameDelegate = self;
         
+        /* Set the scale mode to scale to fit the window */
+        gameScene.scaleMode = .AspectFill
+        
         if (from == "eggScene") {
             gameScene.isNewGame = true;
         } else {
             gameScene.isNewGame = false;
         }
-        
-        /* Set the scale mode to scale to fit the window */
-        gameScene.scaleMode = .AspectFill
-        
-        let fade: SKTransition = SKTransition.fadeWithColor(UIColor.whiteColor(), duration: 2.0);
-        skView.presentScene(gameScene, transition: fade);
+
+        if (firstLoad) {
+            let fade: SKTransition = SKTransition.fadeWithColor(UIColor.whiteColor(), duration: 2.0);
+            skView.presentScene(gameScene, transition: fade);
+            
+            firstLoad = false;
+        }
+
     }
     
     func EggSceneSetup () {

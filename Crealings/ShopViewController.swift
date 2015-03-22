@@ -26,25 +26,27 @@ class ShopViewController: UIViewController, UICollectionViewDataSource, UICollec
     @IBOutlet weak var buyButton: UIButton!
     @IBOutlet weak var exitButton: UIButton!
     
-    var foodArray: [NSDictionary] = [];
-    var drinkArray: [NSDictionary] = [];
-    var toysArray: [NSDictionary] = [];
-    var selectedCell: Int = Int();
+    var foodArray: [Dictionary <String, AnyObject>] = [];
+    var drinkArray: [Dictionary <String, AnyObject>] = [];
+    var toysArray: [Dictionary <String, AnyObject>] = [];
     
-    var gameData: GameData?;
+    var gameData: GameData = GameData.sharedInstance;
+    
+    var selectedItem: Dictionary <String, AnyObject>? = nil;
+    var selectedItemCollection: String = String();
+    var selectedIndex: Int = Int();
     
     override func viewDidLoad() {
-        gameData = GameData();
-        gameData?.loadData();
         
         hideItemData();
-        
-        foodArray = gameData!.getFoodItemsArray();
-        drinkArray = gameData!.getDrinkItemsArray();
-        toysArray = gameData!.getToyItemsArray();
+        loadData();
     }
     
     @IBAction func backButton(sender: UIButton) {
+        gameData.writeItems(foodArray, key: "Food");
+        gameData.writeItems(drinkArray, key: "Drinks");
+        gameData.writeItems(toysArray, key: "Toys");
+        
         self.dismissViewControllerAnimated(true, completion: nil);
     }
     
@@ -96,9 +98,9 @@ class ShopViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        selectedCell = indexPath.row;
+        selectedIndex = indexPath.row;
         var view: String = String();
-        var item: NSDictionary? = nil;
+        var item: Dictionary <String, AnyObject>? = nil;
         
         switch collectionView {
             case collection1:
@@ -120,26 +122,36 @@ class ShopViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
     
+    func loadData () {
+        if (gameData.loadData()) {
+            foodArray = gameData.getFoodItemsArray();
+            drinkArray = gameData.getDrinkItemsArray();
+            toysArray = gameData.getToyItemsArray();
+        }
+    }
+    
     func setAlertData (collectionView: UICollectionView, indexPath: Int) -> Bool {
-        var item: NSDictionary? = nil;
         
         switch collectionView {
         case collection1:
-            item = foodArray[indexPath];
+            selectedItem = foodArray[indexPath];
+            selectedItemCollection = "food";
         case collection2:
-            item = drinkArray[indexPath];
+            selectedItem = drinkArray[indexPath];
+            selectedItemCollection = "drink";
         case collection3:
-            item = toysArray[indexPath];
+            selectedItem = toysArray[indexPath];
+            selectedItemCollection = "toys";
         default:
             break;
         }
         
-        if (item != nil) {
-            itemName.text = item!["name"] as? String;
-            itemCost.text = toString(item!["cost"]!);
-            itemDescription.text = item!["description"] as? String;
-            numOwned.text = toString(item!["numOwned"]!);
-            itemImage.image = UIImage(named: (item!["imageName"] as String));
+        if (selectedItem != nil) {
+            itemName.text = selectedItem!["name"] as? String;
+            itemCost.text = toString(selectedItem!["cost"]!);
+            itemDescription.text = selectedItem!["description"] as? String;
+            numOwned.text = toString(selectedItem!["numOwned"]!);
+            itemImage.image = UIImage(named: (selectedItem!["imageName"] as String));
             
             return true;
         }
@@ -174,10 +186,32 @@ class ShopViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     @IBAction func buyButton(sender: UIButton) {
-        
+        //TODO Check user coins and compare to item cost
+        if (selectedItem != nil) {
+            var itemNumOwned: Int = selectedItem!["numOwned"] as Int;
+            itemNumOwned += 1;
+            selectedItem!.updateValue(itemNumOwned, forKey: "numOwned");
+            
+            numOwned.text = toString(itemNumOwned);
+            
+            //TODO Subtract coins for cost
+            
+            switch selectedItemCollection {
+                case "food":
+                    foodArray[selectedIndex] = selectedItem!;
+                    println("Food Array: \(foodArray)");
+                case "drink":
+                    drinkArray[selectedIndex] = selectedItem!;
+                case "toys":
+                    toysArray[selectedIndex] = selectedItem!;
+                default:
+                    println("No Collection");
+            }
+        }
     }
     
     @IBAction func closeButton(sender: UIButton) {
+        selectedItem = nil;
         hideItemData();
     }
 }
