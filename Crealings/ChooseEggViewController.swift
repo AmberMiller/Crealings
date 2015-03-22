@@ -25,6 +25,10 @@ class ChooseEggViewController: UIViewController, UICollectionViewDataSource, UIC
     }
 
     
+    /***********************************************************
+        Collection View Setup
+    ************************************************************/
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: itemCell = collectionView.dequeueReusableCellWithReuseIdentifier("eggCell", forIndexPath: indexPath) as itemCell;
         

@@ -28,11 +28,14 @@ extension GameScene {
                 println("Node Name: \(node.name)");
                 /* If node.name is in nameArray, close the bag and continue based on name,
                 else do item shelf functions */
-                let nameArray: [String] = ["crealing", "menu", "shop", "fight", "coin", "gem", "exp", "help", "happiness", "energy", "hunger", "thirst", "fun", "hygiene", "toStart"];
+                let nameArray: [String] = ["crealing", "menu", "shop", "fight", "coin", "gem", "exp", "help", "happiness", "energy", "hunger", "thirst", "fun", "hygiene", "toStart", "exit"];
                 let found = find(nameArray, node.name!) != nil;
                 
                 if (found) {
-                    closeBag();
+                    if (node.name != "exit") {
+                        closeBag();
+                    }
+                    
                     isItem = false;
                     
                     switch node.name! {
@@ -42,10 +45,9 @@ extension GameScene {
                                 gameHUD?.interactWith();
                             }
                         } else { //If dead, show alert
-                            let alertBox = AlertBox();
-                            
-                            if (alertBox.setup(self)) {
-                                self.addChild(alertBox);
+                            alertBox = AlertBox();
+                            if (alertBox!.setup(self, from: "game_over", item: nil)) {
+                                self.addChild(alertBox!);
                             }
                         }
                     case "menu":
@@ -71,6 +73,12 @@ extension GameScene {
                         self.removeAllChildren();
                         self.userData = nil;
                         gameDelegate?.clearGame();
+                    case "exit":
+                        if (alertBox != nil) { //If alert box is open, close it
+                            alertBox?.removeFromParent();
+                            alertBox = nil;
+                            break;
+                        }
                     default:
                         break;
                     }
@@ -79,7 +87,7 @@ extension GameScene {
                     if (node.name == "bag") {
                         println("Tap Bag");
                         isItem = false;
-                        if (itemBag != nil) { //If item shelf if open, close it
+                        if (itemBag != nil) { //If item shelf is open, close it
                             itemBag?.removeFromParent();
                             itemBag = nil;
                             break;
@@ -92,6 +100,7 @@ extension GameScene {
                     } else {
                         isItem = true; //If not the bag, then node must be an item
                         selectedNodeName = node.name!; //Save node.name for long press function
+                        usableItemDict = itemBag!.getItemDict(selectedNodeName)!;
                     }
                 }
             }
@@ -117,6 +126,12 @@ extension GameScene {
             let node = nodeAtPoint(location);
             
             touching = false;
+            
+            if (touchLength < 0.2 && isItem) {
+                alertBox = AlertBox();
+                alertBox?.setup(self, from: "item", item: usableItemDict);
+                self.addChild(alertBox!);
+            }
             
             /* When user lets go, allow item to fall */
             if (usableItem != nil) {

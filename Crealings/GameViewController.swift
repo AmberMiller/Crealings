@@ -43,6 +43,10 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
         }
     }
     
+    /***********************************************************
+     Scenes and Setup
+    ************************************************************/
+    
     func presentEggScene () {
         println("Present Egg Scene");
         let eggScene = EggScene(size: view.bounds.size);
@@ -79,6 +83,7 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
 
     }
     
+    /* Setup the Egg Scene */
     func EggSceneSetup () {
         println("Egg Scene Setup");
         if (eggType == nil) {
@@ -88,6 +93,7 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
         (skView.scene as EggScene).setupScene();
     }
     
+    /* Setup the GameScene */
     func GameSceneSetup () {
         println("Game Scene Setup");
         if (eggType == nil) {
@@ -96,6 +102,11 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
         (skView.scene as GameScene).currentMon = eggType;
         (skView.scene as GameScene).setUpScene();
     }
+    
+
+    /***********************************************************
+        Game Scene HUD Button Click Actions
+    ************************************************************/
     
     func MenuButtonClicked () {
         println("Game Delegate: Menu");
@@ -113,6 +124,10 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
         println("Game Delegate: Fight");
     }
     
+    /***********************************************************
+        Clear Game on Game Over
+    ************************************************************/
+    
     func clearGame () {
         defaults.setBool(false, forKey: "firstPlay");
         
@@ -123,6 +138,10 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
             self.presentViewController(view, animated: true, completion: nil);
         }
     }
+    
+    /***********************************************************
+        Setup
+    ************************************************************/
 
     override func shouldAutorotate() -> Bool {
         return true

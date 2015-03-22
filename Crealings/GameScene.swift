@@ -50,6 +50,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var usableItem: UsableItem? = nil;
     
+    var alertBox: AlertBox? = nil;
+    
     var touching: Bool = Bool();
     var touchLength: NSTimeInterval = 0;
     var tapLocation: CGPoint = CGPoint();
@@ -112,11 +114,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 && !addedItem //Prevents multiple items
                 && isItem //Make sure user pressed an item node on shelf
                 && (itemBag != nil) //Make sure itemBag is "open"
-                && itemBag?.getItemDict(selectedNodeName) != nil) //Make sure item dictionary is not nil
+                && usableItemDict != nil) //Make sure item dictionary is not nil
             {
                 /* Create and add item based on current location */
                 usableItem = UsableItem();
-                usableItemDict = itemBag!.getItemDict(selectedNodeName)!;
                 usableItem!.addItem(usableItemDict!, tapPosition: tapLocation);
                 self.addChild(usableItem!);
                 closeBag(); //Close the bag

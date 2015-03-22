@@ -95,7 +95,8 @@ class ItemBag: SKNode {
     func addChildren (collection: SKSpriteNode, currentArray: [Dictionary <String, AnyObject>]) {
         for (var i = 0; i < currentArray.count; i++) {
             let object: Dictionary <String, AnyObject> = currentArray[i];
-            if (object["numOwned"] as Int > 0) {
+            let numOwned: Int = object["numOwned"] as Int;
+            if (numOwned > 0) {
                 let itemName = object["imageName"] as String;
                 var item: SKSpriteNode = SKSpriteNode(imageNamed: itemName);
                 item.name = itemName;
@@ -115,6 +116,13 @@ class ItemBag: SKNode {
                 
                 item.position = CGPointMake(currentPosition + space!, 0.0);
                 
+                
+                let itemNum = SKLabelNode(fontNamed: "Courier-Bold");
+                itemNum.text = toString(numOwned);
+                itemNum.position = CGPointMake(item.size.width / 1.2, 0.0);
+                itemNum.zPosition = 2;
+                
+                item.addChild(itemNum);
                 collection.addChild(item);
             }
         }

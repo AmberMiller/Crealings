@@ -36,19 +36,29 @@ class ShopViewController: UIViewController, UICollectionViewDataSource, UICollec
     var selectedItemCollection: String = String();
     var selectedIndex: Int = Int();
     
+    /***********************************************************
+        Load
+    ************************************************************/
+    
     override func viewDidLoad() {
         
         hideItemData();
         loadData();
     }
     
-    @IBAction func backButton(sender: UIButton) {
-        gameData.writeItems(foodArray, key: "Food");
-        gameData.writeItems(drinkArray, key: "Drinks");
-        gameData.writeItems(toysArray, key: "Toys");
-        
-        self.dismissViewControllerAnimated(true, completion: nil);
+    func loadData () {
+        if (gameData.loadData()) {
+            foodArray = gameData.getFoodItemsArray();
+            drinkArray = gameData.getDrinkItemsArray();
+            toysArray = gameData.getToyItemsArray();
+        }
     }
+    
+
+    
+    /***********************************************************
+        Collection View Setup
+    ************************************************************/
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
@@ -122,14 +132,11 @@ class ShopViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
     
-    func loadData () {
-        if (gameData.loadData()) {
-            foodArray = gameData.getFoodItemsArray();
-            drinkArray = gameData.getDrinkItemsArray();
-            toysArray = gameData.getToyItemsArray();
-        }
-    }
+    /***********************************************************
+        Info Alert
+    ************************************************************/
     
+    /* Get data from selected item and display in info alert */
     func setAlertData (collectionView: UICollectionView, indexPath: Int) -> Bool {
         
         switch collectionView {
@@ -159,6 +166,7 @@ class ShopViewController: UIViewController, UICollectionViewDataSource, UICollec
         return false;
     }
     
+    /* Show Info Alert */
     func showItemData () {
         alertImage.hidden = false;
         itemName.hidden = false;
@@ -172,6 +180,7 @@ class ShopViewController: UIViewController, UICollectionViewDataSource, UICollec
         exitButton.hidden = false;
     }
     
+    /* Hide Info Alert */
     func hideItemData () {
         alertImage.hidden = true;
         itemName.hidden = true;
@@ -185,6 +194,21 @@ class ShopViewController: UIViewController, UICollectionViewDataSource, UICollec
         exitButton.hidden = true;
     }
     
+    
+    /***********************************************************
+        Button Actions
+    ************************************************************/
+    
+    /* Set item data when leaving controller */
+    @IBAction func backButton(sender: UIButton) {
+        gameData.writeItems(foodArray, key: "Food");
+        gameData.writeItems(drinkArray, key: "Drinks");
+        gameData.writeItems(toysArray, key: "Toys");
+        
+        self.dismissViewControllerAnimated(true, completion: nil);
+    }
+    
+    /* Increase numOwned for item and set in array */
     @IBAction func buyButton(sender: UIButton) {
         //TODO Check user coins and compare to item cost
         if (selectedItem != nil) {
@@ -210,6 +234,7 @@ class ShopViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
     
+    /* Close Info Alert */
     @IBAction func closeButton(sender: UIButton) {
         selectedItem = nil;
         hideItemData();
