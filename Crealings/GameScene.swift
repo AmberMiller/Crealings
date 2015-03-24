@@ -39,17 +39,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let status: Status = Status.sharedInstance;
     
     var isNewGame: Bool = Bool();
-    
     var currentMon: String? = nil;
     
     var gameHUD: GameHUD? = nil;
-    
     var crealing: Crealing? = nil;
-
     var itemBag: ItemBag? = nil;
-    
     var usableItem: UsableItem? = nil;
-    
+    var shopHUD: ShopHUD? = nil;
     var alertBox: AlertBox? = nil;
     
     var touching: Bool = Bool();
@@ -118,6 +114,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             {
                 /* Create and add item based on current location */
                 usableItem = UsableItem();
+                usableItem?.zPosition = 1;
                 usableItem!.addItem(usableItemDict!, tapPosition: tapLocation);
                 self.addChild(usableItem!);
                 closeBag(); //Close the bag
@@ -145,10 +142,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsBody!.contactTestBitMask = CollisionType.ITEM.rawValue;
         view?.showsPhysics = true; //Show physics bounds
         
-        
         /* Add background to scene */
         let bg: SKSpriteNode = SKSpriteNode(imageNamed: "background_bluepolka");
-        bg.zPosition = -2; //Make sure is behind
+        bg.zPosition = -1; //Make sure is behind
         bg.size = CGSizeMake(self.size.width, getRatioHeight(bg.size.width, height: bg.size.height)); //Keep ratio
         bg.position = CGPointMake(self.size.width / 2, self.size.height / 2);
         self.addChild(bg);
@@ -156,7 +152,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         /* Setup game menu */
         gameHUD = GameHUD(imageNamed: "main_hud");
         gameHUD?.position = CGPointMake(0.0, self.frame.height);
-        
+        gameHUD?.zPosition = 1;
         gameHUD?.size = CGSizeMake(self.size.width, getRatioHeight(gameHUD!.size.width, height: gameHUD!.size.height)); //Set menu size to width of screen
         
         if ((gameHUD != nil) && (gameHUD!.setupHUD())) {
@@ -167,6 +163,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         /* Add crealing to scene */
         crealing = Crealing();
+        crealing?.zPosition = 0;
         if (currentMon != nil) {
             if ((crealing != nil) && (crealing!.setup(self, mon: currentMon!))) {
                 self.addChild(crealing!);
@@ -191,6 +188,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (itemBag != nil) {
             itemBag?.removeFromParent();
             itemBag = nil;
+        }
+    }
+    
+    /* Open/Close shop bar */
+    func shopButtonClicked () {
+        if (shopHUD == nil) {
+            shopHUD = ShopHUD();
+            shopHUD?.zPosition = 2;
+            if (shopHUD!.setup(self)) {
+                self.addChild(shopHUD!);
+                shopHUD?.animateIn();
+            }
+        } else {
+            if (shopHUD!.animateOut()) {
+                shopHUD = nil;
+            }
         }
     }
 }

@@ -15,7 +15,6 @@ class AlertBox: SKNode {
     
     func setup (view: GameScene, from: String, item: Dictionary <String, AnyObject>?) -> Bool {
         self.position = CGPointMake(view.size.width / 2, view.size.height / 2);
-        self.zPosition = 5;
         
         if (from == "game_over") {
             alertSprite = SKSpriteNode(imageNamed: "game_over");

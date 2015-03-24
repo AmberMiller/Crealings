@@ -110,8 +110,7 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
     
     func MenuButtonClicked () {
         println("Game Delegate: Menu");
-        let view = self.storyboard?.instantiateViewControllerWithIdentifier("StatsController") as StatsViewController;
-        self.presentViewController(view, animated: true, completion: nil);
+
     }
     
     func ShopButtonClicked () {
@@ -129,7 +128,8 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
     ************************************************************/
     
     func clearGame () {
-        defaults.setBool(false, forKey: "firstPlay");
+        let status: Status = Status.sharedInstance;
+        status.resetData();
         
         if (defaults.boolForKey("firstPlay")) {
             self.dismissViewControllerAnimated(true, completion: nil);
@@ -137,6 +137,8 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
             let view = self.storyboard?.instantiateViewControllerWithIdentifier("StartController") as StartViewController;
             self.presentViewController(view, animated: true, completion: nil);
         }
+        
+        defaults.setBool(false, forKey: "firstPlay");
     }
     
     /***********************************************************

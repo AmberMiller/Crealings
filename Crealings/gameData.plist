@@ -183,6 +183,32 @@
 				<key>numOwned</key>
 				<integer>0</integer>
 			</dict>
+			<dict>
+				<key>id</key>
+				<integer>1</integer>
+				<key>name</key>
+				<string>Soap</string>
+				<key>description</key>
+				<string> +15 Hygiene</string>
+				<key>cost</key>
+				<integer>10</integer>
+				<key>imageName</key>
+				<string>soap</string>
+				<key>happinessChange</key>
+				<integer>10</integer>
+				<key>energyChange</key>
+				<integer>0</integer>
+				<key>hungerChange</key>
+				<integer>0</integer>
+				<key>thirstChange</key>
+				<integer>0</integer>
+				<key>funChange</key>
+				<integer>0</integer>
+				<key>hygieneChange</key>
+				<integer>15</integer>
+				<key>numOwned</key>
+				<integer>0</integer>
+			</dict>
 		</array>
 	</dict>
 </dict>

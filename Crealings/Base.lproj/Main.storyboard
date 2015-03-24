@@ -243,50 +243,6 @@
             </objects>
             <point key="canvasLocation" x="874" y="-83"/>
         </scene>
-        <!--Stats View Controller-->
-        <scene sceneID="CLW-v4-oH2">
-            <objects>
-                <viewController storyboardIdentifier="StatsController" modalTransitionStyle="crossDissolve" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hQn-tI-0fX" customClass="StatsViewController" customModule="Crealings" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="GDp-1p-2l4"/>
-                        <viewControllerLayoutGuide type="bottom" id="1rn-1s-BLh"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ZO7-jn-iAc">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_bluepolka.png" translatesAutoresizingMaskIntoConstraints="NO" id="mBN-Ss-Mej">
-                                <rect key="frame" x="-4" y="-20" width="608" height="620"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dTc-hn-cSI">
-                                <rect key="frame" x="-4" y="0.0" width="83" height="49"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="dTc-hn-cSI" secondAttribute="height" multiplier="83:49" id="puq-xk-lVg"/>
-                                </constraints>
-                                <state key="normal" image="back_button.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="backToGame:" destination="hQn-tI-0fX" eventType="touchUpInside" id="39j-sh-fVX"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="mBN-Ss-Mej" secondAttribute="trailing" constant="-20" id="0j8-fU-52N"/>
-                            <constraint firstItem="mBN-Ss-Mej" firstAttribute="leading" secondItem="ZO7-jn-iAc" secondAttribute="leadingMargin" constant="-20" id="C9t-9F-Dq4"/>
-                            <constraint firstItem="mBN-Ss-Mej" firstAttribute="top" secondItem="GDp-1p-2l4" secondAttribute="bottom" constant="-20" id="IOS-nj-YTA"/>
-                            <constraint firstItem="1rn-1s-BLh" firstAttribute="top" secondItem="mBN-Ss-Mej" secondAttribute="bottom" id="KUZ-3H-5H6"/>
-                            <constraint firstItem="dTc-hn-cSI" firstAttribute="top" secondItem="GDp-1p-2l4" secondAttribute="bottom" id="YNo-ie-uTI"/>
-                            <constraint firstItem="dTc-hn-cSI" firstAttribute="leading" secondItem="ZO7-jn-iAc" secondAttribute="leadingMargin" constant="-20" id="v6Y-JO-vC5"/>
-                        </constraints>
-                    </view>
-                    <nil key="simulatedStatusBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7gS-nM-acw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1531" y="-83"/>
-        </scene>
         <!--Shop View Controller-->
         <scene sceneID="dod-Ip-7VM">
             <objects>

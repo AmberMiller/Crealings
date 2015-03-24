@@ -166,9 +166,15 @@
 		96892C0E1AB89E910022A13A /* gameData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 96892C0D1AB89E910022A13A /* gameData.plist */; };
 		96892C101AB8A4D10022A13A /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96892C0F1AB8A4D10022A13A /* GameData.swift */; };
 		96892C131AB8D8990022A13A /* GameScene_TouchesAndCollisions_EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96892C121AB8D8990022A13A /* GameScene_TouchesAndCollisions_EXT.swift */; };
+		96AAE9711AC0F22B00654BF4 /* soap.png in Resources */ = {isa = PBXBuildFile; fileRef = 96AAE96E1AC0F22B00654BF4 /* soap.png */; };
+		96AAE9721AC0F22B00654BF4 /* soap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96AAE96F1AC0F22B00654BF4 /* soap@2x.png */; };
+		96AAE9731AC0F22B00654BF4 /* soap@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96AAE9701AC0F22B00654BF4 /* soap@3x.png */; };
+		96AAE9751AC1102600654BF4 /* ShopHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AAE9741AC1102600654BF4 /* ShopHUD.swift */; };
+		96AAE9791AC1A13200654BF4 /* itemBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 96AAE9761AC1A13200654BF4 /* itemBox.png */; };
+		96AAE97A1AC1A13200654BF4 /* itemBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96AAE9771AC1A13200654BF4 /* itemBox@2x.png */; };
+		96AAE97B1AC1A13200654BF4 /* itemBox@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96AAE9781AC1A13200654BF4 /* itemBox@3x.png */; };
 		96DED2B21AB248620099E701 /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DED2B11AB248620099E701 /* SceneManager.swift */; };
 		96DED2B51AB2539F0099E701 /* GameHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DED2B41AB2539F0099E701 /* GameHUD.swift */; };
-		96DED2BD1AB392A80099E701 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DED2BC1AB392A80099E701 /* StatsViewController.swift */; };
 		96DED2C51AB46F690099E701 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DED2C41AB46F690099E701 /* ShopViewController.swift */; };
 		96E1AA201ABDB42B00973F71 /* coffee.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E1AA1D1ABDB42B00973F71 /* coffee.png */; };
 		96E1AA211ABDB42B00973F71 /* coffee@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96E1AA1E1ABDB42B00973F71 /* coffee@2x.png */; };
@@ -358,9 +364,15 @@
 		96892C0D1AB89E910022A13A /* gameData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = gameData.plist; sourceTree = "<group>"; };
 		96892C0F1AB8A4D10022A13A /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		96892C121AB8D8990022A13A /* GameScene_TouchesAndCollisions_EXT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene_TouchesAndCollisions_EXT.swift; sourceTree = "<group>"; };
+		96AAE96E1AC0F22B00654BF4 /* soap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = soap.png; sourceTree = "<group>"; };
+		96AAE96F1AC0F22B00654BF4 /* soap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "soap@2x.png"; sourceTree = "<group>"; };
+		96AAE9701AC0F22B00654BF4 /* soap@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "soap@3x.png"; sourceTree = "<group>"; };
+		96AAE9741AC1102600654BF4 /* ShopHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopHUD.swift; sourceTree = "<group>"; };
+		96AAE9761AC1A13200654BF4 /* itemBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = itemBox.png; sourceTree = "<group>"; };
+		96AAE9771AC1A13200654BF4 /* itemBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemBox@2x.png"; sourceTree = "<group>"; };
+		96AAE9781AC1A13200654BF4 /* itemBox@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "itemBox@3x.png"; sourceTree = "<group>"; };
 		96DED2B11AB248620099E701 /* SceneManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
 		96DED2B41AB2539F0099E701 /* GameHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameHUD.swift; sourceTree = "<group>"; };
-		96DED2BC1AB392A80099E701 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		96DED2C41AB46F690099E701 /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		96E1AA1D1ABDB42B00973F71 /* coffee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coffee.png; sourceTree = "<group>"; };
 		96E1AA1E1ABDB42B00973F71 /* coffee@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coffee@2x.png"; sourceTree = "<group>"; };
@@ -627,6 +639,7 @@
 		96821D741ABCEB94007417EF /* Items */ = {
 			isa = PBXGroup;
 			children = (
+				96AAE96D1AC0F22B00654BF4 /* Misc */,
 				96821D751ABCEB94007417EF /* Drinks */,
 				96821D791ABCEB94007417EF /* Food */,
 				96821D7D1ABCEB94007417EF /* Toys */,
@@ -676,6 +689,9 @@
 		96821D811ABCEB94007417EF /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				96AAE9761AC1A13200654BF4 /* itemBox.png */,
+				96AAE9771AC1A13200654BF4 /* itemBox@2x.png */,
+				96AAE9781AC1A13200654BF4 /* itemBox@3x.png */,
 				966BA6921ABD06AB0054A982 /* buy_button.png */,
 				966BA6931ABD06AB0054A982 /* buy_button@2x.png */,
 				966BA6941ABD06AB0054A982 /* buy_button@3x.png */,
@@ -767,6 +783,16 @@
 			name = Data;
 			sourceTree = "<group>";
 		};
+		96AAE96D1AC0F22B00654BF4 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				96AAE96E1AC0F22B00654BF4 /* soap.png */,
+				96AAE96F1AC0F22B00654BF4 /* soap@2x.png */,
+				96AAE9701AC0F22B00654BF4 /* soap@3x.png */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
 		96DED2B31AB24B100099E701 /* HUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -775,6 +801,7 @@
 				962BA7571AB63586001579A1 /* ItemBag.swift */,
 				96892C0B1AB8978A0022A13A /* UsableItem.swift */,
 				9677A23E1AB8FB7C00293F54 /* AlertBox.swift */,
+				96AAE9741AC1102600654BF4 /* ShopHUD.swift */,
 			);
 			name = HUD;
 			sourceTree = "<group>";
@@ -799,7 +826,6 @@
 				96EA6F3A1AB7A5C00095247E /* NewGameViewController.swift */,
 				9653DB111AAED808005103F8 /* ChooseEggViewController.swift */,
 				96802AC71AA8D1C000B9AAF3 /* GameViewController.swift */,
-				96DED2BC1AB392A80099E701 /* StatsViewController.swift */,
 				96DED2C41AB46F690099E701 /* ShopViewController.swift */,
 			);
 			name = "View Controllers";
@@ -894,6 +920,7 @@
 				96821DDD1ABCEB94007417EF /* egg2_crack3@3x.png in Resources */,
 				96821E061ABCEB94007417EF /* apple@3x.png in Resources */,
 				96821E451ABCEB94007417EF /* triangle.wav in Resources */,
+				96AAE97A1AC1A13200654BF4 /* itemBox@2x.png in Resources */,
 				96821DE61ABCEB94007417EF /* bNeutral.atlas in Resources */,
 				96E1AA2E1ABE003C00973F71 /* chocolate@3x.png in Resources */,
 				96821DE31ABCEB94007417EF /* bDying.atlas in Resources */,
@@ -952,6 +979,7 @@
 				96821DEE1ABCEB94007417EF /* egg_crack1.atlas in Resources */,
 				96821E081ABCEB94007417EF /* ball@2x.png in Resources */,
 				96821DEC1ABCEB94007417EF /* dead@2x.png in Resources */,
+				96AAE9721AC0F22B00654BF4 /* soap@2x.png in Resources */,
 				96821E3F1ABCEB94007417EF /* bar_thirst@3x.png in Resources */,
 				96821E1A1ABCEB94007417EF /* choose_egg@3x.png in Resources */,
 				96821DF61ABCEB94007417EF /* pEgg_crack2.atlas in Resources */,
@@ -964,6 +992,7 @@
 				96821DC01ABCEB94007417EF /* LilitaOne-Regular.ttf in Resources */,
 				96821DD01ABCEB94007417EF /* egg1_crack2@3x.png in Resources */,
 				96821DE01ABCEB94007417EF /* egg3_crack3@3x.png in Resources */,
+				96AAE9791AC1A13200654BF4 /* itemBox.png in Resources */,
 				96821DCB1ABCEB94007417EF /* egg3_crack1@2x.png in Resources */,
 				96821E1B1ABCEB94007417EF /* exit_button.png in Resources */,
 				96821E0B1ABCEB94007417EF /* alert_box@2x.png in Resources */,
@@ -982,6 +1011,7 @@
 				96821E1F1ABCEB94007417EF /* game_over@2x.png in Resources */,
 				96821E231ABCEB94007417EF /* item_shop_title@3x.png in Resources */,
 				966BA6961ABD06AB0054A982 /* buy_button@2x.png in Resources */,
+				96AAE97B1AC1A13200654BF4 /* itemBox@3x.png in Resources */,
 				96821E261ABCEB94007417EF /* main_hud@2x.png in Resources */,
 				96821E281ABCEB94007417EF /* shop_shelf.png in Resources */,
 				96821E341ABCEB94007417EF /* bar_happiness.png in Resources */,
@@ -1000,6 +1030,7 @@
 				96821DF51ABCEB94007417EF /* pEgg_crack1.atlas in Resources */,
 				96821E151ABCEB94007417EF /* bag_button.png in Resources */,
 				96821DF91ABCEB94007417EF /* pDying.atlas in Resources */,
+				96AAE9711AC0F22B00654BF4 /* soap.png in Resources */,
 				96821DE21ABCEB94007417EF /* bEgg_new.atlas in Resources */,
 				96821DF81ABCEB94007417EF /* pEgg_new.atlas in Resources */,
 				96821E2A1ABCEB94007417EF /* shop_shelf@3x.png in Resources */,
@@ -1030,6 +1061,7 @@
 				96802ACB1AA8D1C000B9AAF3 /* Main.storyboard in Resources */,
 				96821E141ABCEB94007417EF /* background_bluepolka@3x.png in Resources */,
 				96821DF01ABCEB94007417EF /* egg_crack3.atlas in Resources */,
+				96AAE9731AC0F22B00654BF4 /* soap@3x.png in Resources */,
 				96821DEF1ABCEB94007417EF /* egg_crack2.atlas in Resources */,
 				96821E011ABCEB94007417EF /* water.png in Resources */,
 				96E1AA261ABDF18C00973F71 /* broccoli.png in Resources */,
@@ -1054,6 +1086,7 @@
 			files = (
 				9653DB2B1AAF0B1E005103F8 /* EggObject.swift in Sources */,
 				9644A91A1AAD771D00FBD86C /* StatusBar.swift in Sources */,
+				96AAE9751AC1102600654BF4 /* ShopHUD.swift in Sources */,
 				96DED2C51AB46F690099E701 /* ShopViewController.swift in Sources */,
 				96DED2B51AB2539F0099E701 /* GameHUD.swift in Sources */,
 				96802AC61AA8D1C000B9AAF3 /* GameScene.swift in Sources */,
@@ -1064,7 +1097,6 @@
 				96DED2B21AB248620099E701 /* SceneManager.swift in Sources */,
 				9653DB141AAEE328005103F8 /* Egg.swift in Sources */,
 				96802AC81AA8D1C000B9AAF3 /* GameViewController.swift in Sources */,
-				96DED2BD1AB392A80099E701 /* StatsViewController.swift in Sources */,
 				96802AE61AA8D27800B9AAF3 /* Crealing.swift in Sources */,
 				96892C131AB8D8990022A13A /* GameScene_TouchesAndCollisions_EXT.swift in Sources */,
 				96802AC21AA8D1C000B9AAF3 /* AppDelegate.swift in Sources */,

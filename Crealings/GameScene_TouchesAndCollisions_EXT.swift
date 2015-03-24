@@ -46,6 +46,7 @@ extension GameScene {
                             }
                         } else { //If dead, show alert
                             alertBox = AlertBox();
+                            alertBox?.zPosition = 3;
                             if (alertBox!.setup(self, from: "game_over", item: nil)) {
                                 self.addChild(alertBox!);
                             }
@@ -55,7 +56,8 @@ extension GameScene {
                         gameDelegate?.MenuButtonClicked();
                     case "shop":
                         println("Tap Shop");
-                        gameDelegate?.ShopButtonClicked();
+//                        gameDelegate?.ShopButtonClicked();
+                        shopButtonClicked();
                     case "fight":
                         println("Tap Fight");
                     case "coin":
@@ -93,6 +95,7 @@ extension GameScene {
                             break;
                         } else { //If item shelf is not open, create it
                             itemBag = ItemBag();
+                            itemBag?.zPosition = 2;
                             itemBag?.setup(self)
                             self.addChild(itemBag!);
                             break;
