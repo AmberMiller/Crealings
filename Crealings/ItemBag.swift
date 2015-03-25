@@ -16,7 +16,7 @@ class ItemBag: SKNode {
     
     var foodArray: [Dictionary <String, AnyObject>] = [];
     var drinkArray: [Dictionary <String, AnyObject>] = [];
-    var toysArray: [Dictionary <String, AnyObject>] = [];
+    var careArray: [Dictionary <String, AnyObject>] = [];
     var selectedCell: Int = Int();
     
     var itemShelf: SKSpriteNode? = nil;
@@ -70,7 +70,7 @@ class ItemBag: SKNode {
         collection3?.position = CGPointMake(-itemShelf!.size.width / 2.21, -itemShelf!.size.height / 2.33);
         collection3?.zPosition = 2;
         
-        addChildren(collection3!, currentArray: toysArray); //Add toys to shelf node
+        addChildren(collection3!, currentArray: careArray); //Add toys to shelf node
         itemShelf?.addChild(collection3!);
         
         self.addChild(itemShelf!);
@@ -84,7 +84,7 @@ class ItemBag: SKNode {
         addChildren(collection2!, currentArray: drinkArray); //Add drink to shelf node
 
         collection3?.removeAllChildren();
-        addChildren(collection3!, currentArray: toysArray); //Add toys to shelf node
+        addChildren(collection3!, currentArray: careArray); //Add toys to shelf node
     }
     
     /***********************************************************
@@ -147,7 +147,7 @@ class ItemBag: SKNode {
             }
         }
         
-        for item in toysArray {
+        for item in careArray {
             if (item["imageName"] as String == nodeName) {
                 return item;
             }
@@ -161,9 +161,8 @@ class ItemBag: SKNode {
     func loadData () -> Bool {
         gameData.loadData();
         
-        foodArray = gameData.getFoodItemsArray();
-        drinkArray = gameData.getDrinkItemsArray();
-        toysArray = gameData.getToyItemsArray();
+        foodArray = gameData.getFoodAndDrinkItemsArray();
+        careArray = gameData.getCareItemsArray();
         
         return true;
     }

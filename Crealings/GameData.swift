@@ -35,9 +35,8 @@ class GameData {
     var hygiene: Int = Int();
     
     var items: Dictionary <String, AnyObject> = [:];
-    var foodItems: [Dictionary <String, AnyObject>] = [];
-    var drinkItems: [Dictionary <String, AnyObject>] = [];
-    var toyItems: [Dictionary <String, AnyObject>] = [];
+    var foodAndDrinkItems: [Dictionary <String, AnyObject>] = [];
+    var careItems: [Dictionary <String, AnyObject>] = [];
     
     func loadData () -> Bool {
         if directory != nil {
@@ -75,9 +74,8 @@ class GameData {
             status.setDataFromPlist(happiness, _energy: energy, _hunger: hunger, _thirst: thirst, _fun: fun, _hygiene: hygiene);
             
             items = gameData["Items"] as Dictionary <String, AnyObject>;
-            foodItems = items["Food"] as [Dictionary <String, AnyObject>];
-            drinkItems = items["Drinks"] as [Dictionary <String, AnyObject>];
-            toyItems = items["Toys"] as [Dictionary <String, AnyObject>];
+            foodAndDrinkItems = items["FoodAndDrinks"] as [Dictionary <String, AnyObject>];
+            careItems = items["Care"] as [Dictionary <String, AnyObject>];
             
             return true;
         }
@@ -88,19 +86,14 @@ class GameData {
         Get Data
     ************************************************************/
     
-    func getFoodItemsArray () -> [Dictionary <String, AnyObject>] {
-        println("Get Food Items Array: \(foodItems)");
-        return foodItems;
+    func getFoodAndDrinkItemsArray () -> [Dictionary <String, AnyObject>] {
+        println("Get Food And Drink Items Array: \(foodAndDrinkItems)");
+        return foodAndDrinkItems;
     }
     
-    func getDrinkItemsArray () -> [Dictionary <String, AnyObject>] {
-        println("Get Drink Items Array: \(drinkItems)");
-        return drinkItems;
-    }
-    
-    func getToyItemsArray () -> [Dictionary <String, AnyObject>] {
-        println("Get Toy Items Array: \(toyItems)");
-        return toyItems;
+    func getCareItemsArray () -> [Dictionary <String, AnyObject>] {
+        println("Get Care Items Array: \(careItems)");
+        return careItems;
     }
     
     /***********************************************************
@@ -127,33 +120,25 @@ class GameData {
     
     func setItemData (newItem: Dictionary <String, AnyObject>) {
         
-        for item in foodItems {
+        for item in foodAndDrinkItems {
             if (item["name"] as String == newItem["name"] as String) {
                 let index: Int = item["id"] as Int;
-                foodItems[index] = newItem;
+                foodAndDrinkItems[index] = newItem;
+                break;
+            }
+        }
+
+        
+        for item in careItems {
+            if (item["name"] as String == newItem["name"] as String) {
+                let index: Int = item["id"] as Int;
+                careItems[index] = newItem;
                 break;
             }
         }
         
-        for item in drinkItems {
-            if (item["name"] as String == newItem["name"] as String) {
-                let index: Int = item["id"] as Int;
-                drinkItems[index] = newItem;
-                break;
-            }
-        }
-        
-        for item in toyItems {
-            if (item["name"] as String == newItem["name"] as String) {
-                let index: Int = item["id"] as Int;
-                toyItems[index] = newItem;
-                break;
-            }
-        }
-        
-        writeItems(foodItems, key: "Food");
-        writeItems(drinkItems, key: "Drinks");
-        writeItems(toyItems, key: "Toys");
+        writeItems(foodAndDrinkItems, key: "FoodAndDrinks");
+        writeItems(careItems, key: "Care");
     }
 
     

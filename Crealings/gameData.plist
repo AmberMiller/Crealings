@@ -19,88 +19,7 @@
 	</dict>
 	<key>Items</key>
 	<dict>
-		<key>Food</key>
-		<array>
-			<dict>
-				<key>id</key>
-				<integer>0</integer>
-				<key>name</key>
-				<string>Apple</string>
-				<key>description</key>
-				<string>An apple a day keeps anyone away if you throw it hard enough. +5 Happiness, +5 Hunger</string>
-				<key>cost</key>
-				<integer>5</integer>
-				<key>imageName</key>
-				<string>apple</string>
-				<key>happinessChange</key>
-				<integer>5</integer>
-				<key>energyChange</key>
-				<integer>0</integer>
-				<key>hungerChange</key>
-				<integer>5</integer>
-				<key>thirstChange</key>
-				<integer>0</integer>
-				<key>funChange</key>
-				<integer>0</integer>
-				<key>hygieneChange</key>
-				<integer>0</integer>
-				<key>numOwned</key>
-				<integer>0</integer>
-			</dict>
-			<dict>
-				<key>id</key>
-				<integer>1</integer>
-				<key>name</key>
-				<string>Broccoli</string>
-				<key>description</key>
-				<string>Eww, broccoli! -5 Happiness, +10 Hunger</string>
-				<key>cost</key>
-				<integer>20</integer>
-				<key>imageName</key>
-				<string>broccoli</string>
-				<key>happinessChange</key>
-				<integer>-5</integer>
-				<key>energyChange</key>
-				<integer>0</integer>
-				<key>hungerChange</key>
-				<integer>10</integer>
-				<key>thirstChange</key>
-				<integer>0</integer>
-				<key>funChange</key>
-				<integer>0</integer>
-				<key>hygieneChange</key>
-				<integer>0</integer>
-				<key>numOwned</key>
-				<integer>0</integer>
-			</dict>
-			<dict>
-				<key>id</key>
-				<integer>2</integer>
-				<key>name</key>
-				<string>Chocolate</string>
-				<key>description</key>
-				<string>Chocolate? CHOCOLATE!!! +20 Happiness, +5 Hunger</string>
-				<key>cost</key>
-				<integer>50</integer>
-				<key>imageName</key>
-				<string>chocolate</string>
-				<key>happinessChange</key>
-				<integer>20</integer>
-				<key>energyChange</key>
-				<integer>0</integer>
-				<key>hungerChange</key>
-				<integer>5</integer>
-				<key>thirstChange</key>
-				<integer>0</integer>
-				<key>funChange</key>
-				<integer>0</integer>
-				<key>hygieneChange</key>
-				<integer>0</integer>
-				<key>numOwned</key>
-				<integer>0</integer>
-			</dict>
-		</array>
-		<key>Drinks</key>
+		<key>FoodAndDrinks</key>
 		<array>
 			<dict>
 				<key>id</key>
@@ -108,7 +27,7 @@
 				<key>name</key>
 				<string>Water</string>
 				<key>description</key>
-				<string>The most basic thirst quencher. +5 Thirst</string>
+				<string>+5 Thirst</string>
 				<key>cost</key>
 				<integer>5</integer>
 				<key>imageName</key>
@@ -132,9 +51,61 @@
 				<key>id</key>
 				<integer>1</integer>
 				<key>name</key>
+				<string>Apple</string>
+				<key>description</key>
+				<string>+5 Happiness, +5 Hunger</string>
+				<key>cost</key>
+				<integer>5</integer>
+				<key>imageName</key>
+				<string>apple</string>
+				<key>happinessChange</key>
+				<integer>5</integer>
+				<key>energyChange</key>
+				<integer>0</integer>
+				<key>hungerChange</key>
+				<integer>5</integer>
+				<key>thirstChange</key>
+				<integer>0</integer>
+				<key>funChange</key>
+				<integer>0</integer>
+				<key>hygieneChange</key>
+				<integer>0</integer>
+				<key>numOwned</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>id</key>
+				<integer>2</integer>
+				<key>name</key>
+				<string>Broccoli</string>
+				<key>description</key>
+				<string>-5 Happiness, +10 Hunger</string>
+				<key>cost</key>
+				<integer>20</integer>
+				<key>imageName</key>
+				<string>broccoli</string>
+				<key>happinessChange</key>
+				<integer>-5</integer>
+				<key>energyChange</key>
+				<integer>0</integer>
+				<key>hungerChange</key>
+				<integer>10</integer>
+				<key>thirstChange</key>
+				<integer>0</integer>
+				<key>funChange</key>
+				<integer>0</integer>
+				<key>hygieneChange</key>
+				<integer>0</integer>
+				<key>numOwned</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>id</key>
+				<integer>3</integer>
+				<key>name</key>
 				<string>Coffee</string>
 				<key>description</key>
-				<string>The precioussss. +5 Happiness, +10 Energy, +5 Thirst</string>
+				<string>+5 Happiness, +10 Energy, +5 Thirst</string>
 				<key>cost</key>
 				<integer>20</integer>
 				<key>imageName</key>
@@ -154,8 +125,34 @@
 				<key>numOwned</key>
 				<integer>0</integer>
 			</dict>
+			<dict>
+				<key>id</key>
+				<integer>4</integer>
+				<key>name</key>
+				<string>Chocolate</string>
+				<key>description</key>
+				<string>+20 Happiness, +5 Hunger</string>
+				<key>cost</key>
+				<integer>50</integer>
+				<key>imageName</key>
+				<string>chocolate</string>
+				<key>happinessChange</key>
+				<integer>20</integer>
+				<key>energyChange</key>
+				<integer>0</integer>
+				<key>hungerChange</key>
+				<integer>5</integer>
+				<key>thirstChange</key>
+				<integer>0</integer>
+				<key>funChange</key>
+				<integer>0</integer>
+				<key>hygieneChange</key>
+				<integer>0</integer>
+				<key>numOwned</key>
+				<integer>0</integer>
+			</dict>
 		</array>
-		<key>Toys</key>
+		<key>Care</key>
 		<array>
 			<dict>
 				<key>id</key>
@@ -163,7 +160,7 @@
 				<key>name</key>
 				<string>Toy Ball</string>
 				<key>description</key>
-				<string>Throw the ball. Throw it! +10 Happiness, -10 Energy, +10 Fun, -10 Hygiene</string>
+				<string>+10 Happiness, -10 Energy, +10 Fun, -10 Hygiene</string>
 				<key>cost</key>
 				<integer>15</integer>
 				<key>imageName</key>

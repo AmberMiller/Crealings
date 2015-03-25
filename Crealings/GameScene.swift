@@ -28,6 +28,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return gameScene.instance
     }
     
+    enum UIUserInterfaceIdiom : Int {
+        case Unspecified
+        
+        case Phone // iPhone and iPod touch style UI
+        case Pad // iPad style UI
+    }
+    
     enum CollisionType: UInt32 {
         case CREALING = 0
         case ITEM
@@ -37,6 +44,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameDelegate: GameSceneDelegate?;
     var gameData: GameData = GameData.sharedInstance;
     let status: Status = Status.sharedInstance;
+    var gameView: SKView = SKView();
     
     var isNewGame: Bool = Bool();
     var currentMon: String? = nil;
@@ -56,12 +64,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var selectedNodeName: String = String();
     var usableItemDict: Dictionary <String, AnyObject>? = nil;
     var itemHovering: Bool = Bool();
+    var itemShopOpen: Bool = Bool();
     
     var refreshRate: NSTimeInterval = 0;
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         gameDelegate?.GameSceneSetup();
+        gameView = view;
     }
     
     func refresh () {
@@ -196,12 +206,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (shopHUD == nil) {
             shopHUD = ShopHUD();
             shopHUD?.zPosition = 2;
-            if (shopHUD!.setup(self)) {
+            if (shopHUD!.setup(self, skView: gameView)) {
+                itemShopOpen = true;
                 self.addChild(shopHUD!);
                 shopHUD?.animateIn();
             }
         } else {
             if (shopHUD!.animateOut()) {
+                itemShopOpen = false;
                 shopHUD = nil;
             }
         }

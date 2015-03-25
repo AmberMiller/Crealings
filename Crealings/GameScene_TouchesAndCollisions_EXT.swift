@@ -28,7 +28,7 @@ extension GameScene {
                 println("Node Name: \(node.name)");
                 /* If node.name is in nameArray, close the bag and continue based on name,
                 else do item shelf functions */
-                let nameArray: [String] = ["crealing", "menu", "shop", "fight", "coin", "gem", "exp", "help", "happiness", "energy", "hunger", "thirst", "fun", "hygiene", "toStart", "exit"];
+                let nameArray: [String] = ["crealing", "menu", "shop", "fight", "coin", "gem", "exp", "help", "happiness", "energy", "hunger", "thirst", "fun", "hygiene", "toStart", "exit", "foodDrinksTab", "careTab", "accessoriesTab", "decorationsTab", "premiumTab"];
                 let found = find(nameArray, node.name!) != nil;
                 
                 if (found) {
@@ -56,7 +56,6 @@ extension GameScene {
                         gameDelegate?.MenuButtonClicked();
                     case "shop":
                         println("Tap Shop");
-//                        gameDelegate?.ShopButtonClicked();
                         shopButtonClicked();
                     case "fight":
                         println("Tap Fight");
@@ -81,29 +80,37 @@ extension GameScene {
                             alertBox = nil;
                             break;
                         }
+                    case "foodDrinksTab", "careTab", "accessoriesTab", "decorationsTab", "premiumTab":
+                        if (shopHUD != nil) {
+                            shopHUD!.tapTab(node.name!);
+                        }
                     default:
                         break;
                     }
                 } else {
-                    println("Item Shelf Tapped");
-                    if (node.name == "bag") {
-                        println("Tap Bag");
-                        isItem = false;
-                        if (itemBag != nil) { //If item shelf is open, close it
-                            itemBag?.removeFromParent();
-                            itemBag = nil;
-                            break;
-                        } else { //If item shelf is not open, create it
-                            itemBag = ItemBag();
-                            itemBag?.zPosition = 2;
-                            itemBag?.setup(self)
-                            self.addChild(itemBag!);
-                            break;
-                        }
+                    if (itemShopOpen) {
+                        shopHUD?.buyItem(node.name!);
                     } else {
-                        isItem = true; //If not the bag, then node must be an item
-                        selectedNodeName = node.name!; //Save node.name for long press function
-                        usableItemDict = itemBag!.getItemDict(selectedNodeName)!;
+                        println("Item Shelf Tapped");
+                        if (node.name == "bag") {
+                            println("Tap Bag");
+                            isItem = false;
+                            if (itemBag != nil) { //If item shelf is open, close it
+                                itemBag?.removeFromParent();
+                                itemBag = nil;
+                                break;
+                            } else { //If item shelf is not open, create it
+                                itemBag = ItemBag();
+                                itemBag?.zPosition = 2;
+                                itemBag?.setup(self)
+                                self.addChild(itemBag!);
+                                break;
+                            }
+                        } else {
+                            isItem = true; //If not the bag, then node must be an item
+                            selectedNodeName = node.name!; //Save node.name for long press function
+                            usableItemDict = itemBag!.getItemDict(selectedNodeName)!;
+                        }
                     }
                 }
             }

@@ -47,11 +47,11 @@ class ShopViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func loadData () {
-        if (gameData.loadData()) {
-            foodArray = gameData.getFoodItemsArray();
-            drinkArray = gameData.getDrinkItemsArray();
-            toysArray = gameData.getToyItemsArray();
-        }
+//        if (gameData.loadData()) {
+//            foodArray = gameData.getFoodItemsArray();
+//            drinkArray = gameData.getDrinkItemsArray();
+//            toysArray = gameData.getToyItemsArray();
+//        }
     }
     
 
