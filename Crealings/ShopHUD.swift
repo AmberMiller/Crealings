@@ -12,6 +12,7 @@ class ShopHUD: SKSpriteNode {
     
     var foodAndDrinksArray: [Dictionary <String, AnyObject>] = [];
     var careArray: [Dictionary <String, AnyObject>] = [];
+    var decorationsArray: [Dictionary <String, AnyObject>] = [];
     
     var currentArray: [Dictionary <String, AnyObject>] = [];
     var currentTab: String = String();
@@ -102,6 +103,8 @@ class ShopHUD: SKSpriteNode {
         if (gameData.loadData()) {
             foodAndDrinksArray = gameData.getFoodAndDrinkItemsArray();
             careArray = gameData.getCareItemsArray();
+            decorationsArray = gameData.getDecorationItemsArray();
+            println("Decorations Array: \(decorationsArray)");
         }
         
         return true;
@@ -143,6 +146,7 @@ class ShopHUD: SKSpriteNode {
     func animateOut () -> Bool {
         gameData.writeItems(foodAndDrinksArray, key: "FoodAndDrinks");
         gameData.writeItems(careArray, key: "Care");
+        gameData.writeItems(decorationsArray, key: "Decorations");
 
         
         let moveAction: SKAction = SKAction.moveTo(CGPointMake(gameView!.size.width / 2, -gameView!.size.height), duration: 0.3);
@@ -162,6 +166,7 @@ class ShopHUD: SKSpriteNode {
     func addItems () {
         
         itemsSprite.removeAllChildren();
+        numLabelArray.removeAll();
         
         for (var i = 0; i < currentArray.count; i++) {
             let currentItem: Dictionary <String, AnyObject> = currentArray[i];
@@ -183,6 +188,8 @@ class ShopHUD: SKSpriteNode {
             
             let image: SKSpriteNode = SKSpriteNode(imageNamed: currentItem["imageName"] as String);
             image.position = CGPointMake(0.0, itemBox.size.height / 8.5);
+            let imageSize = itemBox.size.width / 1.8;
+            image.size = CGSizeMake(imageSize, imageSize);
             
             let description: DSMultilineLabelNode = DSMultilineLabelNode();
             description.text = currentItem["description"] as String;
@@ -203,24 +210,37 @@ class ShopHUD: SKSpriteNode {
             numOwned.name = toString(i);
             numLabelArray.append(numOwned);
             
+            let owned: SKLabelNode = SKLabelNode(text: "Owned");
+            owned.fontName = "MarkerFelt-Thin";
+            owned.fontColor = UIColor(red: 0.565, green: 0.4, blue: 0.776, alpha: 1); /*#9066c6*/
+            owned.position = CGPointMake(0.0, -itemBox.size.height / 3);
+            
             let buyButton: SKSpriteNode = SKSpriteNode(imageNamed: "buy_button");
             buyButton.position = CGPointMake(0.0, -itemBox.size.height / 2.3);
             buyButton.name = toString(i);
             
             if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
-                description.fontSize = 16;
+                name.fontSize = 22;
+                description.fontSize = 15;
                 cost.fontSize = 22;
             } else {
-                description.fontSize = 26;
+                name.fontSize = 32;
+                description.fontSize = 25;
                 cost.fontSize = 32;
             }
             
             itemBox.addChild(name);
             itemBox.addChild(image);
             itemBox.addChild(description);
-            itemBox.addChild(cost);
-            itemBox.addChild(numOwned);
-            itemBox.addChild(buyButton);
+            
+            if ((currentTab == "accessoriesTab" || currentTab == "decorationsTab") && currentItem["numOwned"] as Int > 0) {
+                itemBox.addChild(owned);
+            } else {
+                itemBox.addChild(cost);
+                itemBox.addChild(numOwned);
+                itemBox.addChild(buyButton);
+            }
+            
             itemsSprite.addChild(itemBox);
         }
     }
@@ -260,7 +280,7 @@ class ShopHUD: SKSpriteNode {
                     addItems();
                 }
             case "decorationsTab":
-                currentArray = careArray;
+                currentArray = decorationsArray;
                 if (currentTab != "decorationsTab") {
                     currentTab = "decorationsTab";
                     foodDrinksTab.texture = SKTexture(imageNamed: "food_drinks_tab");
@@ -310,6 +330,10 @@ class ShopHUD: SKSpriteNode {
             case "careTab":
                 careArray[id!] = item;
                 currentArray = careArray;
+            case "decorationsTab":
+                decorationsArray[id!] = item;
+                currentArray = decorationsArray;
+                addItems();
             default:
                 println("No Tab");
         }

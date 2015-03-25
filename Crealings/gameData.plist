@@ -46,6 +46,8 @@
 				<integer>0</integer>
 				<key>numOwned</key>
 				<integer>0</integer>
+				<key>isConsumable</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>id</key>
@@ -72,6 +74,8 @@
 				<integer>0</integer>
 				<key>numOwned</key>
 				<integer>0</integer>
+				<key>isConsumable</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>id</key>
@@ -98,6 +102,8 @@
 				<integer>0</integer>
 				<key>numOwned</key>
 				<integer>0</integer>
+				<key>isConsumable</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>id</key>
@@ -124,6 +130,8 @@
 				<integer>0</integer>
 				<key>numOwned</key>
 				<integer>0</integer>
+				<key>isConsumable</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>id</key>
@@ -150,6 +158,8 @@
 				<integer>0</integer>
 				<key>numOwned</key>
 				<integer>0</integer>
+				<key>isConsumable</key>
+				<true/>
 			</dict>
 		</array>
 		<key>Care</key>
@@ -179,6 +189,8 @@
 				<integer>-10</integer>
 				<key>numOwned</key>
 				<integer>0</integer>
+				<key>isConsumable</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>id</key>
@@ -205,6 +217,65 @@
 				<integer>15</integer>
 				<key>numOwned</key>
 				<integer>0</integer>
+				<key>isConsumable</key>
+				<true/>
+			</dict>
+		</array>
+		<key>Decorations</key>
+		<array>
+			<dict>
+				<key>id</key>
+				<integer>0</integer>
+				<key>name</key>
+				<string>Pink Stripe Wall</string>
+				<key>description</key>
+				<string>Background 1</string>
+				<key>cost</key>
+				<integer>0</integer>
+				<key>imageName</key>
+				<string>bg1</string>
+				<key>image</key>
+				<string>background1</string>
+				<key>numOwned</key>
+				<integer>1</integer>
+				<key>isConsumable</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>id</key>
+				<integer>1</integer>
+				<key>name</key>
+				<string>Green Stripe Wall</string>
+				<key>description</key>
+				<string>Background 2</string>
+				<key>cost</key>
+				<integer>20</integer>
+				<key>imageName</key>
+				<string>bg2</string>
+				<key>image</key>
+				<string>background2</string>
+				<key>numOwned</key>
+				<integer>0</integer>
+				<key>isConsumable</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>id</key>
+				<integer>2</integer>
+				<key>name</key>
+				<string>Outside With Tree</string>
+				<key>description</key>
+				<string>Background 3</string>
+				<key>cost</key>
+				<integer>50</integer>
+				<key>imageName</key>
+				<string>bg3</string>
+				<key>image</key>
+				<string>background3</string>
+				<key>numOwned</key>
+				<integer>0</integer>
+				<key>isConsumable</key>
+				<false/>
 			</dict>
 		</array>
 	</dict>

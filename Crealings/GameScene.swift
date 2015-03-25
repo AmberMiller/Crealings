@@ -50,6 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var currentMon: String? = nil;
     
     var gameHUD: GameHUD? = nil;
+    var bg: SKSpriteNode? = nil;
     var crealing: Crealing? = nil;
     var itemBag: ItemBag? = nil;
     var usableItem: UsableItem? = nil;
@@ -122,12 +123,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 && (itemBag != nil) //Make sure itemBag is "open"
                 && usableItemDict != nil) //Make sure item dictionary is not nil
             {
-                /* Create and add item based on current location */
-                usableItem = UsableItem();
-                usableItem?.zPosition = 1;
-                usableItem!.addItem(usableItemDict!, tapPosition: tapLocation);
-                self.addChild(usableItem!);
-                closeBag(); //Close the bag
+                if (usableItemDict!["isConsumable"] as Bool) {
+                    /* Create and add item based on current location */
+                    usableItem = UsableItem();
+                    usableItem?.zPosition = 1;
+                    usableItem!.addItem(usableItemDict!, tapPosition: tapLocation);
+                    self.addChild(usableItem!);
+                    closeBag(); //Close the bag
+                }
             }
         }
     }
@@ -153,11 +156,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         view?.showsPhysics = true; //Show physics bounds
         
         /* Add background to scene */
-        let bg: SKSpriteNode = SKSpriteNode(imageNamed: "background_bluepolka");
-        bg.zPosition = -1; //Make sure is behind
-        bg.size = CGSizeMake(self.size.width, getRatioHeight(bg.size.width, height: bg.size.height)); //Keep ratio
-        bg.position = CGPointMake(self.size.width / 2, self.size.height / 2);
-        self.addChild(bg);
+        bg = SKSpriteNode(imageNamed: "background_bluepolka");
+        bg!.zPosition = -1; //Make sure is behind
+        bg!.size = CGSizeMake(self.size.width, getRatioHeight(bg!.size.width, height: bg!.size.height)); //Keep ratio
+        bg!.position = CGPointMake(self.size.width / 2, self.size.height / 2);
+        self.addChild(bg!);
         
         /* Setup game menu */
         gameHUD = GameHUD(imageNamed: "main_hud");

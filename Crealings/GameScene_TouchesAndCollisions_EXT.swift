@@ -109,7 +109,14 @@ extension GameScene {
                         } else {
                             isItem = true; //If not the bag, then node must be an item
                             selectedNodeName = node.name!; //Save node.name for long press function
+                            println("ItemBag: \(itemBag), selectedNodeName: \(selectedNodeName)");
                             usableItemDict = itemBag!.getItemDict(selectedNodeName)!;
+                            if (!(usableItemDict!["isConsumable"] as Bool)) {
+                                let imageName = usableItemDict!["image"] as String;
+                                if (bg != nil) {
+                                    bg!.texture = SKTexture(imageNamed: imageName);
+                                }
+                            }
                         }
                     }
                 }
@@ -216,6 +223,7 @@ extension GameScene {
     
     /* Pull item data, set status changes, refresh mood, and remove item from scene */
     func giveItemToPet () {
+        
         if (usableItemDict != nil && gameHUD? != nil && crealing!.giveItem(usableItemDict!["happinessChange"] as Int,
             energy: usableItemDict!["energyChange"] as Int,
             hunger: usableItemDict!["hungerChange"] as Int,
@@ -232,13 +240,11 @@ extension GameScene {
             var numOwned: Int = usableItemDict!["numOwned"] as Int;
             numOwned -= 1;
             usableItemDict!.updateValue(numOwned, forKey: "numOwned");
-            gameData.setItemData(usableItemDict!);
-            
+            gameData.setItemData(usableItemDict!);             
             usableItem?.removeFromParent();
             usableItem = nil;
             usableItemDict = nil;
             itemHovering = false;
         }
-
     }
 }
