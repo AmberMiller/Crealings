@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 Amber Miller. All rights reserved.
 //
 
+import Foundation
 import SpriteKit
 
 protocol GameSceneDelegate {
     func GameSceneSetup();
     func MenuButtonClicked();
-    func ShopButtonClicked();
     func FightButtonClicked();
     func clearGame();
 }
@@ -56,6 +56,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var usableItem: UsableItem? = nil;
     var shopHUD: ShopHUD? = nil;
     var alertBox: AlertBox? = nil;
+    var helpScreen: HelpScreen? = nil;
+    
+    var userCoins: Int = Int();
     
     var touching: Bool = Bool();
     var touchLength: NSTimeInterval = 0;
@@ -67,6 +70,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var itemHovering: Bool = Bool();
     var itemShopOpen: Bool = Bool();
     
+    var timeSinceLastCoinDrop: NSTimeInterval = 0;
     var refreshRate: NSTimeInterval = 0;
     
     override func didMoveToView(view: SKView) {
@@ -93,25 +97,66 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             var timeSinceLast: CFTimeInterval = currentTime - lastUpdate;
             lastUpdate = currentTime;
         
-//        println("UPDATE: currentTime = \(currentTime), lastUpdate = \(lastUpdate), timeSinceLast = \(timeSinceLast),");
-        
             /* If frame rate drops, keep ratio */
             if (timeSinceLast > 1) {
                 timeSinceLast = 1.0 / 60.0;
                 lastUpdate = currentTime;
             }
         
-//        println(" timeSinceLast = \(timeSinceLast)");
-        
+        /* Testing Purposes Only: Refresh stats */
         refreshRate += timeSinceLast;
-        
-//        println("Refresh Time: \(refreshRate)");
         
         if (refreshRate > 6.0) {
             refresh();
             refreshRate = 0;
         }
+        
+        /* Random Coins */
 
+        if (crealing != nil && status.getMoodTotal() > 65) {
+            timeSinceLastCoinDrop += timeSinceLast;
+        
+            let randomTime: Double = Double(arc4random_uniform(10) + 3);
+            if (timeSinceLastCoinDrop > randomTime) {
+                let coinsGiven = Int(arc4random_uniform(5) + 1);
+                var coinDrop: SKSpriteNode = SKSpriteNode();
+                switch coinsGiven {
+                    case 1:
+                        coinDrop = SKSpriteNode(imageNamed: "plus1coin");
+                    case 2:
+                        coinDrop = SKSpriteNode(imageNamed: "plus2coin");
+                    case 3:
+                        coinDrop = SKSpriteNode(imageNamed: "plus3coin");
+                    case 4:
+                        coinDrop = SKSpriteNode(imageNamed: "plus4coin");
+                    case 5:
+                        coinDrop = SKSpriteNode(imageNamed: "plus5coin");
+                    default:
+                        println("Coins Given: \(coinsGiven)");
+                }
+                coinDrop.position = CGPointMake(self.size.width / 2, self.size.height / 2.5);
+                coinDrop.zPosition = 3;
+                coinDrop.alpha = 0.0;
+                self.addChild(coinDrop);
+
+                let coinAction = SKAction.sequence ([
+                    SKAction.fadeInWithDuration(0.4),
+                    SKAction.moveBy(CGVectorMake(0.0, 30.0), duration: 1.0),
+                    SKAction.fadeOutWithDuration(0.6),
+                    SKAction.removeFromParent()
+                ]);
+                coinDrop.runAction(coinAction);
+                timeSinceLastCoinDrop = 0;
+                
+                userCoins = gameData.getUserCoins();
+                userCoins += coinsGiven;
+                gameData.writeData(userCoins, key: "userCoins");
+                gameHUD!.setCoinsAmount(userCoins);
+                gameData.loadData();
+            }
+        }
+
+        /* Long Press */
         if (touching) { //If user is holding tap
 
             touchLength += timeSinceLast; //Track touch length
@@ -156,27 +201,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         view?.showsPhysics = true; //Show physics bounds
         
         /* Add background to scene */
-        bg = SKSpriteNode(imageNamed: "background_bluepolka");
+        let bgName: String = gameData.getBackground();
+        bg = SKSpriteNode(imageNamed: bgName);
         bg!.zPosition = -1; //Make sure is behind
         bg!.size = CGSizeMake(self.size.width, getRatioHeight(bg!.size.width, height: bg!.size.height)); //Keep ratio
         bg!.position = CGPointMake(self.size.width / 2, self.size.height / 2);
         self.addChild(bg!);
         
-        /* Setup game menu */
-        gameHUD = GameHUD(imageNamed: "main_hud");
-        gameHUD?.position = CGPointMake(0.0, self.frame.height);
-        gameHUD?.zPosition = 1;
-        gameHUD?.size = CGSizeMake(self.size.width, getRatioHeight(gameHUD!.size.width, height: gameHUD!.size.height)); //Set menu size to width of screen
-        
-        if ((gameHUD != nil) && (gameHUD!.setupHUD())) {
+        /* Add game menu to scene */
+        gameHUD = GameHUD.sharedInstance;
+        if (gameHUD!.setupHUD(self)) {
+            userCoins = gameData.getUserCoins();
+            gameHUD!.setCoinsAmount(userCoins);
             self.addChild(self.gameHUD!);
         }
         
-        println("GAME SIZE: \(self.frame.size) HUD SIZE: \(gameHUD?.frame.size)");
+        println("GAME SIZE: \(self.frame.size) HUD SIZE: \(gameHUD!.frame.size)");
         
         /* Add crealing to scene */
         crealing = Crealing();
-        crealing?.zPosition = 0;
+        crealing!.name = "crealing";
         if (currentMon != nil) {
             if ((crealing != nil) && (crealing!.setup(self, mon: currentMon!))) {
                 self.addChild(crealing!);
@@ -219,6 +263,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 itemShopOpen = false;
                 shopHUD = nil;
             }
+        }
+    }
+    
+    /* Open/Close help screen */
+    func helpButtonClicked () {
+        if (helpScreen == nil) {
+            helpScreen = HelpScreen();
+            helpScreen?.zPosition = 5;
+            
+            if (helpScreen!.setup(self)) {
+                self.addChild(helpScreen!);
+            }
+        } else {
+            helpScreen?.removeFromParent();
+            helpScreen = nil;
         }
     }
 }

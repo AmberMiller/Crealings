@@ -2,18 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>userCoins</key>
+	<integer>100</integer>
+	<key>userGems</key>
+	<integer>0</integer>
+	<key>userBackground</key>
+	<string>background_bluepolka</string>
 	<key>Status</key>
 	<dict>
 		<key>happiness</key>
-		<integer>50</integer>
+		<integer>80</integer>
 		<key>energy</key>
 		<integer>100</integer>
 		<key>hunger</key>
-		<integer>50</integer>
+		<integer>80</integer>
 		<key>thirst</key>
-		<integer>50</integer>
+		<integer>80</integer>
 		<key>fun</key>
-		<integer>50</integer>
+		<integer>80</integer>
 		<key>hygiene</key>
 		<integer>100</integer>
 	</dict>
@@ -45,7 +51,7 @@
 				<key>hygieneChange</key>
 				<integer>0</integer>
 				<key>numOwned</key>
-				<integer>0</integer>
+				<integer>5</integer>
 				<key>isConsumable</key>
 				<true/>
 			</dict>
@@ -73,7 +79,7 @@
 				<key>hygieneChange</key>
 				<integer>0</integer>
 				<key>numOwned</key>
-				<integer>0</integer>
+				<integer>5</integer>
 				<key>isConsumable</key>
 				<true/>
 			</dict>
@@ -111,19 +117,19 @@
 				<key>name</key>
 				<string>Coffee</string>
 				<key>description</key>
-				<string>+5 Happiness, +10 Energy, +5 Thirst</string>
+				<string>+10 Happiness, +20 Energy, +10 Thirst</string>
 				<key>cost</key>
 				<integer>20</integer>
 				<key>imageName</key>
 				<string>coffee</string>
 				<key>happinessChange</key>
-				<integer>5</integer>
-				<key>energyChange</key>
 				<integer>10</integer>
+				<key>energyChange</key>
+				<integer>20</integer>
 				<key>hungerChange</key>
 				<integer>0</integer>
 				<key>thirstChange</key>
-				<integer>5</integer>
+				<integer>10</integer>
 				<key>funChange</key>
 				<integer>0</integer>
 				<key>hygieneChange</key>
@@ -170,7 +176,7 @@
 				<key>name</key>
 				<string>Toy Ball</string>
 				<key>description</key>
-				<string>+10 Happiness, -10 Energy, +10 Fun, -10 Hygiene</string>
+				<string>+10 Happiness, -5 Energy, +10 Fun, -10 Hygiene</string>
 				<key>cost</key>
 				<integer>15</integer>
 				<key>imageName</key>
@@ -178,7 +184,7 @@
 				<key>happinessChange</key>
 				<integer>10</integer>
 				<key>energyChange</key>
-				<integer>-10</integer>
+				<integer>-5</integer>
 				<key>hungerChange</key>
 				<integer>0</integer>
 				<key>thirstChange</key>
@@ -198,7 +204,7 @@
 				<key>name</key>
 				<string>Soap</string>
 				<key>description</key>
-				<string> +15 Hygiene</string>
+				<string> +25 Hygiene</string>
 				<key>cost</key>
 				<integer>10</integer>
 				<key>imageName</key>
@@ -214,7 +220,7 @@
 				<key>funChange</key>
 				<integer>0</integer>
 				<key>hygieneChange</key>
-				<integer>15</integer>
+				<integer>25</integer>
 				<key>numOwned</key>
 				<integer>0</integer>
 				<key>isConsumable</key>
@@ -227,15 +233,15 @@
 				<key>id</key>
 				<integer>0</integer>
 				<key>name</key>
-				<string>Pink Stripe Wall</string>
+				<string>Blue Polka Dots</string>
 				<key>description</key>
-				<string>Background 1</string>
+				<string>Default</string>
 				<key>cost</key>
 				<integer>0</integer>
 				<key>imageName</key>
-				<string>bg1</string>
+				<string>bg0</string>
 				<key>image</key>
-				<string>background1</string>
+				<string>background_bluepolka</string>
 				<key>numOwned</key>
 				<integer>1</integer>
 				<key>isConsumable</key>
@@ -244,6 +250,24 @@
 			<dict>
 				<key>id</key>
 				<integer>1</integer>
+				<key>name</key>
+				<string>Pink Stripe Wall</string>
+				<key>description</key>
+				<string>Background 1</string>
+				<key>cost</key>
+				<integer>10</integer>
+				<key>imageName</key>
+				<string>bg1</string>
+				<key>image</key>
+				<string>background1</string>
+				<key>numOwned</key>
+				<integer>0</integer>
+				<key>isConsumable</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>id</key>
+				<integer>2</integer>
 				<key>name</key>
 				<string>Green Stripe Wall</string>
 				<key>description</key>
@@ -261,7 +285,7 @@
 			</dict>
 			<dict>
 				<key>id</key>
-				<integer>2</integer>
+				<integer>3</integer>
 				<key>name</key>
 				<string>Outside With Tree</string>
 				<key>description</key>
@@ -279,5 +303,26 @@
 			</dict>
 		</array>
 	</dict>
+	<key>Stats</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>Number of Food And Drink Items Given:</string>
+			<key>value</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Number of Care Items Used:</string>
+			<key>value</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Number of Decorations Bought:</string>
+			<key>value</key>
+			<integer>0</integer>
+		</dict>
+	</array>
 </dict>
 </plist>

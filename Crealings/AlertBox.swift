@@ -23,6 +23,7 @@ class AlertBox: SKNode {
             let newViewWidth: CGFloat = view.size.width / 2;
             let ratioHeight: CGFloat = newViewWidth / ratio;
             alertSprite?.size = CGSizeMake(newViewWidth, ratioHeight);
+            alertSprite?.zPosition = 4;
             
             let toStartButton = SKSpriteNode();
             toStartButton.zPosition = 2;

@@ -43,11 +43,11 @@ final class Status {
     }
     
     func resetData () {
-        happiness = 50;
+        happiness = 80;
         energy = 100;
-        hunger = 50;
-        thirst = 50;
-        fun = 50;
+        hunger = 80;
+        thirst = 80;
+        fun = 80;
         hygiene = 100;
         
         gameData.writeStatus(happiness, key: "happiness");
@@ -142,7 +142,7 @@ final class Status {
     ************************************************************/
     
     func getMoodTotal () -> Int {
-        let moodTotal = (getHappiness() + getEnergy() + getHunger() + getThirst() + getFun() + getHygiene()) / 6;
+        let moodTotal = (happiness + energy + hunger + thirst + fun + hygiene) / 6;
         return moodTotal;
     }
     

@@ -9,35 +9,47 @@
 import SpriteKit
 
 class GameHUD: SKSpriteNode {
+    
+    class var sharedInstance: GameHUD {
+        
+        struct gameHUD {
+            
+            static let instance: GameHUD = GameHUD(imageNamed: "main_hud");
+        }
+        
+        return gameHUD.instance
+    }
 
-    var gameScene: GameScene = GameScene.sharedInstance;
-    var status: Status = Status.sharedInstance;
+    private var gameScene: GameScene = GameScene.sharedInstance;
+    private var status: Status = Status.sharedInstance;
     
-    var menuButton: SKSpriteNode? = nil;
-    var shopButton: SKSpriteNode? = nil;
-    var fightButton: SKSpriteNode? = nil;
-    var coinBar: SKSpriteNode? = nil;
-    var gemBar: SKSpriteNode? = nil;
-    var expBar: SKSpriteNode? = nil;
-    var helpButton: SKSpriteNode? = nil;
+    private var menuButton: SKSpriteNode? = nil;
+    private var shopButton: SKSpriteNode? = nil;
+    private var fightButton: SKSpriteNode? = nil;
+    private var coinBar: SKSpriteNode? = nil;
+    private var gemBar: SKSpriteNode? = nil;
+    private var expBar: SKSpriteNode? = nil;
+    private var helpButton: SKSpriteNode? = nil;
     
-    var happinessBar: StatusBar? = nil;
-    var energyBar: StatusBar? = nil;
-    var hungerBar: StatusBar? = nil;
-    var thirstBar: StatusBar? = nil;
-    var funBar: StatusBar? = nil;
-    var hygieneBar: StatusBar? = nil;
+    private var coinsLabel: SKLabelNode? = nil;
     
-    var itemBagButton: SKSpriteNode? = nil;
+    private var happinessBar: StatusBar? = nil;
+    private var energyBar: StatusBar? = nil;
+    private var hungerBar: StatusBar? = nil;
+    private var thirstBar: StatusBar? = nil;
+    private var funBar: StatusBar? = nil;
+    private var hygieneBar: StatusBar? = nil;
+    
+    private var itemBagButton: SKSpriteNode? = nil;
     
     //For testing purposes, decrease each status by 10 every 10 seconds
     func refresh () -> Bool {
-        happinessBar?.setStatus(status.setHappiness(-10));
-        energyBar?.setStatus(status.setEnergy(-10));
-        hungerBar?.setStatus(status.setHunger(-10));
-        thirstBar?.setStatus(status.setThirst(-10));
-        funBar?.setStatus(status.setFun(-10));
-        hygieneBar?.setStatus(status.setHygiene(-10));
+        happinessBar?.setStatus(status.setHappiness(-5));
+        energyBar?.setStatus(status.setEnergy(-5));
+        hungerBar?.setStatus(status.setHunger(-5));
+        thirstBar?.setStatus(status.setThirst(-5));
+        funBar?.setStatus(status.setFun(-5));
+        hygieneBar?.setStatus(status.setHygiene(-5));
         
         return true;
     }
@@ -46,7 +58,11 @@ class GameHUD: SKSpriteNode {
         Setup
     ************************************************************/
     
-    func setupHUD () -> Bool {
+    func setupHUD (view: GameScene) -> Bool {
+        self.position = CGPointMake(0.0, view.frame.height);
+        self.zPosition = 1;
+        let height = getRatioHeight(self.size.width, height: self.size.height);
+        self.size = CGSizeMake(view.size.width, height); //Set menu size to width of screen
         self.anchorPoint = CGPointMake(0.0, 1.0);
         
         /* Menu Buttons */
@@ -70,12 +86,26 @@ class GameHUD: SKSpriteNode {
 //        fightButton?.name = "fight";
 //        self.addChild(fightButton!);
 //        
-//        coinBar = SKSpriteNode(color: UIColor.blueColor(), size: CGSizeMake(self.size.width / 6, self.size.height / 2));
-//        coinBar?.position = CGPointMake(self.size.width / 2.45, 0.0);
-//        coinBar?.anchorPoint = CGPointMake(0.0, 1.0);
-//        coinBar?.name = "coin";
-//        self.addChild(coinBar!);
-//        
+        coinBar = SKSpriteNode(color: UIColor.blueColor(), size: CGSizeMake(self.size.width / 6, self.size.height / 2));
+        coinBar?.position = CGPointMake(self.size.width / 2.45, 0.0);
+        coinBar?.anchorPoint = CGPointMake(0.0, 1.0);
+        coinBar?.name = "coin";
+
+        coinsLabel = SKLabelNode(text: "0");
+        coinsLabel?.fontColor = UIColor.whiteColor();
+        coinsLabel?.position = CGPointMake(coinBar!.size.width / 2, -coinBar!.size.height / 1.3);
+        coinsLabel?.fontName = "MarkerFelt-Thin";
+        coinsLabel?.zPosition = 5;
+        
+        if (UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
+            coinsLabel!.fontSize = 18;
+        } else {
+            coinsLabel!.fontSize = 28;
+        }
+        
+        coinBar!.addChild(coinsLabel!);
+        self.addChild(coinBar!);
+
 //        gemBar = SKSpriteNode(color: UIColor.redColor(), size: CGSizeMake(self.size.width / 6, self.size.height / 2));
 //        gemBar?.position = CGPointMake(self.size.width / 1.68, 0.0);
 //        gemBar?.anchorPoint = CGPointMake(0.0, 1.0);
@@ -133,11 +163,16 @@ class GameHUD: SKSpriteNode {
         /* Item Bag Button */
         itemBagButton = SKSpriteNode(imageNamed: "bag_button");
         itemBagButton?.anchorPoint = CGPointMake(1.0, 1.0);
-        itemBagButton?.position = CGPointMake(self.size.width - 10.0, -self.size.height * 4.5);
+        itemBagButton?.position = CGPointMake(self.size.width - 10.0, -self.size.height * 5);
         itemBagButton?.name = "bag";
         self.addChild(itemBagButton!);
         
         return true;
+    }
+    
+    func getRatioHeight (width: CGFloat, height: CGFloat) -> CGFloat {
+        let ratio: CGFloat = width / height; //Get original aspect ratio of image
+        return (self.size.width / ratio); //Return new height with aspect ratio
     }
     
     
@@ -152,5 +187,13 @@ class GameHUD: SKSpriteNode {
         thirstBar?.setStatusBar("thirst");
         funBar?.setStatusBar("fun");
         hygieneBar?.setStatusBar("hygiene");
+    }
+    
+    func setCoinsAmount (value: Int) {
+        if (coinsLabel != nil) {
+            coinsLabel!.text = toString(value);
+        } else {
+            println("coinsLabel is nil");
+        }
     }
 }

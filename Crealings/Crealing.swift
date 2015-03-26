@@ -56,8 +56,6 @@ final class Crealing : SKNode {
     
     var idle: Bool = true;
     
-    var moodTotal: Int = 100;
-    
     var crealingImages: [String] = [];
     let pHatchlingImages = ["pVeryHappy", "pMoreHappy", "pHappy", "pNeutral", "pUnhappy", "pSad", "pVerySad", "pDying"];
     let bHatchlingImages = ["bVeryHappy", "bMoreHappy", "bHappy", "bNeutral", "bUnhappy", "bSad", "bVerySad", "bDying"];
@@ -67,7 +65,7 @@ final class Crealing : SKNode {
         Set Up
     ************************************************************/
     func setup (_view: GameScene, mon: String) -> Bool {
-        
+        self.zPosition = 2;
         view = _view;
         
         switch mon {

@@ -32,11 +32,11 @@ class ItemBag: SKNode {
         Setup
     ************************************************************/
     
-    func setup (view: GameScene) {
+    func setup (view: GameScene, gameView: UIView) {
         loadData();
         
         self.position = CGPointMake(view.size.width / 2, view.size.height / 2.3);
-        self.zPosition = 2;
+        self.zPosition = 3;
         
         itemShelf = SKSpriteNode(imageNamed: "shop_shelf");
         
@@ -44,10 +44,11 @@ class ItemBag: SKNode {
         let newViewWidth: CGFloat = view.size.width / 1.3;
         let ratioHeight: CGFloat = newViewWidth / ratio;
         itemShelf?.size = CGSizeMake(newViewWidth, ratioHeight);
-        
+
 //        scrollTest.size = CGSizeMake(itemShelf!.size.width / 1.11, itemShelf!.size.height / 3.9);
 //        scrollTest.position = CGPointMake(-itemShelf!.size.width / 2.21, itemShelf!.size.height / 6);
 //        scrollTest.zPosition = 2;
+//        scrollTest.enableScrollingOnView(gameView);
         
         /* Add node to first shelf */
         collection1 = SKSpriteNode();

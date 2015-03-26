@@ -16,7 +16,7 @@ class StartViewController: UIViewController {
         
         if (!defaults.boolForKey("firstPlay")) {
             println("FIRST PLAY")
-            let view = self.storyboard?.instantiateViewControllerWithIdentifier("NewGameController") as NewGameViewController;
+            let view = self.storyboard?.instantiateViewControllerWithIdentifier("ChooseEggController") as ChooseEggViewController;
             self.presentViewController(view, animated: true, completion: nil);
         } else {
             println("CONTINUE")

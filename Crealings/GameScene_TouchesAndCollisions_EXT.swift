@@ -28,7 +28,7 @@ extension GameScene {
                 println("Node Name: \(node.name)");
                 /* If node.name is in nameArray, close the bag and continue based on name,
                 else do item shelf functions */
-                let nameArray: [String] = ["crealing", "menu", "shop", "fight", "coin", "gem", "exp", "help", "happiness", "energy", "hunger", "thirst", "fun", "hygiene", "toStart", "exit", "foodDrinksTab", "careTab", "accessoriesTab", "decorationsTab", "premiumTab"];
+                let nameArray: [String] = ["crealing", "menu", "shop", "fight", "coin", "gem", "exp", "help", "happiness", "energy", "hunger", "thirst", "fun", "hygiene", "toStart", "exit", "foodDrinksTab", "careTab", "accessoriesTab", "decorationsTab", "premiumTab", "next", "previous", "exitHelp"];
                 let found = find(nameArray, node.name!) != nil;
                 
                 if (found) {
@@ -41,12 +41,11 @@ extension GameScene {
                     switch node.name! {
                     case "crealing":
                         if (crealing!.isAlive) { //If alive, interact with
-                            if (gameHUD != nil && crealing!.tapPet()) {
-                                gameHUD?.interactWith();
+                            if (crealing!.tapPet()) {
+                                gameHUD!.interactWith();
                             }
                         } else { //If dead, show alert
                             alertBox = AlertBox();
-                            alertBox?.zPosition = 3;
                             if (alertBox!.setup(self, from: "game_over", item: nil)) {
                                 self.addChild(alertBox!);
                             }
@@ -67,6 +66,7 @@ extension GameScene {
                         println("Tap Exp");
                     case "help":
                         println("Tap Help");
+                        helpButtonClicked();
                     case "happiness", "energy", "hunger", "thirst", "fun", "hygiene":
                         println("Status Bar Tapped");
                     case "toStart":
@@ -84,6 +84,12 @@ extension GameScene {
                         if (shopHUD != nil) {
                             shopHUD!.tapTab(node.name!);
                         }
+                    case "next":
+                        helpScreen?.tapNext();
+                    case "previous":
+                        helpScreen?.tapPrevious();
+                    case "exitHelp":
+                        helpButtonClicked();
                     default:
                         break;
                     }
@@ -102,18 +108,18 @@ extension GameScene {
                             } else { //If item shelf is not open, create it
                                 itemBag = ItemBag();
                                 itemBag?.zPosition = 2;
-                                itemBag?.setup(self)
+                                itemBag?.setup(self, gameView: gameView)
                                 self.addChild(itemBag!);
                                 break;
                             }
                         } else {
                             isItem = true; //If not the bag, then node must be an item
                             selectedNodeName = node.name!; //Save node.name for long press function
-                            println("ItemBag: \(itemBag), selectedNodeName: \(selectedNodeName)");
                             usableItemDict = itemBag!.getItemDict(selectedNodeName)!;
                             if (!(usableItemDict!["isConsumable"] as Bool)) {
                                 let imageName = usableItemDict!["image"] as String;
                                 if (bg != nil) {
+                                    gameData.writeData(imageName, key: "userBackground");
                                     bg!.texture = SKTexture(imageNamed: imageName);
                                 }
                             }
@@ -224,7 +230,7 @@ extension GameScene {
     /* Pull item data, set status changes, refresh mood, and remove item from scene */
     func giveItemToPet () {
         
-        if (usableItemDict != nil && gameHUD? != nil && crealing!.giveItem(usableItemDict!["happinessChange"] as Int,
+        if (usableItemDict != nil && crealing!.giveItem(usableItemDict!["happinessChange"] as Int,
             energy: usableItemDict!["energyChange"] as Int,
             hunger: usableItemDict!["hungerChange"] as Int,
             thirst: usableItemDict!["thirstChange"] as Int,

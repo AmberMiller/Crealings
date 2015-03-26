@@ -32,14 +32,19 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
         
         let defaults = NSUserDefaults.standardUserDefaults();
         
-        if (!defaults.boolForKey("firstPlay")) {
-            println("FIRST PLAY")
-            firstPlay = true;
-            presentEggScene();
+        if (defaults.boolForKey("resetGame")) {
+            defaults.setBool(false, forKey: "resetGame");
+            clearGame();
         } else {
-            println("CONTINUE")
-            firstPlay = false;
-            presentGameScene("continue");
+            if (!defaults.boolForKey("firstPlay")) {
+                println("FIRST PLAY")
+                firstPlay = true;
+                presentEggScene();
+            } else {
+                println("CONTINUE")
+                firstPlay = false;
+                presentGameScene("continue");
+            }
         }
     }
     
@@ -110,12 +115,7 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
     
     func MenuButtonClicked () {
         println("Game Delegate: Menu");
-
-    }
-    
-    func ShopButtonClicked () {
-        println("Game Delegate: Shop");
-        let view = self.storyboard?.instantiateViewControllerWithIdentifier("ShopController") as ShopViewController;
+        let view = self.storyboard?.instantiateViewControllerWithIdentifier("MenuController") as MenuViewController;
         self.presentViewController(view, animated: true, completion: nil);
     }
     

@@ -7,7 +7,7 @@
 //
 
 #import "Crealings-Bridging-Header.h"
-
+/* EDITS MADE: All y's changed to x for side scrolling */
 
 @interface JADSKScrollingNode()
 
@@ -63,13 +63,13 @@ static const CGFloat kScrollDuration = .3;
 
 -(void)scrollToBottom
 {
-    self.position = CGPointMake(0, self.maxXPosition);
+    self.position = CGPointMake(self.maxXPosition, 0.0);
     
 }
 
 -(void)scrollToTop
 {
-    self.position = CGPointMake(0, self.minXPosition);
+    self.position = CGPointMake(self.minXPosition, 0.0);
     
 }
 

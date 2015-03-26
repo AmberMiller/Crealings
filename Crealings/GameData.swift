@@ -20,35 +20,42 @@ class GameData {
         return gameData.instance
     }
     
-    let fileManager = NSFileManager.defaultManager();
-    let directory: [String]? = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,NSSearchPathDomainMask.AllDomainsMask, true) as? [String];
-    var plistPath = String();
-    var gameData = NSMutableDictionary();
+    private let fileManager = NSFileManager.defaultManager();
+    private let directory: [String]? = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String];
+    private var plistPath = String();
+    private var gameData = NSMutableDictionary();
     
-    var statusDict: Dictionary <String, AnyObject> = [:];
+    private var userCoins: Int = Int();
+    private var userGems: Int = Int();
+    private var userBackground: String = String();
     
-    var happiness: Int = Int();
-    var energy: Int = Int();
-    var hunger: Int = Int();
-    var thirst: Int = Int();
-    var fun: Int = Int();
-    var hygiene: Int = Int();
+    private var statusDict: Dictionary <String, AnyObject> = [:];
     
-    var items: Dictionary <String, AnyObject> = [:];
-    var foodAndDrinkItems: [Dictionary <String, AnyObject>] = [];
-    var careItems: [Dictionary <String, AnyObject>] = [];
-    var decorationItems: [Dictionary <String, AnyObject>] = [];
+    private var happiness: Int = Int();
+    private var energy: Int = Int();
+    private var hunger: Int = Int();
+    private var thirst: Int = Int();
+    private var fun: Int = Int();
+    private var hygiene: Int = Int();
+    
+    private var items: Dictionary <String, AnyObject> = [:];
+    private var foodAndDrinkItems: [Dictionary <String, AnyObject>] = [];
+    private var careItems: [Dictionary <String, AnyObject>] = [];
+    private var decorationItems: [Dictionary <String, AnyObject>] = [];
+    
+    private var statsArray: [Dictionary <String, AnyObject>] = [];
     
     func loadData () -> Bool {
         if directory != nil {
             
             let directories: [String] = directory!;
             let docPath = directories[0];
+            println("Doc Path: \(docPath)");
             
             let plistFile = "gameData.plist";
             plistPath = docPath.stringByAppendingPathComponent(plistFile);
             
-            resetData();
+//            resetData();
 
             let fileExists: Bool = fileManager.fileExistsAtPath(plistPath);
             
@@ -61,6 +68,10 @@ class GameData {
             /* Set data from plist */
             gameData = NSMutableDictionary(contentsOfFile: plistPath)!;
             println("\n\nLOADING DATA\n\n\(gameData)");
+            
+            userCoins = gameData["userCoins"] as Int;
+            userGems = gameData["userGems"] as Int;
+            userBackground = gameData["userBackground"] as String;
             
             statusDict = gameData["Status"] as Dictionary <String, AnyObject>;
             happiness = statusDict["happiness"] as Int;
@@ -79,6 +90,8 @@ class GameData {
             careItems = items["Care"] as [Dictionary <String, AnyObject>];
             decorationItems = items["Decorations"] as [Dictionary <String, AnyObject>];
             
+            statsArray = gameData["Stats"] as [Dictionary <String, AnyObject>];
+            
             return true;
         }
         return false;
@@ -87,6 +100,11 @@ class GameData {
     /***********************************************************
         Get Data
     ************************************************************/
+    
+    func getUserCoins () -> Int {
+        println("Get User Coins: \(userCoins)");
+        return userCoins;
+    }
     
     func getFoodAndDrinkItemsArray () -> [Dictionary <String, AnyObject>] {
         println("Get Food And Drink Items Array: \(foodAndDrinkItems)");
@@ -103,9 +121,25 @@ class GameData {
         return decorationItems;
     }
     
+    func getStatsArray () -> [Dictionary <String, AnyObject>] {
+        println("Get Stats Array: \(statsArray)");
+        return statsArray;
+    }
+    
+    func getBackground () -> String {
+        println("Get Background: \(userBackground)");
+        return userBackground;
+    }
+    
     /***********************************************************
         Writing Data
     ************************************************************/
+    
+    /* Write Data to plist */
+    func writeData (value: AnyObject, key: String) {
+        gameData.setValue(value, forKey: key);
+        gameData.writeToFile(plistPath, atomically: true);
+    }
     
      /* Write status data to plist */
     func writeStatus (value: Int, key: String)
@@ -124,38 +158,53 @@ class GameData {
         println("Write Items Value: \(value), For Key: \(key)");
     }
     
+    func writeStats (value: [Dictionary <String, AnyObject>], key: String) {
+        gameData.setValue(value, forKey: key);
+        gameData.writeToFile(plistPath, atomically: true);
+    }
+    
     
     func setItemData (newItem: Dictionary <String, AnyObject>) {
         loadData();
+        var found: Bool = Bool();
         
         for item in foodAndDrinkItems {
-            if (item["name"] as Int == newItem["name"] as Int) {
+            if (item["name"] as String == newItem["name"] as String) {
                 let index: Int = item["id"] as Int;
                 foodAndDrinkItems[index] = newItem;
+                found = true;
                 break;
             }
         }
 
-        
-        for item in careItems {
-            if (item["name"] as Int == newItem["name"] as Int) {
-                let index: Int = item["id"] as Int;
-                careItems[index] = newItem;
-                break;
+        if (!found) {
+            for item in careItems {
+                if (item["name"] as String == newItem["name"] as String) {
+                    let index: Int = item["id"] as Int;
+                    careItems[index] = newItem;
+                    found = true;
+                    break;
+                }
             }
         }
-        
-        for item in decorationItems {
-            if (item["name"] as Int == newItem["name"] as Int) {
-                let index: Int = item["id"] as Int;
-                decorationItems[index] = newItem;
-                break;
+
+        if (!found) {
+            for item in decorationItems {
+                if (item["name"] as String == newItem["name"] as String) {
+                    let index: Int = item["id"] as Int;
+                    decorationItems[index] = newItem;
+                    found = true;
+                    break;
+                }
             }
         }
+
         
-        writeItems(foodAndDrinkItems, key: "FoodAndDrinks");
-        writeItems(careItems, key: "Care");
-        writeItems(decorationItems, key: "Decorations");
+        if (found) {
+            writeItems(foodAndDrinkItems, key: "FoodAndDrinks");
+            writeItems(careItems, key: "Care");
+            writeItems(decorationItems, key: "Decorations");
+        }
     }
 
     
