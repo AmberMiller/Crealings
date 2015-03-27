@@ -10,6 +10,16 @@ import Foundation
 
 class GameData {
     
+    class var sharedInstance: GameData {
+        
+        struct gameData {
+            
+            static let instance: GameData = GameData()
+        }
+        
+        return gameData.instance
+    }
+    
     private let fileManager = NSFileManager.defaultManager();
     private let directory: [String]? = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String];
     private var plistPath = String();
@@ -73,7 +83,7 @@ class GameData {
             fun = statusDict["fun"] as Int;
             hygiene = statusDict["hygiene"] as Int;
             
-            println("Status: \(statusDict)");
+            println("Plist Status: \(statusDict)");
             let status: Status = Status.sharedInstance;
             status.setDataFromPlist(happiness, _energy: energy, _hunger: hunger, _thirst: thirst, _fun: fun, _hygiene: hygiene);
             
@@ -95,37 +105,31 @@ class GameData {
     
     func getUserCoins () -> Int {
         println("Get User Coins: \(userCoins)");
-        loadData(false);
         return userCoins;
     }
     
     func getFoodAndDrinkItemsArray () -> [Dictionary <String, AnyObject>] {
         println("Get Food And Drink Items Array: \(foodAndDrinkItems)");
-        loadData(false);
         return foodAndDrinkItems;
     }
     
     func getCareItemsArray () -> [Dictionary <String, AnyObject>] {
         println("Get Care Items Array: \(careItems)");
-        loadData(false);
         return careItems;
     }
     
     func getDecorationItemsArray () -> [Dictionary <String, AnyObject>] {
         println("Get Decoration Items Array: \(decorationItems)");
-        loadData(false);
         return decorationItems;
     }
     
     func getStatsArray () -> [Dictionary <String, AnyObject>] {
         println("Get Stats Array: \(statsArray)");
-        loadData(false);
         return statsArray;
     }
     
     func getBackground () -> String {
         println("Get Background: \(userBackground)");
-        loadData(false);
         return userBackground;
     }
     
@@ -134,35 +138,38 @@ class GameData {
     ************************************************************/
     
     /* Write Data to plist */
-    func writeData (value: AnyObject, key: String) {
+    func writeData (value: AnyObject, key: String) -> Bool {
         gameData.setValue(value, forKey: key);
         gameData.writeToFile(plistPath, atomically: true);
+        return true;
     }
     
      /* Write status data to plist */
-    func writeStatus (value: Int, key: String)
-    {
+    func writeStatus (value: Int, key: String) -> Bool {
         statusDict.updateValue(value, forKey: key);
         gameData.setValue(statusDict, forKey: "Status");
         gameData.writeToFile(plistPath, atomically: true);
+        return true;
     }
     
     /* Write item data to plist */
-    func writeItems (value: [Dictionary <String, AnyObject>], key: String) {
+    func writeItems (value: [Dictionary <String, AnyObject>], key: String) -> Bool {
         items.updateValue(value, forKey: key);
         gameData.setValue(items, forKey: "Items");
         gameData.writeToFile(plistPath, atomically: true);
         
         println("Write Items Value: \(value), For Key: \(key)");
+        return true;
     }
     
-    func writeStats (value: [Dictionary <String, AnyObject>], key: String) {
+    func writeStats (value: [Dictionary <String, AnyObject>], key: String) -> Bool {
         gameData.setValue(value, forKey: key);
         gameData.writeToFile(plistPath, atomically: true);
+        return true;
     }
     
     
-    func setItemData (newItem: Dictionary <String, AnyObject>) {
+    func setItemData (newItem: Dictionary <String, AnyObject>) -> Bool {
         loadData(false);
         var found: Bool = Bool();
         
@@ -202,6 +209,9 @@ class GameData {
             writeItems(foodAndDrinkItems, key: "FoodAndDrinks");
             writeItems(careItems, key: "Care");
             writeItems(decorationItems, key: "Decorations");
+            return true;
+        } else {
+            return false;
         }
     }
 

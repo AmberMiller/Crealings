@@ -20,7 +20,7 @@ final class Status {
         return statusData.instance
     }
     
-    var gameData: GameData = GameData();
+    var gameData: GameData = GameData.sharedInstance;
     
     var happiness: Int = Int();
     var energy: Int = Int();

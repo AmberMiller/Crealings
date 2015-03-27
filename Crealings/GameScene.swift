@@ -42,7 +42,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     var gameDelegate: GameSceneDelegate?;
-    var gameData: GameData = GameData();
+    var gameData: GameData = GameData.sharedInstance;
     let status: Status = Status.sharedInstance;
     var gameView: SKView = SKView();
     
@@ -147,9 +147,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 userCoins = gameData.getUserCoins();
                 userCoins += coinsGiven;
-                gameData.writeData(userCoins, key: "userCoins");
+                if (gameData.writeData(userCoins, key: "userCoins")) {
+                    gameData.loadData(false);
+                }
                 gameHUD!.setCoinsAmount(userCoins);
-                gameData.loadData(false);
             }
         }
 

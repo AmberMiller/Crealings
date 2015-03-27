@@ -26,7 +26,7 @@ class ShopHUD: SKSpriteNode {
     private var currentArray: [Dictionary <String, AnyObject>] = [];
     private var currentTab: String = String();
     
-    private let gameData: GameData = GameData();
+    private let gameData: GameData = GameData.sharedInstance;
     private let gameHUD: GameHUD = GameHUD.sharedInstance;
     
     private var gameView: GameScene? = nil;

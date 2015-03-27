@@ -12,7 +12,7 @@ import UIKit
 class ItemBag: SKNode {
  
     var gameScene: GameScene = GameScene.sharedInstance;
-    var gameData: GameData = GameData();
+    var gameData: GameData = GameData.sharedInstance;
     
     var foodDrinksArray: [Dictionary <String, AnyObject>] = [];
     var careArray: [Dictionary <String, AnyObject>] = [];
