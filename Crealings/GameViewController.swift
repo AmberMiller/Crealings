@@ -18,6 +18,7 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
     var firstPlay: Bool = Bool();
     var firstLoad: Bool = true;
     var eggType: String? = nil;
+    var isNewGame: Bool = Bool();
     
     override func viewWillAppear(animated: Bool) {
         
@@ -34,7 +35,8 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
         
         if (defaults.boolForKey("resetGame")) {
             defaults.setBool(false, forKey: "resetGame");
-            clearGame();
+            
+            wipeGame();
         } else {
             if (!defaults.boolForKey("firstPlay")) {
                 println("FIRST PLAY")
@@ -49,7 +51,7 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
     }
     
     /***********************************************************
-     Scenes and Setup
+        Scenes and Setup
     ************************************************************/
     
     func presentEggScene () {
@@ -74,9 +76,9 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
         gameScene.scaleMode = .AspectFill
         
         if (from == "eggScene") {
-            gameScene.isNewGame = true;
+            isNewGame = true;
         } else {
-            gameScene.isNewGame = false;
+            isNewGame = false;
         }
 
         if (firstLoad) {
@@ -104,8 +106,7 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
         if (eggType == nil) {
             eggType = defaults.valueForKey("userCrealing") as? String;
         }
-        (skView.scene as GameScene).currentMon = eggType;
-        (skView.scene as GameScene).setUpScene();
+        (skView.scene as GameScene).setUpScene(eggType!, isNewGame: isNewGame, fromReset: defaults.boolForKey("resetGame"));
     }
     
 
@@ -130,6 +131,24 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
     func clearGame () {
         let status: Status = Status.sharedInstance;
         status.resetData();
+        
+        if (defaults.boolForKey("firstPlay")) {
+            self.dismissViewControllerAnimated(true, completion: nil);
+        } else {
+            let view = self.storyboard?.instantiateViewControllerWithIdentifier("StartController") as StartViewController;
+            self.presentViewController(view, animated: true, completion: nil);
+        }
+        
+        defaults.setBool(false, forKey: "firstPlay");
+    }
+    
+    func wipeGame () {
+        skView.scene?.removeAllActions();
+        skView.scene?.removeAllChildren();
+        skView.removeFromSuperview();
+        
+        let gameData: GameData = GameData();
+        gameData.loadData(true);
         
         if (defaults.boolForKey("firstPlay")) {
             self.dismissViewControllerAnimated(true, completion: nil);

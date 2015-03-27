@@ -30,6 +30,7 @@ class UsableItem: SKNode {
         println("Add Item Name: \(itemName)")
         newItem = SKSpriteNode(imageNamed: itemName);
         newItem?.size = CGSizeMake(newItem!.size.width / 1.5, newItem!.size.height / 1.5);
+        newItem?.zPosition = 6;
         
         println("Position: \(tapPosition)");
         self.position = tapPosition;

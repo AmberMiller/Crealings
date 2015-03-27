@@ -42,12 +42,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     var gameDelegate: GameSceneDelegate?;
-    var gameData: GameData = GameData.sharedInstance;
+    var gameData: GameData = GameData();
     let status: Status = Status.sharedInstance;
     var gameView: SKView = SKView();
-    
-    var isNewGame: Bool = Bool();
-    var currentMon: String? = nil;
     
     var gameHUD: GameHUD? = nil;
     var bg: SKSpriteNode? = nil;
@@ -152,7 +149,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 userCoins += coinsGiven;
                 gameData.writeData(userCoins, key: "userCoins");
                 gameHUD!.setCoinsAmount(userCoins);
-                gameData.loadData();
+                gameData.loadData(false);
             }
         }
 
@@ -184,12 +181,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         Setup
     ************************************************************/
     
-    func setUpScene () {
-        gameData.loadData();
+    func setUpScene (currentMon: String, isNewGame: Bool, fromReset: Bool) {
+        println("isNewGame: \(isNewGame), fromReset: \(fromReset)");
         
-        println("isNewGame: \(isNewGame)");
-        if (isNewGame) {
-            status.resetData();
+        if (fromReset) {
+            gameData.loadData(true);
+        } else {
+            gameData.loadData(false);
+            
+            if (isNewGame) {
+                status.resetData();
+            }
         }
         
         /* Set physicsWorld */
@@ -221,10 +223,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         /* Add crealing to scene */
         crealing = Crealing();
         crealing!.name = "crealing";
-        if (currentMon != nil) {
-            if ((crealing != nil) && (crealing!.setup(self, mon: currentMon!))) {
-                self.addChild(crealing!);
-            }
+        if ((crealing != nil) && (crealing!.setup(self, mon: currentMon))) {
+            self.addChild(crealing!);
         }
     }
     

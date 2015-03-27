@@ -10,16 +10,6 @@ import Foundation
 
 class GameData {
     
-    class var sharedInstance: GameData {
-        
-        struct gameData {
-            
-            static let instance: GameData = GameData()
-        }
-        
-        return gameData.instance
-    }
-    
     private let fileManager = NSFileManager.defaultManager();
     private let directory: [String]? = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String];
     private var plistPath = String();
@@ -45,7 +35,7 @@ class GameData {
     
     private var statsArray: [Dictionary <String, AnyObject>] = [];
     
-    func loadData () -> Bool {
+    func loadData (reset: Bool) -> Bool {
         if directory != nil {
             
             let directories: [String] = directory!;
@@ -55,7 +45,9 @@ class GameData {
             let plistFile = "gameData.plist";
             plistPath = docPath.stringByAppendingPathComponent(plistFile);
             
-//            resetData();
+            if (reset) {
+                resetData();
+            }
 
             let fileExists: Bool = fileManager.fileExistsAtPath(plistPath);
             
@@ -103,31 +95,37 @@ class GameData {
     
     func getUserCoins () -> Int {
         println("Get User Coins: \(userCoins)");
+        loadData(false);
         return userCoins;
     }
     
     func getFoodAndDrinkItemsArray () -> [Dictionary <String, AnyObject>] {
         println("Get Food And Drink Items Array: \(foodAndDrinkItems)");
+        loadData(false);
         return foodAndDrinkItems;
     }
     
     func getCareItemsArray () -> [Dictionary <String, AnyObject>] {
         println("Get Care Items Array: \(careItems)");
+        loadData(false);
         return careItems;
     }
     
     func getDecorationItemsArray () -> [Dictionary <String, AnyObject>] {
         println("Get Decoration Items Array: \(decorationItems)");
+        loadData(false);
         return decorationItems;
     }
     
     func getStatsArray () -> [Dictionary <String, AnyObject>] {
         println("Get Stats Array: \(statsArray)");
+        loadData(false);
         return statsArray;
     }
     
     func getBackground () -> String {
         println("Get Background: \(userBackground)");
+        loadData(false);
         return userBackground;
     }
     
@@ -165,7 +163,7 @@ class GameData {
     
     
     func setItemData (newItem: Dictionary <String, AnyObject>) {
-        loadData();
+        loadData(false);
         var found: Bool = Bool();
         
         for item in foodAndDrinkItems {

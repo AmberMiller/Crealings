@@ -35,7 +35,7 @@ extension GameScene {
                     if (node.name != "exit") {
                         closeBag();
                     }
-                    
+                
                     isItem = false;
                     
                     switch node.name! {

@@ -211,6 +211,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_bluepolka.png" translatesAutoresizingMaskIntoConstraints="NO" id="MFb-h6-v1Y">
+                                <rect key="frame" x="-4" y="0.0" width="612" height="600"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="fg8-vj-iMl">
                                 <rect key="frame" x="16" y="164" width="568" height="348"/>
                                 <constraints>
@@ -224,14 +227,20 @@
                                 </variation>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8nD-oe-nWs">
-                                <rect key="frame" x="45" y="188" width="510" height="299"/>
+                                <rect key="frame" x="51" y="195" width="498" height="292"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="8nD-oe-nWs" secondAttribute="height" multiplier="510:299" id="EDa-Na-TPS"/>
+                                    <constraint firstAttribute="width" secondItem="8nD-oe-nWs" secondAttribute="height" multiplier="249:146" id="yea-33-kyd"/>
                                 </constraints>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="EDa-Na-TPS"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="O0R-Z5-tLM" id="dXw-e2-MYX"/>
                                     <outlet property="delegate" destination="O0R-Z5-tLM" id="Ide-4c-7Jc"/>
@@ -269,7 +278,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="SZ3-8e-ihl" secondAttribute="height" multiplier="173:84" id="rSy-Lc-F4G"/>
                                 </constraints>
-                                <state key="normal" image="settings_tab.png">
+                                <state key="normal" image="settings_tab_selected.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -328,6 +337,7 @@
                             <constraint firstItem="ghS-Zq-4cX" firstAttribute="centerY" secondItem="fg8-vj-iMl" secondAttribute="centerY" constant="-73" id="2Qx-0U-VoJ"/>
                             <constraint firstItem="8nD-oe-nWs" firstAttribute="centerX" secondItem="fg8-vj-iMl" secondAttribute="centerX" id="2fD-FW-j5d"/>
                             <constraint firstItem="3Ib-qX-ds0" firstAttribute="trailing" secondItem="fg8-vj-iMl" secondAttribute="trailing" constant="-70" id="3Uh-jm-WaS"/>
+                            <constraint firstItem="MFb-h6-v1Y" firstAttribute="leading" secondItem="aPW-gn-Guz" secondAttribute="leadingMargin" constant="-20" id="3o3-bi-lfb"/>
                             <constraint firstItem="Msc-R4-9wU" firstAttribute="top" secondItem="fg8-vj-iMl" secondAttribute="bottom" constant="16" id="3oL-uy-DIg"/>
                             <constraint firstAttribute="centerX" secondItem="SZ3-8e-ihl" secondAttribute="centerX" constant="-147.5" id="5Ms-85-n5n"/>
                             <constraint firstItem="xnU-wc-0B7" firstAttribute="top" secondItem="ets-Ma-Cs8" secondAttribute="bottom" id="7RN-Ic-9Zl"/>
@@ -337,6 +347,7 @@
                             <constraint firstItem="Al6-Ge-842" firstAttribute="centerY" secondItem="ghS-Zq-4cX" secondAttribute="centerY" id="Acw-m4-Yje"/>
                             <constraint firstItem="R09-BO-jSv" firstAttribute="centerY" secondItem="fg8-vj-iMl" secondAttribute="centerY" id="BU3-Ua-XWB"/>
                             <constraint firstItem="3Ib-qX-ds0" firstAttribute="centerY" secondItem="R09-BO-jSv" secondAttribute="centerY" id="DlO-3P-bdD"/>
+                            <constraint firstItem="MFb-h6-v1Y" firstAttribute="top" secondItem="ets-Ma-Cs8" secondAttribute="bottom" id="IMT-Ng-dyB"/>
                             <constraint firstItem="fg8-vj-iMl" firstAttribute="width" secondItem="fg8-vj-iMl" secondAttribute="height" multiplier="142:87" id="J1y-ax-fgy"/>
                             <constraint firstItem="8nD-oe-nWs" firstAttribute="width" secondItem="fg8-vj-iMl" secondAttribute="height" multiplier="85:58" id="Kfk-TT-4gU"/>
                             <constraint firstItem="fg8-vj-iMl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="aPW-gn-Guz" secondAttribute="leadingMargin" id="Nan-Mn-tXX"/>
@@ -348,15 +359,18 @@
                             <constraint firstItem="xnU-wc-0B7" firstAttribute="leading" secondItem="aPW-gn-Guz" secondAttribute="leadingMargin" constant="-20" id="Ver-XM-WJF"/>
                             <constraint firstItem="Msc-R4-9wU" firstAttribute="top" secondItem="SZ3-8e-ihl" secondAttribute="bottom" id="XSV-uV-JeV"/>
                             <constraint firstAttribute="centerX" secondItem="4xw-ff-z13" secondAttribute="centerX" constant="133.5" id="YS9-HB-XMC"/>
-                            <constraint firstItem="8nD-oe-nWs" firstAttribute="centerY" secondItem="fg8-vj-iMl" secondAttribute="centerY" id="bKK-kT-bSR"/>
+                            <constraint firstItem="8nD-oe-nWs" firstAttribute="centerY" secondItem="fg8-vj-iMl" secondAttribute="centerY" constant="3" id="bKK-kT-bSR"/>
                             <constraint firstItem="4xw-ff-z13" firstAttribute="top" secondItem="fg8-vj-iMl" secondAttribute="bottom" constant="4" id="bZJ-7h-EPJ"/>
                             <constraint firstItem="ghS-Zq-4cX" firstAttribute="leading" secondItem="fg8-vj-iMl" secondAttribute="leading" constant="70" id="cSV-mv-xtv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MFb-h6-v1Y" secondAttribute="trailing" constant="-24" id="e0y-kc-vQh"/>
                             <constraint firstItem="Al6-Ge-842" firstAttribute="trailing" secondItem="fg8-vj-iMl" secondAttribute="trailing" constant="-70" id="kV5-Io-ji4"/>
                             <constraint firstItem="Msc-R4-9wU" firstAttribute="top" secondItem="4xw-ff-z13" secondAttribute="bottom" id="kjy-70-XNe"/>
                             <constraint firstItem="Msc-R4-9wU" firstAttribute="top" secondItem="4xw-ff-z13" secondAttribute="bottom" id="oYd-8G-D4L"/>
                             <constraint firstAttribute="centerX" secondItem="fg8-vj-iMl" secondAttribute="centerX" id="oiG-H9-tNa"/>
                             <constraint firstItem="caW-8I-hEi" firstAttribute="top" secondItem="ets-Ma-Cs8" secondAttribute="bottom" id="qL4-Qj-WOT"/>
                             <constraint firstItem="zj9-rq-Jlx" firstAttribute="bottom" secondItem="fg8-vj-iMl" secondAttribute="bottom" constant="-50" id="qOF-zR-W2B"/>
+                            <constraint firstItem="Msc-R4-9wU" firstAttribute="top" secondItem="MFb-h6-v1Y" secondAttribute="bottom" id="t61-Um-EnF"/>
+                            <constraint firstItem="fg8-vj-iMl" firstAttribute="width" secondItem="8nD-oe-nWs" secondAttribute="height" multiplier="142:73" id="uEC-Ms-Lfw"/>
                             <constraint firstItem="Msc-R4-9wU" firstAttribute="top" secondItem="SZ3-8e-ihl" secondAttribute="bottom" id="uuc-F5-LWw"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="fg8-vj-iMl" secondAttribute="trailing" id="v5a-Of-OFu"/>
                             <constraint firstItem="zj9-rq-Jlx" firstAttribute="centerX" secondItem="fg8-vj-iMl" secondAttribute="centerX" id="zzK-16-xbc"/>
@@ -365,6 +379,7 @@
                             <mask key="constraints">
                                 <exclude reference="SZh-ec-CfU"/>
                                 <exclude reference="J1y-ax-fgy"/>
+                                <exclude reference="Kfk-TT-4gU"/>
                                 <exclude reference="0AX-qN-8ss"/>
                                 <exclude reference="8Bq-pd-Vvv"/>
                                 <exclude reference="YS9-HB-XMC"/>
@@ -390,7 +405,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a7O-ag-guN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1531" y="-83"/>
+            <point key="canvasLocation" x="1537" y="-83"/>
         </scene>
         <!--Shop View Controller-->
         <scene sceneID="dod-Ip-7VM">
@@ -771,7 +786,7 @@
         <image name="menu_bg.png" width="588" height="361"/>
         <image name="music.png" width="107" height="42"/>
         <image name="reset_game.png" width="185" height="41"/>
-        <image name="settings_tab.png" width="173" height="84"/>
+        <image name="settings_tab_selected.png" width="173" height="84"/>
         <image name="shop_shelf.png" width="672" height="412"/>
         <image name="sounds.png" width="120" height="42"/>
         <image name="start.png" width="420" height="420"/>

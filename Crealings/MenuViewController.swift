@@ -25,11 +25,11 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var statsTab: UIButton!
     @IBOutlet weak var settingsTab: UIButton!
     
-    let gameData = GameData.sharedInstance;
+    let gameData = GameData();
     var statsArray = [];
     
     override func viewDidLoad() {
-        gameData.loadData();
+        gameData.loadData(false);
         statsArray = gameData.getStatsArray();
         
         statsTable.hidden = false;
@@ -58,7 +58,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let value: Int = item["value"] as Int;
         cell!.textLabel?.text = "\(name) \(value)";
         cell?.textLabel?.textColor = UIColor.whiteColor();
-        cell?.textLabel?.font = UIFont(name: "LilitaOne-Regular", size: 24.0);
+        cell?.textLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 18.0);
         cell?.backgroundColor = UIColor.clearColor();
         
         return cell!;

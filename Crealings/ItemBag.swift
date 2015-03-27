@@ -160,7 +160,7 @@ class ItemBag: SKNode {
         Set Item Data
     ************************************************************/
     func loadData () -> Bool {
-        gameData.loadData();
+        gameData.loadData(false);
         
         foodDrinksArray = gameData.getFoodAndDrinkItemsArray();
         careArray = gameData.getCareItemsArray();

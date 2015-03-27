@@ -26,7 +26,7 @@ class ShopHUD: SKSpriteNode {
     private var currentArray: [Dictionary <String, AnyObject>] = [];
     private var currentTab: String = String();
     
-    private let gameData: GameData = GameData.sharedInstance;
+    private let gameData: GameData = GameData();
     private let gameHUD: GameHUD = GameHUD.sharedInstance;
     
     private var gameView: GameScene? = nil;
@@ -110,7 +110,7 @@ class ShopHUD: SKSpriteNode {
     }
     
     func loadData () -> Bool {
-        if (gameData.loadData()) {
+        if (gameData.loadData(false)) {
             foodAndDrinksArray = gameData.getFoodAndDrinkItemsArray();
             careArray = gameData.getCareItemsArray();
             decorationsArray = gameData.getDecorationItemsArray();
