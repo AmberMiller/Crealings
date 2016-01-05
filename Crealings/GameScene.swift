@@ -166,7 +166,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 && (itemBag != nil) //Make sure itemBag is "open"
                 && usableItemDict != nil) //Make sure item dictionary is not nil
             {
-                if (usableItemDict!["isConsumable"] as Bool) {
+                if (usableItemDict!["isConsumable"] as! Bool) {
                     /* Create and add item based on current location */
                     usableItem = UsableItem();
                     usableItem?.zPosition = 1;
@@ -201,7 +201,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame);
         self.physicsBody!.categoryBitMask = CollisionType.FLOOR.rawValue;
         self.physicsBody!.contactTestBitMask = CollisionType.ITEM.rawValue;
-        view?.showsPhysics = true; //Show physics bounds
+        view?.showsPhysics = false; //Show physics bounds
         
         /* Add background to scene */
         let bgName: String = gameData.getBackground();

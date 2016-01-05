@@ -16,11 +16,11 @@ class StartViewController: UIViewController {
         
         if (!defaults.boolForKey("firstPlay")) {
             println("FIRST PLAY")
-            let view = self.storyboard?.instantiateViewControllerWithIdentifier("ChooseEggController") as ChooseEggViewController;
+            let view = self.storyboard?.instantiateViewControllerWithIdentifier("ChooseEggController") as! ChooseEggViewController;
             self.presentViewController(view, animated: true, completion: nil);
         } else {
             println("CONTINUE")
-            let view = self.storyboard?.instantiateViewControllerWithIdentifier("GameController") as GameViewController;
+            let view = self.storyboard?.instantiateViewControllerWithIdentifier("GameController") as! GameViewController;
             self.presentViewController(view, animated: true, completion: nil);
         }
     }

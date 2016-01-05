@@ -102,9 +102,9 @@ class ItemBag: SKNode {
     func addChildren (collection: SKSpriteNode, currentArray: [Dictionary <String, AnyObject>]) {
         for (var i = 0; i < currentArray.count; i++) {
             let object: Dictionary <String, AnyObject> = currentArray[i];
-            let numOwned: Int = object["numOwned"] as Int;
+            let numOwned: Int = object["numOwned"] as! Int;
             if (numOwned > 0) {
-                let itemName = object["imageName"] as String;
+                let itemName = object["imageName"] as! String;
                 var item: SKSpriteNode = SKSpriteNode(imageNamed: itemName);
                 item.name = itemName;
                 item.anchorPoint = CGPointMake(0.0, 0.0);
@@ -115,7 +115,7 @@ class ItemBag: SKNode {
                 }
                 item.position = CGPointMake(position, 0.0);
                 
-                if (object["isConsumable"] as Bool) {
+                if (object["isConsumable"] as! Bool) {
                     let itemNum = SKLabelNode(fontNamed: "Courier-Bold");
                     itemNum.text = toString(numOwned);
                     itemNum.position = CGPointMake(item.size.width / 1.2, 0.0);
@@ -137,19 +137,19 @@ class ItemBag: SKNode {
     func getItemDict (nodeName: String) -> Dictionary <String, AnyObject>? {
         
         for item in foodDrinksArray {
-            if (item["imageName"] as String == nodeName) {
+            if (item["imageName"] as! String == nodeName) {
                 return item;
             }
         }
         
         for item in careArray {
-            if (item["imageName"] as String == nodeName) {
+            if (item["imageName"] as! String == nodeName) {
                 return item;
             }
         }
         
         for item in decorationsArray {
-            if (item["imageName"] as String == nodeName) {
+            if (item["imageName"] as! String == nodeName) {
                 return item;
             }
         }

@@ -30,7 +30,7 @@ class ChooseEggViewController: UIViewController, UICollectionViewDataSource, UIC
     ************************************************************/
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: itemCell = collectionView.dequeueReusableCellWithReuseIdentifier("eggCell", forIndexPath: indexPath) as itemCell;
+        let cell: itemCell = collectionView.dequeueReusableCellWithReuseIdentifier("eggCell", forIndexPath: indexPath) as! itemCell;
         
         let egg = eggArray[indexPath.row];
         
@@ -55,7 +55,7 @@ class ChooseEggViewController: UIViewController, UICollectionViewDataSource, UIC
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "choseEgg") {
             
-            let gameData = segue.destinationViewController as GameViewController;
+            let gameData = segue.destinationViewController as! GameViewController;
             let data: EggObject = eggArray[selectedCell];
             gameData.eggType = data.name;
             

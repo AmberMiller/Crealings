@@ -117,9 +117,9 @@ class ShopHUD: SKSpriteNode {
             userCoins = gameData.getUserCoins();
             
             statsArray = gameData.getStatsArray();
-            numFoodItemsBought = (statsArray[0])["value"] as Int;
-            numCareItemsBought = (statsArray[1])["value"] as Int;
-            numDecorationsBought = (statsArray[2])["value"] as Int;
+            numFoodItemsBought = (statsArray[0])["value"] as! Int;
+            numCareItemsBought = (statsArray[1])["value"] as! Int;
+            numDecorationsBought = (statsArray[2])["value"] as! Int;
             
         }
         
@@ -202,18 +202,18 @@ class ShopHUD: SKSpriteNode {
             itemBox.position = CGPointMake(position + ((ratioWidth / 1.3) * CGFloat(i)), self.size.height / 1.55);
             itemBox.zPosition = 3;
             
-            let name: SKLabelNode = SKLabelNode(text: currentItem["name"] as String);
+            let name: SKLabelNode = SKLabelNode(text: currentItem["name"] as! String);
             name.fontName = "MarkerFelt-Thin";
             name.fontColor = UIColor(red: 0.565, green: 0.4, blue: 0.776, alpha: 1); /*#9066c6*/
             name.position = CGPointMake(0.0, itemBox.size.height / 2.8);
             
-            let image: SKSpriteNode = SKSpriteNode(imageNamed: currentItem["imageName"] as String);
+            let image: SKSpriteNode = SKSpriteNode(imageNamed: currentItem["imageName"] as! String);
             image.position = CGPointMake(0.0, itemBox.size.height / 8.5);
             let imageSize = itemBox.size.width / 1.8;
             image.size = CGSizeMake(imageSize, imageSize);
             
             let description: DSMultilineLabelNode = DSMultilineLabelNode();
-            description.text = currentItem["description"] as String;
+            description.text = currentItem["description"] as! String;
             description.fontName = "MarkerFelt-Thin";
             description.fontColor = UIColor(red: 0.565, green: 0.4, blue: 0.776, alpha: 1); /*#9066c6*/
             description.position = CGPointMake(0.0, -itemBox.size.height / 6);
@@ -257,7 +257,7 @@ class ShopHUD: SKSpriteNode {
             itemBox.addChild(image);
             itemBox.addChild(description);
             
-            if ((currentTab == "accessoriesTab" || currentTab == "decorationsTab") && currentItem["numOwned"] as Int > 0) {
+            if ((currentTab == "accessoriesTab" || currentTab == "decorationsTab") && currentItem["numOwned"] as! Int > 0) {
                 itemBox.addChild(owned);
             } else {
                 itemBox.addChild(cost);
@@ -342,10 +342,10 @@ class ShopHUD: SKSpriteNode {
     func buyItem (nodeName: String) {
         let id = nodeName.toInt();
         var item = currentArray[id!];
-        let cost: Int = item["cost"] as Int;
+        let cost: Int = item["cost"] as! Int;
         
         if (userCoins > cost) {
-            var itemNumOwned: Int = item["numOwned"] as Int;
+            var itemNumOwned: Int = item["numOwned"] as! Int;
             itemNumOwned += 1;
             
             item.updateValue(itemNumOwned, forKey: "numOwned");

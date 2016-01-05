@@ -71,28 +71,28 @@ class GameData {
             gameData = NSMutableDictionary(contentsOfFile: plistPath)!;
             println("\n\nLOADING DATA\n\n\(gameData)");
             
-            userCoins = gameData["userCoins"] as Int;
-            userGems = gameData["userGems"] as Int;
-            userBackground = gameData["userBackground"] as String;
+            userCoins = gameData["userCoins"] as! Int;
+            userGems = gameData["userGems"] as! Int;
+            userBackground = gameData["userBackground"] as! String;
             
-            statusDict = gameData["Status"] as Dictionary <String, AnyObject>;
-            happiness = statusDict["happiness"] as Int;
-            energy = statusDict["energy"] as Int;
-            hunger = statusDict["hunger"] as Int;
-            thirst = statusDict["thirst"] as Int;
-            fun = statusDict["fun"] as Int;
-            hygiene = statusDict["hygiene"] as Int;
+            statusDict = gameData["Status"] as! Dictionary <String, AnyObject>;
+            happiness = statusDict["happiness"] as! Int;
+            energy = statusDict["energy"] as! Int;
+            hunger = statusDict["hunger"] as! Int;
+            thirst = statusDict["thirst"] as! Int;
+            fun = statusDict["fun"] as! Int;
+            hygiene = statusDict["hygiene"] as! Int;
             
             println("Plist Status: \(statusDict)");
             let status: Status = Status.sharedInstance;
             status.setDataFromPlist(happiness, _energy: energy, _hunger: hunger, _thirst: thirst, _fun: fun, _hygiene: hygiene);
             
-            items = gameData["Items"] as Dictionary <String, AnyObject>;
-            foodAndDrinkItems = items["FoodAndDrinks"] as [Dictionary <String, AnyObject>];
-            careItems = items["Care"] as [Dictionary <String, AnyObject>];
-            decorationItems = items["Decorations"] as [Dictionary <String, AnyObject>];
+            items = gameData["Items"] as! Dictionary <String, AnyObject>;
+            foodAndDrinkItems = items["FoodAndDrinks"] as! [Dictionary <String, AnyObject>];
+            careItems = items["Care"] as! [Dictionary <String, AnyObject>];
+            decorationItems = items["Decorations"] as! [Dictionary <String, AnyObject>];
             
-            statsArray = gameData["Stats"] as [Dictionary <String, AnyObject>];
+            statsArray = gameData["Stats"] as! [Dictionary <String, AnyObject>];
             
             return true;
         }
@@ -174,8 +174,8 @@ class GameData {
         var found: Bool = Bool();
         
         for item in foodAndDrinkItems {
-            if (item["name"] as String == newItem["name"] as String) {
-                let index: Int = item["id"] as Int;
+            if (item["name"] as! String == newItem["name"] as! String) {
+                let index: Int = item["id"] as! Int;
                 foodAndDrinkItems[index] = newItem;
                 found = true;
                 break;
@@ -184,8 +184,8 @@ class GameData {
 
         if (!found) {
             for item in careItems {
-                if (item["name"] as String == newItem["name"] as String) {
-                    let index: Int = item["id"] as Int;
+                if (item["name"] as! String == newItem["name"] as! String) {
+                    let index: Int = item["id"] as! Int;
                     careItems[index] = newItem;
                     found = true;
                     break;
@@ -195,8 +195,8 @@ class GameData {
 
         if (!found) {
             for item in decorationItems {
-                if (item["name"] as String == newItem["name"] as String) {
-                    let index: Int = item["id"] as Int;
+                if (item["name"] as! String == newItem["name"] as! String) {
+                    let index: Int = item["id"] as! Int;
                     decorationItems[index] = newItem;
                     found = true;
                     break;

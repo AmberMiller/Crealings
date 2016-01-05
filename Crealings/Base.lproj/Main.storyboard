@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kp9-lu-BGf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kp9-lu-BGf">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -28,7 +28,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_bluepolka.png" translatesAutoresizingMaskIntoConstraints="NO" id="iDU-nq-zIG">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_bluepolka" translatesAutoresizingMaskIntoConstraints="NO" id="iDU-nq-zIG">
                                 <rect key="frame" x="-4" y="0.0" width="608" height="600"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iik-nL-JwZ">
@@ -87,7 +87,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_bluepolka.png" translatesAutoresizingMaskIntoConstraints="NO" id="f5n-1b-FdB">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_bluepolka" translatesAutoresizingMaskIntoConstraints="NO" id="f5n-1b-FdB">
                                 <rect key="frame" x="-4" y="0.0" width="608" height="600"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="choose_egg.png" translatesAutoresizingMaskIntoConstraints="NO" id="C12-T3-cOl">
@@ -211,7 +211,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_bluepolka.png" translatesAutoresizingMaskIntoConstraints="NO" id="MFb-h6-v1Y">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_bluepolka" translatesAutoresizingMaskIntoConstraints="NO" id="MFb-h6-v1Y">
                                 <rect key="frame" x="-4" y="0.0" width="612" height="600"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu_bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="fg8-vj-iMl">
@@ -419,7 +419,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_bluepolka.png" translatesAutoresizingMaskIntoConstraints="NO" id="YP7-q6-g8u">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_bluepolka" translatesAutoresizingMaskIntoConstraints="NO" id="YP7-q6-g8u">
                                 <rect key="frame" x="-4" y="0.0" width="608" height="620"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shop_shelf.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ngx-t7-Gbg">
@@ -777,7 +777,7 @@
         <image name="apple.png" width="110" height="110"/>
         <image name="bEgg.png" width="200" height="215"/>
         <image name="back_button.png" width="83" height="49"/>
-        <image name="background_bluepolka.png" width="1024" height="768"/>
+        <image name="background_bluepolka" width="682" height="512"/>
         <image name="buy_button.png" width="89" height="43"/>
         <image name="choose_egg.png" width="402" height="89"/>
         <image name="exit_button.png" width="41" height="41"/>

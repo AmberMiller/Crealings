@@ -26,7 +26,7 @@ class UsableItem: SKNode {
     
     /* Add usable item to the GameScene with image based on chosen item */
     func addItem (item: Dictionary <String, AnyObject>, tapPosition: CGPoint) {
-        let itemName = item["imageName"] as String;
+        let itemName = item["imageName"] as! String;
         println("Add Item Name: \(itemName)")
         newItem = SKSpriteNode(imageNamed: itemName);
         newItem?.size = CGSizeMake(newItem!.size.width / 1.5, newItem!.size.height / 1.5);

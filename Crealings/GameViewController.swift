@@ -22,11 +22,11 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
     
     override func viewWillAppear(animated: Bool) {
         
-        skView = self.view as SKView
-        skView.showsFPS = true
-        skView.showsNodeCount = true
-        skView.showsPhysics = true
-        skView.showsDrawCount = true
+        skView = self.view as! SKView
+//        skView.showsFPS = true
+//        skView.showsNodeCount = true
+//        skView.showsPhysics = true
+//        skView.showsDrawCount = true
         
         /* Sprite Kit applies additional optimizations to improve rendering performance */
         skView.ignoresSiblingOrder = true
@@ -96,8 +96,8 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
         if (eggType == nil) {
             eggType = defaults.valueForKey("userCrealing") as? String;
         }
-        (skView.scene as EggScene).eggType = eggType;
-        (skView.scene as EggScene).setupScene();
+        (skView.scene as! EggScene).eggType = eggType;
+        (skView.scene as! EggScene).setupScene();
     }
     
     /* Setup the GameScene */
@@ -106,7 +106,7 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
         if (eggType == nil) {
             eggType = defaults.valueForKey("userCrealing") as? String;
         }
-        (skView.scene as GameScene).setUpScene(eggType!, isNewGame: isNewGame, fromReset: defaults.boolForKey("resetGame"));
+        (skView.scene as! GameScene).setUpScene(eggType!, isNewGame: isNewGame, fromReset: defaults.boolForKey("resetGame"));
     }
     
 
@@ -116,7 +116,7 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
     
     func MenuButtonClicked () {
         println("Game Delegate: Menu");
-        let view = self.storyboard?.instantiateViewControllerWithIdentifier("MenuController") as MenuViewController;
+        let view = self.storyboard?.instantiateViewControllerWithIdentifier("MenuController") as! MenuViewController;
         self.presentViewController(view, animated: true, completion: nil);
     }
     
@@ -135,7 +135,7 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
         if (defaults.boolForKey("firstPlay")) {
             self.dismissViewControllerAnimated(true, completion: nil);
         } else {
-            let view = self.storyboard?.instantiateViewControllerWithIdentifier("StartController") as StartViewController;
+            let view = self.storyboard?.instantiateViewControllerWithIdentifier("StartController") as! StartViewController;
             self.presentViewController(view, animated: true, completion: nil);
         }
         
@@ -153,7 +153,7 @@ class GameViewController: UIViewController, EggSceneDelegate, GameSceneDelegate 
         if (defaults.boolForKey("firstPlay")) {
             self.dismissViewControllerAnimated(true, completion: nil);
         } else {
-            let view = self.storyboard?.instantiateViewControllerWithIdentifier("StartController") as StartViewController;
+            let view = self.storyboard?.instantiateViewControllerWithIdentifier("StartController") as! StartViewController;
             self.presentViewController(view, animated: true, completion: nil);
         }
         

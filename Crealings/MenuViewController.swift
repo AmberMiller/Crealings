@@ -54,8 +54,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let item: AnyObject = statsArray[indexPath.row];
         
-        let name: String = item["name"] as String;
-        let value: Int = item["value"] as Int;
+        let name = item["name"];
+        let value = item["value"];
         cell!.textLabel?.text = "\(name) \(value)";
         cell?.textLabel?.textColor = UIColor.whiteColor();
         cell?.textLabel?.font = UIFont(name: "MarkerFelt-Thin", size: 18.0);

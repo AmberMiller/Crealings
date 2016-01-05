@@ -14,7 +14,7 @@ extension GameScene {
         Touches
     ************************************************************/
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         /* Called when a touch begins */
         for touch: AnyObject in touches {
             tapLocation = touch.locationInNode(self);
@@ -35,7 +35,7 @@ extension GameScene {
                     if (node.name != "exit") {
                         closeBag();
                     }
-                
+                    
                     isItem = false;
                     
                     switch node.name! {
@@ -116,8 +116,8 @@ extension GameScene {
                             isItem = true; //If not the bag, then node must be an item
                             selectedNodeName = node.name!; //Save node.name for long press function
                             usableItemDict = itemBag!.getItemDict(selectedNodeName)!;
-                            if (!(usableItemDict!["isConsumable"] as Bool)) {
-                                let imageName = usableItemDict!["image"] as String;
+                            if (!(usableItemDict!["isConsumable"] as! Bool)) {
+                                let imageName = usableItemDict!["image"] as! String;
                                 if (bg != nil) {
                                     gameData.writeData(imageName, key: "userBackground");
                                     bg!.texture = SKTexture(imageNamed: imageName);
@@ -129,8 +129,9 @@ extension GameScene {
             }
         }
     }
+
     
-    override func touchesMoved (touches: NSSet, withEvent event: UIEvent) {
+    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self);
             let node = nodeAtPoint(location);
@@ -142,7 +143,7 @@ extension GameScene {
         }
     }
     
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         println("Touch Length: \(touchLength)");
         for touch: AnyObject in touches {
             let location = touch.locationInNode(self);
@@ -230,20 +231,20 @@ extension GameScene {
     /* Pull item data, set status changes, refresh mood, and remove item from scene */
     func giveItemToPet () {
         
-        if (usableItemDict != nil && crealing!.giveItem(usableItemDict!["happinessChange"] as Int,
-            energy: usableItemDict!["energyChange"] as Int,
-            hunger: usableItemDict!["hungerChange"] as Int,
-            thirst: usableItemDict!["thirstChange"] as Int,
-            fun: usableItemDict!["funChange"] as Int,
-            hygiene: usableItemDict!["hygieneChange"] as Int))
+        if (usableItemDict != nil && crealing!.giveItem(usableItemDict!["happinessChange"] as! Int,
+            energy: usableItemDict!["energyChange"] as! Int,
+            hunger: usableItemDict!["hungerChange"] as! Int,
+            thirst: usableItemDict!["thirstChange"] as! Int,
+            fun: usableItemDict!["funChange"] as! Int,
+            hygiene: usableItemDict!["hygieneChange"] as! Int))
         {
-            let itemName: String = usableItemDict!["name"] as String;
+            let itemName: String = usableItemDict!["name"] as! String;
             println("Item Given to Pet: \(itemName)");
             
             gameHUD!.interactWith();
             checkMood();
             
-            var numOwned: Int = usableItemDict!["numOwned"] as Int;
+            var numOwned: Int = usableItemDict!["numOwned"] as! Int;
             numOwned -= 1;
             usableItemDict!.updateValue(numOwned, forKey: "numOwned");
             gameData.setItemData(usableItemDict!);             
